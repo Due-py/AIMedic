@@ -263,4 +263,37 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get coachWelcome =>
       'Chào bạn! Mình là AIMedic — người bạn đồng hành sức khỏe của bạn. Hãy hỏi mình về giấc ngủ, dinh dưỡng, vận động hoặc cảm xúc nhé! 💚';
+
+  @override
+  String levelLabel(int level) {
+    return 'Cấp $level';
+  }
+
+  @override
+  String xpProgress(int current, int total) {
+    return '$current/$total XP';
+  }
+
+  @override
+  String streakDays(int days) {
+    return '$days ngày liên tiếp';
+  }
+
+  @override
+  String get badgeFirstLog => 'Khởi đầu';
+
+  @override
+  String get badgeStreak3 => 'Chuỗi 3 ngày';
+
+  @override
+  String get badgeStreak7 => 'Chuỗi 7 ngày';
+
+  @override
+  String get badgeWater10l => '10 lít nước';
+
+  @override
+  String get badgeMood5Days => 'Hiểu cảm xúc';
+
+  @override
+  String get badgeActive5Days => 'Năng động';
 }

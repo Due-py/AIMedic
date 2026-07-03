@@ -81,5 +81,15 @@
   "coachSendTooltip": "Send",
   "coachTyping": "AIMedic is replying...",
   "coachSendError": "Could not send your message. Please try again.",
-  "coachWelcome": "Hi! I'm AIMedic — your health companion. Ask me about sleep, nutrition, exercise or feelings! 💚"
+  "coachWelcome": "Hi! I'm AIMedic — your health companion. Ask me about sleep, nutrition, exercise or feelings! 💚",
+
+  "levelLabel": "Level {level}",
+  "xpProgress": "{current}/{total} XP",
+  "streakDays": "{days}-day streak",
+  "badgeFirstLog": "First step",
+  "badgeStreak3": "3-day streak",
+  "badgeStreak7": "7-day streak",
+  "badgeWater10l": "10 liters of water",
+  "badgeMood5Days": "Mood aware",
+  "badgeActive5Days": "Active"
 }

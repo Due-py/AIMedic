@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../profile/profile_models.dart';
 import '../profile/profile_repository.dart';
+import '../reminders/reminder_service.dart';
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -96,6 +97,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         );
         setState(() => _saving = false);
       } else {
+        // Fire-and-forget: reminders must never block onboarding.
+        ReminderService.instance.scheduleFromProfile(draft);
         context.go('/');
       }
     } catch (_) {

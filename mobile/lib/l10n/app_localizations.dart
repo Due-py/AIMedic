@@ -565,6 +565,60 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'Chào bạn! Mình là AIMedic — người bạn đồng hành sức khỏe của bạn. Hãy hỏi mình về giấc ngủ, dinh dưỡng, vận động hoặc cảm xúc nhé! 💚'**
   String get coachWelcome;
+
+  /// No description provided for @levelLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cấp {level}'**
+  String levelLabel(int level);
+
+  /// No description provided for @xpProgress.
+  ///
+  /// In vi, this message translates to:
+  /// **'{current}/{total} XP'**
+  String xpProgress(int current, int total);
+
+  /// No description provided for @streakDays.
+  ///
+  /// In vi, this message translates to:
+  /// **'{days} ngày liên tiếp'**
+  String streakDays(int days);
+
+  /// No description provided for @badgeFirstLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Khởi đầu'**
+  String get badgeFirstLog;
+
+  /// No description provided for @badgeStreak3.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chuỗi 3 ngày'**
+  String get badgeStreak3;
+
+  /// No description provided for @badgeStreak7.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chuỗi 7 ngày'**
+  String get badgeStreak7;
+
+  /// No description provided for @badgeWater10l.
+  ///
+  /// In vi, this message translates to:
+  /// **'10 lít nước'**
+  String get badgeWater10l;
+
+  /// No description provided for @badgeMood5Days.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hiểu cảm xúc'**
+  String get badgeMood5Days;
+
+  /// No description provided for @badgeActive5Days.
+  ///
+  /// In vi, this message translates to:
+  /// **'Năng động'**
+  String get badgeActive5Days;
 }
 
 class _AppLocalizationsDelegate

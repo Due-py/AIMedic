@@ -1,5 +1,7 @@
 import 'package:aimedic/features/coach/coach_models.dart';
 import 'package:aimedic/features/coach/coach_repository.dart';
+import 'package:aimedic/features/gamification/gamification_models.dart';
+import 'package:aimedic/features/gamification/gamification_repository.dart';
 import 'package:aimedic/features/profile/profile_models.dart';
 import 'package:aimedic/features/profile/profile_repository.dart';
 import 'package:aimedic/features/tracking/tracking_models.dart';
@@ -37,6 +39,24 @@ class FakeProfileRepository implements ProfileRepository {
     );
     return stored!;
   }
+}
+
+class FakeGamificationRepository implements GamificationRepository {
+  GamificationState state = const GamificationState(
+    xp: 45,
+    level: 1,
+    xpIntoLevel: 45,
+    xpPerLevel: 100,
+    streakDays: 3,
+    badges: [
+      Badge(id: 'first_log', earned: true),
+      Badge(id: 'streak_3', earned: true),
+      Badge(id: 'streak_7', earned: false),
+    ],
+  );
+
+  @override
+  Future<GamificationState> fetch() async => state;
 }
 
 class FakeCoachRepository implements CoachRepository {

@@ -4,6 +4,8 @@
 !.env.example
 **/serviceAccountKey.json
 **/firebase-credentials*.json
+**/*firebase-adminsdk*.json
+backend/*.json
 mobile/android/app/google-services.json
 mobile/ios/Runner/GoogleService-Info.plist
 

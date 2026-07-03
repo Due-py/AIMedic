@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../gamification/gamification_card.dart';
 import '../profile/profile_models.dart';
 import '../profile/profile_repository.dart';
 
@@ -61,6 +62,7 @@ class _Dashboard extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
+        const GamificationCard(),
         _TargetCard(
           icon: Icons.monitor_weight,
           title: l10n.bmiLabel,

@@ -264,4 +264,37 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get coachWelcome =>
       'Hi! I\'m AIMedic — your health companion. Ask me about sleep, nutrition, exercise or feelings! 💚';
+
+  @override
+  String levelLabel(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String xpProgress(int current, int total) {
+    return '$current/$total XP';
+  }
+
+  @override
+  String streakDays(int days) {
+    return '$days-day streak';
+  }
+
+  @override
+  String get badgeFirstLog => 'First step';
+
+  @override
+  String get badgeStreak3 => '3-day streak';
+
+  @override
+  String get badgeStreak7 => '7-day streak';
+
+  @override
+  String get badgeWater10l => '10 liters of water';
+
+  @override
+  String get badgeMood5Days => 'Mood aware';
+
+  @override
+  String get badgeActive5Days => 'Active';
 }

@@ -55,4 +55,11 @@ def test_invalid_profile_rejected(client):
 def test_auth_required_when_not_debug(client, monkeypatch):
     monkeypatch.setattr(get_settings(), "debug", False)
     resp = client.get("/profile")
-    assert resp.status_code == 503  # no Firebase configured and not DEBUG
+    assert resp.status_code == 401  # missing token outside DEBUG
+
+
+def test_provided_token_never_uses_dev_fallback(client):
+    # Even in DEBUG, a real token must be verified — Firebase is not
+    # configured in tests, so verification is impossible → 503.
+    resp = client.get("/profile", headers={"Authorization": "Bearer abc"})
+    assert resp.status_code == 503

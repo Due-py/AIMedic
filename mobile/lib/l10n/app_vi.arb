@@ -128,5 +128,31 @@
   "coachSendTooltip": "Gửi",
   "coachTyping": "AIMedic đang trả lời...",
   "coachSendError": "Không gửi được tin nhắn. Vui lòng thử lại.",
-  "coachWelcome": "Chào bạn! Mình là AIMedic — người bạn đồng hành sức khỏe của bạn. Hãy hỏi mình về giấc ngủ, dinh dưỡng, vận động hoặc cảm xúc nhé! 💚"
+  "coachWelcome": "Chào bạn! Mình là AIMedic — người bạn đồng hành sức khỏe của bạn. Hãy hỏi mình về giấc ngủ, dinh dưỡng, vận động hoặc cảm xúc nhé! 💚",
+
+  "levelLabel": "Cấp {level}",
+  "@levelLabel": {
+    "placeholders": {
+      "level": {"type": "int"}
+    }
+  },
+  "xpProgress": "{current}/{total} XP",
+  "@xpProgress": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "streakDays": "{days} ngày liên tiếp",
+  "@streakDays": {
+    "placeholders": {
+      "days": {"type": "int"}
+    }
+  },
+  "badgeFirstLog": "Khởi đầu",
+  "badgeStreak3": "Chuỗi 3 ngày",
+  "badgeStreak7": "Chuỗi 7 ngày",
+  "badgeWater10l": "10 lít nước",
+  "badgeMood5Days": "Hiểu cảm xúc",
+  "badgeActive5Days": "Năng động"
 }

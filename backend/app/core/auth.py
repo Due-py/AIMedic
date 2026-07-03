@@ -17,18 +17,21 @@ _bearer = HTTPBearer(auto_error=False)
 def get_current_uid(
     token: HTTPAuthorizationCredentials | None = Depends(_bearer),
 ) -> str:
-    if not firebase_available():
+    # DEBUG-only convenience: a missing token authenticates as a local dev
+    # user, so the app can be developed before sign-in exists. A provided
+    # token is always verified for real. Production runs with DEBUG=false.
+    if token is None:
         if get_settings().debug:
             return "dev-user"
         raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="Authentication service is not configured.",
-        )
-
-    if token is None:
-        raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Missing bearer token.",
+        )
+
+    if not firebase_available():
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Authentication service is not configured.",
         )
 
     from firebase_admin import auth as fb_auth

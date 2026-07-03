@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/api_client.dart';
+import '../gamification/gamification_repository.dart';
 import 'tracking_models.dart';
 
 class TrackingRepository {
@@ -65,8 +66,9 @@ class TodayLogNotifier extends AsyncNotifier<DailyLog> {
       Future<DailyLog> Function(TrackingRepository repo) op) async {
     final repo = ref.read(trackingRepositoryProvider);
     state = await AsyncValue.guard(() => op(repo));
-    // Weekly chart includes today; refresh it.
+    // Logging affects the weekly chart and XP/streak/badges.
     ref.invalidate(weekLogsProvider);
+    ref.invalidate(gamificationProvider);
   }
 }
 
