@@ -1,0 +1,25 @@
+# Render Blueprint — deploys the FastAPI backend on the free tier.
+# In the Render dashboard: New → Blueprint → pick the GitHub repo.
+# After the first deploy, set the two secrets under Environment:
+#   GEMINI_API_KEY            — from https://aistudio.google.com/apikey
+#   FIREBASE_CREDENTIALS_JSON — full contents of the service-account JSON file
+services:
+  - type: web
+    name: aimedic-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m app.deploy_entry
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DEBUG
+        value: "false"
+      - key: CORS_ORIGINS
+        value: ""
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FIREBASE_CREDENTIALS_JSON
+        sync: false
