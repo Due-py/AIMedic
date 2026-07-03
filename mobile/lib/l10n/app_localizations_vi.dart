@@ -182,4 +182,69 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get loadError =>
       'Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại nhé.';
+
+  @override
+  String get todayTitle => 'Hôm nay';
+
+  @override
+  String get weeklyTitle => '7 ngày qua';
+
+  @override
+  String get waterLog => 'Nước uống';
+
+  @override
+  String get addCupButton => '+250 ml';
+
+  @override
+  String get sleepLog => 'Giấc ngủ';
+
+  @override
+  String get exerciseLog => 'Vận động';
+
+  @override
+  String get screenTimeLog => 'Thời gian màn hình';
+
+  @override
+  String get moodLog => 'Tâm trạng';
+
+  @override
+  String get stressLog => 'Căng thẳng';
+
+  @override
+  String get notLoggedYet => 'Chưa ghi';
+
+  @override
+  String mlValue(int amount) {
+    return '$amount ml';
+  }
+
+  @override
+  String hoursValue(String amount) {
+    return '$amount giờ';
+  }
+
+  @override
+  String minutesValue(int amount) {
+    return '$amount phút';
+  }
+
+  @override
+  String stressLevelValue(int level) {
+    return 'Mức $level/5';
+  }
+
+  @override
+  String get saveButton => 'Lưu';
+
+  @override
+  String get cancelButton => 'Hủy';
+
+  @override
+  String get chartWater => 'Nước (ml)';
+
+  @override
+  String get chartSleep => 'Ngủ (giờ)';
+
+  @override
+  String get chartTargetLine => 'Mục tiêu';
 }

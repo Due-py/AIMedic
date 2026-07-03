@@ -183,4 +183,69 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get loadError =>
       'Could not load your data. Check your connection and try again.';
+
+  @override
+  String get todayTitle => 'Today';
+
+  @override
+  String get weeklyTitle => 'Last 7 days';
+
+  @override
+  String get waterLog => 'Water';
+
+  @override
+  String get addCupButton => '+250 ml';
+
+  @override
+  String get sleepLog => 'Sleep';
+
+  @override
+  String get exerciseLog => 'Exercise';
+
+  @override
+  String get screenTimeLog => 'Screen time';
+
+  @override
+  String get moodLog => 'Mood';
+
+  @override
+  String get stressLog => 'Stress';
+
+  @override
+  String get notLoggedYet => 'Not logged yet';
+
+  @override
+  String mlValue(int amount) {
+    return '$amount ml';
+  }
+
+  @override
+  String hoursValue(String amount) {
+    return '$amount hours';
+  }
+
+  @override
+  String minutesValue(int amount) {
+    return '$amount min';
+  }
+
+  @override
+  String stressLevelValue(int level) {
+    return 'Level $level/5';
+  }
+
+  @override
+  String get saveButton => 'Save';
+
+  @override
+  String get cancelButton => 'Cancel';
+
+  @override
+  String get chartWater => 'Water (ml)';
+
+  @override
+  String get chartSleep => 'Sleep (hours)';
+
+  @override
+  String get chartTargetLine => 'Target';
 }

@@ -82,5 +82,45 @@
       "amount": {"type": "int"}
     }
   },
-  "loadError": "Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại nhé."
+  "loadError": "Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại nhé.",
+
+  "todayTitle": "Hôm nay",
+  "weeklyTitle": "7 ngày qua",
+  "waterLog": "Nước uống",
+  "addCupButton": "+250 ml",
+  "sleepLog": "Giấc ngủ",
+  "exerciseLog": "Vận động",
+  "screenTimeLog": "Thời gian màn hình",
+  "moodLog": "Tâm trạng",
+  "stressLog": "Căng thẳng",
+  "notLoggedYet": "Chưa ghi",
+  "mlValue": "{amount} ml",
+  "@mlValue": {
+    "placeholders": {
+      "amount": {"type": "int"}
+    }
+  },
+  "hoursValue": "{amount} giờ",
+  "@hoursValue": {
+    "placeholders": {
+      "amount": {"type": "String"}
+    }
+  },
+  "minutesValue": "{amount} phút",
+  "@minutesValue": {
+    "placeholders": {
+      "amount": {"type": "int"}
+    }
+  },
+  "stressLevelValue": "Mức {level}/5",
+  "@stressLevelValue": {
+    "placeholders": {
+      "level": {"type": "int"}
+    }
+  },
+  "saveButton": "Lưu",
+  "cancelButton": "Hủy",
+  "chartWater": "Nước (ml)",
+  "chartSleep": "Ngủ (giờ)",
+  "chartTargetLine": "Mục tiêu"
 }

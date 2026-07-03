@@ -7,6 +7,7 @@ from slowapi.util import get_remote_address
 from app.core.config import get_settings
 from app.core.firebase import init_firebase
 from app.features.profile.router import router as profile_router
+from app.features.tracking.router import router as tracking_router
 
 settings = get_settings()
 
@@ -27,6 +28,7 @@ app.add_middleware(
 )
 
 app.include_router(profile_router)
+app.include_router(tracking_router)
 
 
 @app.get("/health", tags=["meta"])

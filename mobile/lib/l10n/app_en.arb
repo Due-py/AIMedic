@@ -55,5 +55,25 @@
   "waterValue": "{amount} ml per day",
   "sleepValue": "{min}-{max} hours per night",
   "calorieValue": "About {amount} kcal",
-  "loadError": "Could not load your data. Check your connection and try again."
+  "loadError": "Could not load your data. Check your connection and try again.",
+
+  "todayTitle": "Today",
+  "weeklyTitle": "Last 7 days",
+  "waterLog": "Water",
+  "addCupButton": "+250 ml",
+  "sleepLog": "Sleep",
+  "exerciseLog": "Exercise",
+  "screenTimeLog": "Screen time",
+  "moodLog": "Mood",
+  "stressLog": "Stress",
+  "notLoggedYet": "Not logged yet",
+  "mlValue": "{amount} ml",
+  "hoursValue": "{amount} hours",
+  "minutesValue": "{amount} min",
+  "stressLevelValue": "Level {level}/5",
+  "saveButton": "Save",
+  "cancelButton": "Cancel",
+  "chartWater": "Water (ml)",
+  "chartSleep": "Sleep (hours)",
+  "chartTargetLine": "Target"
 }

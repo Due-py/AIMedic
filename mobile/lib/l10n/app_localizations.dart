@@ -421,6 +421,120 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại nhé.'**
   String get loadError;
+
+  /// No description provided for @todayTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hôm nay'**
+  String get todayTitle;
+
+  /// No description provided for @weeklyTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'7 ngày qua'**
+  String get weeklyTitle;
+
+  /// No description provided for @waterLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nước uống'**
+  String get waterLog;
+
+  /// No description provided for @addCupButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'+250 ml'**
+  String get addCupButton;
+
+  /// No description provided for @sleepLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giấc ngủ'**
+  String get sleepLog;
+
+  /// No description provided for @exerciseLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vận động'**
+  String get exerciseLog;
+
+  /// No description provided for @screenTimeLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thời gian màn hình'**
+  String get screenTimeLog;
+
+  /// No description provided for @moodLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tâm trạng'**
+  String get moodLog;
+
+  /// No description provided for @stressLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Căng thẳng'**
+  String get stressLog;
+
+  /// No description provided for @notLoggedYet.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chưa ghi'**
+  String get notLoggedYet;
+
+  /// No description provided for @mlValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'{amount} ml'**
+  String mlValue(int amount);
+
+  /// No description provided for @hoursValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'{amount} giờ'**
+  String hoursValue(String amount);
+
+  /// No description provided for @minutesValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'{amount} phút'**
+  String minutesValue(int amount);
+
+  /// No description provided for @stressLevelValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mức {level}/5'**
+  String stressLevelValue(int level);
+
+  /// No description provided for @saveButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Lưu'**
+  String get saveButton;
+
+  /// No description provided for @cancelButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hủy'**
+  String get cancelButton;
+
+  /// No description provided for @chartWater.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nước (ml)'**
+  String get chartWater;
+
+  /// No description provided for @chartSleep.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ngủ (giờ)'**
+  String get chartSleep;
+
+  /// No description provided for @chartTargetLine.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mục tiêu'**
+  String get chartTargetLine;
 }
 
 class _AppLocalizationsDelegate
