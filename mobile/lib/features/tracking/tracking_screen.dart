@@ -192,6 +192,7 @@ class _TodayCard extends ConsumerWidget {
                   IconButton(
                     onPressed: () =>
                         notifier.patch(DailyLogPatch(mood: i + 1)),
+                    tooltip: '${l10n.moodLog} ${i + 1}/5',
                     icon: Text(
                       _moodEmojis[i],
                       style: TextStyle(

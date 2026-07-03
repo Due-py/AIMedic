@@ -149,6 +149,40 @@
       "days": {"type": "int"}
     }
   },
+  "insightsTitle": "Nhận xét tuần này",
+  "insightSleepDebt": "Bạn ngủ trung bình {value} giờ mỗi đêm — hơi ít đó. Thử đi ngủ sớm hơn 30 phút nhé!",
+  "@insightSleepDebt": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+  "insightSleepGood": "Bạn đang ngủ rất điều độ ({value} giờ mỗi đêm). Tuyệt vời!",
+  "@insightSleepGood": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+  "insightLowWater": "Bạn uống trung bình {value} ml nước mỗi ngày, thấp hơn mục tiêu. Nhớ mang theo chai nước nhé!",
+  "@insightLowWater": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+  "insightWaterGood": "Bạn uống đủ nước mỗi ngày ({value} ml). Cứ tiếp tục nhé!",
+  "@insightWaterGood": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+  "insightHighScreenTime": "Bạn dùng màn hình trung bình {value} phút mỗi ngày. Thử nghỉ giải lao và vận động nhiều hơn nhé!",
+  "@insightHighScreenTime": {
+    "placeholders": {
+      "value": {"type": "String"}
+    }
+  },
+  "insightHighStress": "Tuần này bạn có vẻ căng thẳng. Hãy thử hít thở sâu và trò chuyện với người thân nhé.",
+  "insightLowExercise": "Tuần này bạn vận động khá ít. Đi bộ hoặc chơi thể thao 30 phút mỗi ngày sẽ rất tốt đó!",
+
   "badgeFirstLog": "Khởi đầu",
   "badgeStreak3": "Chuỗi 3 ngày",
   "badgeStreak7": "Chuỗi 7 ngày",

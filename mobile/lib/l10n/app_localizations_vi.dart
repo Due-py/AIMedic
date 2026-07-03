@@ -280,6 +280,42 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get insightsTitle => 'Nhận xét tuần này';
+
+  @override
+  String insightSleepDebt(String value) {
+    return 'Bạn ngủ trung bình $value giờ mỗi đêm — hơi ít đó. Thử đi ngủ sớm hơn 30 phút nhé!';
+  }
+
+  @override
+  String insightSleepGood(String value) {
+    return 'Bạn đang ngủ rất điều độ ($value giờ mỗi đêm). Tuyệt vời!';
+  }
+
+  @override
+  String insightLowWater(String value) {
+    return 'Bạn uống trung bình $value ml nước mỗi ngày, thấp hơn mục tiêu. Nhớ mang theo chai nước nhé!';
+  }
+
+  @override
+  String insightWaterGood(String value) {
+    return 'Bạn uống đủ nước mỗi ngày ($value ml). Cứ tiếp tục nhé!';
+  }
+
+  @override
+  String insightHighScreenTime(String value) {
+    return 'Bạn dùng màn hình trung bình $value phút mỗi ngày. Thử nghỉ giải lao và vận động nhiều hơn nhé!';
+  }
+
+  @override
+  String get insightHighStress =>
+      'Tuần này bạn có vẻ căng thẳng. Hãy thử hít thở sâu và trò chuyện với người thân nhé.';
+
+  @override
+  String get insightLowExercise =>
+      'Tuần này bạn vận động khá ít. Đi bộ hoặc chơi thể thao 30 phút mỗi ngày sẽ rất tốt đó!';
+
+  @override
   String get badgeFirstLog => 'Khởi đầu';
 
   @override

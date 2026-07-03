@@ -281,6 +281,42 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get insightsTitle => 'This week\'s insights';
+
+  @override
+  String insightSleepDebt(String value) {
+    return 'You slept about $value hours a night — a bit short. Try going to bed 30 minutes earlier!';
+  }
+
+  @override
+  String insightSleepGood(String value) {
+    return 'Your sleep is on track ($value hours a night). Great job!';
+  }
+
+  @override
+  String insightLowWater(String value) {
+    return 'You drank about $value ml a day, below your goal. Keep a bottle nearby!';
+  }
+
+  @override
+  String insightWaterGood(String value) {
+    return 'You\'re hitting your water goal ($value ml a day). Keep it up!';
+  }
+
+  @override
+  String insightHighScreenTime(String value) {
+    return 'You averaged $value minutes of screen time a day. Try more breaks and movement!';
+  }
+
+  @override
+  String get insightHighStress =>
+      'You seemed stressed this week. Try deep breathing and talking to someone you trust.';
+
+  @override
+  String get insightLowExercise =>
+      'Not much exercise this week. A 30-minute walk or game each day helps a lot!';
+
+  @override
   String get badgeFirstLog => 'First step';
 
   @override

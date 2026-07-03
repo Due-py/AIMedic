@@ -584,6 +584,54 @@ abstract class AppLocalizations {
   /// **'{days} ngày liên tiếp'**
   String streakDays(int days);
 
+  /// No description provided for @insightsTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhận xét tuần này'**
+  String get insightsTitle;
+
+  /// No description provided for @insightSleepDebt.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn ngủ trung bình {value} giờ mỗi đêm — hơi ít đó. Thử đi ngủ sớm hơn 30 phút nhé!'**
+  String insightSleepDebt(String value);
+
+  /// No description provided for @insightSleepGood.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn đang ngủ rất điều độ ({value} giờ mỗi đêm). Tuyệt vời!'**
+  String insightSleepGood(String value);
+
+  /// No description provided for @insightLowWater.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn uống trung bình {value} ml nước mỗi ngày, thấp hơn mục tiêu. Nhớ mang theo chai nước nhé!'**
+  String insightLowWater(String value);
+
+  /// No description provided for @insightWaterGood.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn uống đủ nước mỗi ngày ({value} ml). Cứ tiếp tục nhé!'**
+  String insightWaterGood(String value);
+
+  /// No description provided for @insightHighScreenTime.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn dùng màn hình trung bình {value} phút mỗi ngày. Thử nghỉ giải lao và vận động nhiều hơn nhé!'**
+  String insightHighScreenTime(String value);
+
+  /// No description provided for @insightHighStress.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tuần này bạn có vẻ căng thẳng. Hãy thử hít thở sâu và trò chuyện với người thân nhé.'**
+  String get insightHighStress;
+
+  /// No description provided for @insightLowExercise.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tuần này bạn vận động khá ít. Đi bộ hoặc chơi thể thao 30 phút mỗi ngày sẽ rất tốt đó!'**
+  String get insightLowExercise;
+
   /// No description provided for @badgeFirstLog.
   ///
   /// In vi, this message translates to:

@@ -8,6 +8,7 @@ from app.core.config import get_settings
 from app.core.firebase import init_firebase
 from app.features.coach.router import router as coach_router
 from app.features.gamification.router import router as gamification_router
+from app.features.insights.router import router as insights_router
 from app.features.profile.router import router as profile_router
 from app.features.tracking.router import router as tracking_router
 
@@ -33,6 +34,7 @@ app.include_router(profile_router)
 app.include_router(tracking_router)
 app.include_router(coach_router)
 app.include_router(gamification_router)
+app.include_router(insights_router)
 
 
 @app.get("/health", tags=["meta"])

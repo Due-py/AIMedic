@@ -36,7 +36,11 @@ về chủ đề sức khỏe học đường.
 """
 
 
-def build_user_context(profile: dict | None, recent_logs: list[dict]) -> str:
+def build_user_context(
+    profile: dict | None,
+    recent_logs: list[dict],
+    trend_lines: list[str] | None = None,
+) -> str:
     """Personalization context prepended to the conversation."""
     if not profile and not recent_logs:
         return ""
@@ -70,4 +74,6 @@ def build_user_context(profile: dict | None, recent_logs: list[dict]) -> str:
             if log.get("stress") is not None:
                 parts.append(f"căng thẳng {log['stress']}/5,")
             lines.append(" ".join(parts).rstrip(","))
+    if trend_lines:
+        lines.append("- Xu hướng tuần qua: " + "; ".join(trend_lines) + ".")
     return "\n".join(lines)

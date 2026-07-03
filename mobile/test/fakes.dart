@@ -2,6 +2,7 @@ import 'package:aimedic/features/coach/coach_models.dart';
 import 'package:aimedic/features/coach/coach_repository.dart';
 import 'package:aimedic/features/gamification/gamification_models.dart';
 import 'package:aimedic/features/gamification/gamification_repository.dart';
+import 'package:aimedic/features/insights/insights_repository.dart';
 import 'package:aimedic/features/profile/profile_models.dart';
 import 'package:aimedic/features/profile/profile_repository.dart';
 import 'package:aimedic/features/tracking/tracking_models.dart';
@@ -57,6 +58,13 @@ class FakeGamificationRepository implements GamificationRepository {
 
   @override
   Future<GamificationState> fetch() async => state;
+}
+
+class FakeInsightsRepository implements InsightsRepository {
+  List<Insight> insights = const [];
+
+  @override
+  Future<List<Insight>> fetch() async => insights;
 }
 
 class FakeCoachRepository implements CoachRepository {

@@ -11,6 +11,7 @@ from app.features.coach.repository import ChatRepository, get_chat_repository
 from app.features.coach.safety import CRISIS_RESPONSE, check_crisis
 from app.features.coach.schemas import ChatMessage, ChatRequest, ChatResponse
 from app.features.coach.service import CoachAI, get_coach_ai
+from app.features.insights.rules import coach_context_lines, compute_insights
 from app.features.profile.repository import (
     ProfileRepository,
     get_profile_repository,
@@ -68,7 +69,8 @@ def chat(
     logs = tracking.get_range(
         uid, (today - timedelta(days=6)).isoformat(), today.isoformat()
     )
-    context = build_user_context(profile, logs)
+    trends = coach_context_lines(compute_insights(profile, logs))
+    context = build_user_context(profile, logs, trends)
     system = f"{SYSTEM_PROMPT}\n\n{context}" if context else SYSTEM_PROMPT
 
     history = chats.recent(uid, _HISTORY_WINDOW + 1)[:-1]  # exclude msg just saved
