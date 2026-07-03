@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     app_name: str = "AIMedic API"
     debug: bool = False
     gemini_api_key: str = ""
+    gemini_model: str = "gemini-2.5-flash"
     firebase_credentials: str = ""
     cors_origins: str = "http://localhost:3000"
 

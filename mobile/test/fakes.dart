@@ -1,3 +1,5 @@
+import 'package:aimedic/features/coach/coach_models.dart';
+import 'package:aimedic/features/coach/coach_repository.dart';
 import 'package:aimedic/features/profile/profile_models.dart';
 import 'package:aimedic/features/profile/profile_repository.dart';
 import 'package:aimedic/features/tracking/tracking_models.dart';
@@ -34,6 +36,27 @@ class FakeProfileRepository implements ProfileRepository {
       ),
     );
     return stored!;
+  }
+}
+
+class FakeCoachRepository implements CoachRepository {
+  final List<ChatMessage> messages = [];
+  bool failNext = false;
+
+  @override
+  Future<List<ChatMessage>> history() async => List.of(messages);
+
+  @override
+  Future<ChatMessage> send(String message) async {
+    if (failNext) {
+      failNext = false;
+      throw Exception('network');
+    }
+    messages.add(ChatMessage(role: 'user', content: message));
+    final reply =
+        ChatMessage(role: 'assistant', content: 'Uống đủ nước mỗi ngày nhé!');
+    messages.add(reply);
+    return reply;
   }
 }
 

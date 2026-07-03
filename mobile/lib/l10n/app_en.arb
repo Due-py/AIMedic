@@ -75,5 +75,11 @@
   "cancelButton": "Cancel",
   "chartWater": "Water (ml)",
   "chartSleep": "Sleep (hours)",
-  "chartTargetLine": "Target"
+  "chartTargetLine": "Target",
+
+  "coachInputHint": "Ask me about your health...",
+  "coachSendTooltip": "Send",
+  "coachTyping": "AIMedic is replying...",
+  "coachSendError": "Could not send your message. Please try again.",
+  "coachWelcome": "Hi! I'm AIMedic — your health companion. Ask me about sleep, nutrition, exercise or feelings! 💚"
 }

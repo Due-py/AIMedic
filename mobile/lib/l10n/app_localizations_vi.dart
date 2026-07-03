@@ -247,4 +247,20 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get chartTargetLine => 'Mục tiêu';
+
+  @override
+  String get coachInputHint => 'Hỏi mình về sức khỏe nhé...';
+
+  @override
+  String get coachSendTooltip => 'Gửi';
+
+  @override
+  String get coachTyping => 'AIMedic đang trả lời...';
+
+  @override
+  String get coachSendError => 'Không gửi được tin nhắn. Vui lòng thử lại.';
+
+  @override
+  String get coachWelcome =>
+      'Chào bạn! Mình là AIMedic — người bạn đồng hành sức khỏe của bạn. Hãy hỏi mình về giấc ngủ, dinh dưỡng, vận động hoặc cảm xúc nhé! 💚';
 }

@@ -122,5 +122,11 @@
   "cancelButton": "Hủy",
   "chartWater": "Nước (ml)",
   "chartSleep": "Ngủ (giờ)",
-  "chartTargetLine": "Mục tiêu"
+  "chartTargetLine": "Mục tiêu",
+
+  "coachInputHint": "Hỏi mình về sức khỏe nhé...",
+  "coachSendTooltip": "Gửi",
+  "coachTyping": "AIMedic đang trả lời...",
+  "coachSendError": "Không gửi được tin nhắn. Vui lòng thử lại.",
+  "coachWelcome": "Chào bạn! Mình là AIMedic — người bạn đồng hành sức khỏe của bạn. Hãy hỏi mình về giấc ngủ, dinh dưỡng, vận động hoặc cảm xúc nhé! 💚"
 }

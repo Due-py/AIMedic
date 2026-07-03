@@ -248,4 +248,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chartTargetLine => 'Target';
+
+  @override
+  String get coachInputHint => 'Ask me about your health...';
+
+  @override
+  String get coachSendTooltip => 'Send';
+
+  @override
+  String get coachTyping => 'AIMedic is replying...';
+
+  @override
+  String get coachSendError => 'Could not send your message. Please try again.';
+
+  @override
+  String get coachWelcome =>
+      'Hi! I\'m AIMedic — your health companion. Ask me about sleep, nutrition, exercise or feelings! 💚';
 }

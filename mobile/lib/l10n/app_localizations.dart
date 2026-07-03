@@ -535,6 +535,36 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'Mục tiêu'**
   String get chartTargetLine;
+
+  /// No description provided for @coachInputHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hỏi mình về sức khỏe nhé...'**
+  String get coachInputHint;
+
+  /// No description provided for @coachSendTooltip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Gửi'**
+  String get coachSendTooltip;
+
+  /// No description provided for @coachTyping.
+  ///
+  /// In vi, this message translates to:
+  /// **'AIMedic đang trả lời...'**
+  String get coachTyping;
+
+  /// No description provided for @coachSendError.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không gửi được tin nhắn. Vui lòng thử lại.'**
+  String get coachSendError;
+
+  /// No description provided for @coachWelcome.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chào bạn! Mình là AIMedic — người bạn đồng hành sức khỏe của bạn. Hãy hỏi mình về giấc ngủ, dinh dưỡng, vận động hoặc cảm xúc nhé! 💚'**
+  String get coachWelcome;
 }
 
 class _AppLocalizationsDelegate
