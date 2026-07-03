@@ -3,12 +3,17 @@ import 'package:go_router/go_router.dart';
 
 import '../features/coach/coach_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/onboarding/onboarding_screen.dart';
 import '../features/tracking/tracking_screen.dart';
 import '../l10n/app_localizations.dart';
 
 final router = GoRouter(
   initialLocation: '/',
   routes: [
+    GoRoute(
+      path: '/onboarding',
+      builder: (_, _) => const OnboardingScreen(),
+    ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, shell) => _AppShell(shell: shell),
       branches: [

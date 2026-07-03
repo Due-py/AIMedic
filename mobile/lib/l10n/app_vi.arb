@@ -15,5 +15,72 @@
   "sleepTarget": "Mục tiêu giấc ngủ",
   "calorieTarget": "Năng lượng mỗi ngày",
   "comingSoon": "Tính năng đang được phát triển",
-  "medicalDisclaimer": "AIMedic là công cụ hỗ trợ thói quen lành mạnh, không thay thế bác sĩ hoặc nhân viên y tế."
+  "medicalDisclaimer": "AIMedic là công cụ hỗ trợ thói quen lành mạnh, không thay thế bác sĩ hoặc nhân viên y tế.",
+
+  "onboardingTitle": "Tạo hồ sơ sức khỏe",
+  "stepOf": "Bước {current}/{total}",
+  "@stepOf": {
+    "placeholders": {
+      "current": {"type": "int"},
+      "total": {"type": "int"}
+    }
+  },
+  "stepBasicsTitle": "Bạn là ai?",
+  "ageLabel": "Tuổi",
+  "genderLabel": "Giới tính",
+  "genderMale": "Nam",
+  "genderFemale": "Nữ",
+  "stepBodyTitle": "Chiều cao và cân nặng",
+  "heightLabel": "Chiều cao (cm)",
+  "weightLabel": "Cân nặng (kg)",
+  "stepActivityTitle": "Bạn vận động thế nào?",
+  "activitySedentary": "Ít vận động",
+  "activitySedentaryDesc": "Hầu như không tập thể dục",
+  "activityLight": "Nhẹ nhàng",
+  "activityLightDesc": "Vận động 1-3 ngày mỗi tuần",
+  "activityModerate": "Vừa phải",
+  "activityModerateDesc": "Vận động 3-5 ngày mỗi tuần",
+  "activityActive": "Năng động",
+  "activityActiveDesc": "Vận động 6-7 ngày mỗi tuần",
+  "activityVeryActive": "Rất năng động",
+  "activityVeryActiveDesc": "Chơi thể thao hằng ngày",
+  "stepSleepTitle": "Lịch ngủ của bạn",
+  "sleepTimeLabel": "Giờ đi ngủ",
+  "wakeTimeLabel": "Giờ thức dậy",
+  "nextButton": "Tiếp tục",
+  "backButton": "Quay lại",
+  "finishButton": "Hoàn thành",
+  "fieldRequired": "Vui lòng nhập thông tin này",
+  "fieldInvalid": "Giá trị chưa hợp lệ",
+  "profileSaveError": "Không lưu được hồ sơ. Vui lòng thử lại.",
+  "retryButton": "Thử lại",
+
+  "createProfilePrompt": "Hãy tạo hồ sơ sức khỏe để nhận mục tiêu dành riêng cho bạn!",
+  "createProfileButton": "Tạo hồ sơ",
+  "editProfileButton": "Chỉnh sửa hồ sơ",
+  "bmiLabel": "Chỉ số BMI",
+  "bmiHealthy": "Cân đối",
+  "bmiUnderweight": "Hơi gầy",
+  "bmiOverweight": "Hơi thừa cân",
+  "bmiObese": "Thừa cân",
+  "waterValue": "{amount} ml mỗi ngày",
+  "@waterValue": {
+    "placeholders": {
+      "amount": {"type": "int"}
+    }
+  },
+  "sleepValue": "{min}-{max} giờ mỗi đêm",
+  "@sleepValue": {
+    "placeholders": {
+      "min": {"type": "int"},
+      "max": {"type": "int"}
+    }
+  },
+  "calorieValue": "Khoảng {amount} kcal",
+  "@calorieValue": {
+    "placeholders": {
+      "amount": {"type": "int"}
+    }
+  },
+  "loadError": "Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại nhé."
 }

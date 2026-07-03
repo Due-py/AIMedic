@@ -43,4 +43,143 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get medicalDisclaimer =>
       'AIMedic là công cụ hỗ trợ thói quen lành mạnh, không thay thế bác sĩ hoặc nhân viên y tế.';
+
+  @override
+  String get onboardingTitle => 'Tạo hồ sơ sức khỏe';
+
+  @override
+  String stepOf(int current, int total) {
+    return 'Bước $current/$total';
+  }
+
+  @override
+  String get stepBasicsTitle => 'Bạn là ai?';
+
+  @override
+  String get ageLabel => 'Tuổi';
+
+  @override
+  String get genderLabel => 'Giới tính';
+
+  @override
+  String get genderMale => 'Nam';
+
+  @override
+  String get genderFemale => 'Nữ';
+
+  @override
+  String get stepBodyTitle => 'Chiều cao và cân nặng';
+
+  @override
+  String get heightLabel => 'Chiều cao (cm)';
+
+  @override
+  String get weightLabel => 'Cân nặng (kg)';
+
+  @override
+  String get stepActivityTitle => 'Bạn vận động thế nào?';
+
+  @override
+  String get activitySedentary => 'Ít vận động';
+
+  @override
+  String get activitySedentaryDesc => 'Hầu như không tập thể dục';
+
+  @override
+  String get activityLight => 'Nhẹ nhàng';
+
+  @override
+  String get activityLightDesc => 'Vận động 1-3 ngày mỗi tuần';
+
+  @override
+  String get activityModerate => 'Vừa phải';
+
+  @override
+  String get activityModerateDesc => 'Vận động 3-5 ngày mỗi tuần';
+
+  @override
+  String get activityActive => 'Năng động';
+
+  @override
+  String get activityActiveDesc => 'Vận động 6-7 ngày mỗi tuần';
+
+  @override
+  String get activityVeryActive => 'Rất năng động';
+
+  @override
+  String get activityVeryActiveDesc => 'Chơi thể thao hằng ngày';
+
+  @override
+  String get stepSleepTitle => 'Lịch ngủ của bạn';
+
+  @override
+  String get sleepTimeLabel => 'Giờ đi ngủ';
+
+  @override
+  String get wakeTimeLabel => 'Giờ thức dậy';
+
+  @override
+  String get nextButton => 'Tiếp tục';
+
+  @override
+  String get backButton => 'Quay lại';
+
+  @override
+  String get finishButton => 'Hoàn thành';
+
+  @override
+  String get fieldRequired => 'Vui lòng nhập thông tin này';
+
+  @override
+  String get fieldInvalid => 'Giá trị chưa hợp lệ';
+
+  @override
+  String get profileSaveError => 'Không lưu được hồ sơ. Vui lòng thử lại.';
+
+  @override
+  String get retryButton => 'Thử lại';
+
+  @override
+  String get createProfilePrompt =>
+      'Hãy tạo hồ sơ sức khỏe để nhận mục tiêu dành riêng cho bạn!';
+
+  @override
+  String get createProfileButton => 'Tạo hồ sơ';
+
+  @override
+  String get editProfileButton => 'Chỉnh sửa hồ sơ';
+
+  @override
+  String get bmiLabel => 'Chỉ số BMI';
+
+  @override
+  String get bmiHealthy => 'Cân đối';
+
+  @override
+  String get bmiUnderweight => 'Hơi gầy';
+
+  @override
+  String get bmiOverweight => 'Hơi thừa cân';
+
+  @override
+  String get bmiObese => 'Thừa cân';
+
+  @override
+  String waterValue(int amount) {
+    return '$amount ml mỗi ngày';
+  }
+
+  @override
+  String sleepValue(int min, int max) {
+    return '$min-$max giờ mỗi đêm';
+  }
+
+  @override
+  String calorieValue(int amount) {
+    return 'Khoảng $amount kcal';
+  }
+
+  @override
+  String get loadError =>
+      'Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại nhé.';
 }

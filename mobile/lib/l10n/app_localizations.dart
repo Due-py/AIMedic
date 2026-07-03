@@ -163,6 +163,264 @@ abstract class AppLocalizations {
   /// In vi, this message translates to:
   /// **'AIMedic là công cụ hỗ trợ thói quen lành mạnh, không thay thế bác sĩ hoặc nhân viên y tế.'**
   String get medicalDisclaimer;
+
+  /// No description provided for @onboardingTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tạo hồ sơ sức khỏe'**
+  String get onboardingTitle;
+
+  /// No description provided for @stepOf.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bước {current}/{total}'**
+  String stepOf(int current, int total);
+
+  /// No description provided for @stepBasicsTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn là ai?'**
+  String get stepBasicsTitle;
+
+  /// No description provided for @ageLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tuổi'**
+  String get ageLabel;
+
+  /// No description provided for @genderLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giới tính'**
+  String get genderLabel;
+
+  /// No description provided for @genderMale.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nam'**
+  String get genderMale;
+
+  /// No description provided for @genderFemale.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nữ'**
+  String get genderFemale;
+
+  /// No description provided for @stepBodyTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chiều cao và cân nặng'**
+  String get stepBodyTitle;
+
+  /// No description provided for @heightLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chiều cao (cm)'**
+  String get heightLabel;
+
+  /// No description provided for @weightLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cân nặng (kg)'**
+  String get weightLabel;
+
+  /// No description provided for @stepActivityTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bạn vận động thế nào?'**
+  String get stepActivityTitle;
+
+  /// No description provided for @activitySedentary.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ít vận động'**
+  String get activitySedentary;
+
+  /// No description provided for @activitySedentaryDesc.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hầu như không tập thể dục'**
+  String get activitySedentaryDesc;
+
+  /// No description provided for @activityLight.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhẹ nhàng'**
+  String get activityLight;
+
+  /// No description provided for @activityLightDesc.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vận động 1-3 ngày mỗi tuần'**
+  String get activityLightDesc;
+
+  /// No description provided for @activityModerate.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vừa phải'**
+  String get activityModerate;
+
+  /// No description provided for @activityModerateDesc.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vận động 3-5 ngày mỗi tuần'**
+  String get activityModerateDesc;
+
+  /// No description provided for @activityActive.
+  ///
+  /// In vi, this message translates to:
+  /// **'Năng động'**
+  String get activityActive;
+
+  /// No description provided for @activityActiveDesc.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vận động 6-7 ngày mỗi tuần'**
+  String get activityActiveDesc;
+
+  /// No description provided for @activityVeryActive.
+  ///
+  /// In vi, this message translates to:
+  /// **'Rất năng động'**
+  String get activityVeryActive;
+
+  /// No description provided for @activityVeryActiveDesc.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chơi thể thao hằng ngày'**
+  String get activityVeryActiveDesc;
+
+  /// No description provided for @stepSleepTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Lịch ngủ của bạn'**
+  String get stepSleepTitle;
+
+  /// No description provided for @sleepTimeLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giờ đi ngủ'**
+  String get sleepTimeLabel;
+
+  /// No description provided for @wakeTimeLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giờ thức dậy'**
+  String get wakeTimeLabel;
+
+  /// No description provided for @nextButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tiếp tục'**
+  String get nextButton;
+
+  /// No description provided for @backButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Quay lại'**
+  String get backButton;
+
+  /// No description provided for @finishButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hoàn thành'**
+  String get finishButton;
+
+  /// No description provided for @fieldRequired.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vui lòng nhập thông tin này'**
+  String get fieldRequired;
+
+  /// No description provided for @fieldInvalid.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giá trị chưa hợp lệ'**
+  String get fieldInvalid;
+
+  /// No description provided for @profileSaveError.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không lưu được hồ sơ. Vui lòng thử lại.'**
+  String get profileSaveError;
+
+  /// No description provided for @retryButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thử lại'**
+  String get retryButton;
+
+  /// No description provided for @createProfilePrompt.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hãy tạo hồ sơ sức khỏe để nhận mục tiêu dành riêng cho bạn!'**
+  String get createProfilePrompt;
+
+  /// No description provided for @createProfileButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tạo hồ sơ'**
+  String get createProfileButton;
+
+  /// No description provided for @editProfileButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chỉnh sửa hồ sơ'**
+  String get editProfileButton;
+
+  /// No description provided for @bmiLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chỉ số BMI'**
+  String get bmiLabel;
+
+  /// No description provided for @bmiHealthy.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cân đối'**
+  String get bmiHealthy;
+
+  /// No description provided for @bmiUnderweight.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hơi gầy'**
+  String get bmiUnderweight;
+
+  /// No description provided for @bmiOverweight.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hơi thừa cân'**
+  String get bmiOverweight;
+
+  /// No description provided for @bmiObese.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thừa cân'**
+  String get bmiObese;
+
+  /// No description provided for @waterValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'{amount} ml mỗi ngày'**
+  String waterValue(int amount);
+
+  /// No description provided for @sleepValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'{min}-{max} giờ mỗi đêm'**
+  String sleepValue(int min, int max);
+
+  /// No description provided for @calorieValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'Khoảng {amount} kcal'**
+  String calorieValue(int amount);
+
+  /// No description provided for @loadError.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không tải được dữ liệu. Kiểm tra kết nối rồi thử lại nhé.'**
+  String get loadError;
 }
 
 class _AppLocalizationsDelegate
