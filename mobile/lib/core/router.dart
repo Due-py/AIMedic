@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../features/coach/coach_screen.dart';
+import '../features/home/home_screen.dart';
+import '../features/tracking/tracking_screen.dart';
+import '../l10n/app_localizations.dart';
+
+final router = GoRouter(
+  initialLocation: '/',
+  routes: [
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, shell) => _AppShell(shell: shell),
+      branches: [
+        StatefulShellBranch(routes: [
+          GoRoute(path: '/', builder: (_, _) => const HomeScreen()),
+        ]),
+        StatefulShellBranch(routes: [
+          GoRoute(path: '/tracking', builder: (_, _) => const TrackingScreen()),
+        ]),
+        StatefulShellBranch(routes: [
+          GoRoute(path: '/coach', builder: (_, _) => const CoachScreen()),
+        ]),
+      ],
+    ),
+  ],
+);
+
+class _AppShell extends StatelessWidget {
+  const _AppShell({required this.shell});
+
+  final StatefulNavigationShell shell;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Scaffold(
+      body: shell,
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: shell.currentIndex,
+        onDestinationSelected: shell.goBranch,
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(Icons.home_outlined),
+            selectedIcon: const Icon(Icons.home),
+            label: l10n.homeTitle,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.edit_note_outlined),
+            selectedIcon: const Icon(Icons.edit_note),
+            label: l10n.trackingTitle,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.chat_bubble_outline),
+            selectedIcon: const Icon(Icons.chat_bubble),
+            label: l10n.coachTitle,
+          ),
+        ],
+      ),
+    );
+  }
+}

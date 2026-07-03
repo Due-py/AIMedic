@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "appTitle": "AIMedic",
+  "homeTitle": "Home",
+  "homeGreeting": "Hi {name}! How are you today?",
+  "coachTitle": "AI Coach",
+  "trackingTitle": "Journal",
+  "profileTitle": "Profile",
+  "waterTarget": "Water goal",
+  "sleepTarget": "Sleep goal",
+  "calorieTarget": "Daily energy",
+  "comingSoon": "This feature is under development",
+  "medicalDisclaimer": "AIMedic supports healthy habits and does not replace doctors or medical staff."
+}

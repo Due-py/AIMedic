@@ -1,0 +1,19 @@
+{
+  "@@locale": "vi",
+  "appTitle": "AIMedic",
+  "homeTitle": "Trang chủ",
+  "homeGreeting": "Chào {name}! Hôm nay bạn thế nào?",
+  "@homeGreeting": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "coachTitle": "Trợ lý AI",
+  "trackingTitle": "Nhật ký",
+  "profileTitle": "Hồ sơ",
+  "waterTarget": "Mục tiêu nước uống",
+  "sleepTarget": "Mục tiêu giấc ngủ",
+  "calorieTarget": "Năng lượng mỗi ngày",
+  "comingSoon": "Tính năng đang được phát triển",
+  "medicalDisclaimer": "AIMedic là công cụ hỗ trợ thói quen lành mạnh, không thay thế bác sĩ hoặc nhân viên y tế."
+}
