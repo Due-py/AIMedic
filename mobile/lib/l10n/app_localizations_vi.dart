@@ -280,6 +280,54 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get authLoginTitle => 'Đăng nhập';
+
+  @override
+  String get authRegisterTitle => 'Tạo tài khoản';
+
+  @override
+  String get emailLabel => 'Email';
+
+  @override
+  String get passwordLabel => 'Mật khẩu';
+
+  @override
+  String get confirmPasswordLabel => 'Nhập lại mật khẩu';
+
+  @override
+  String get authLoginButton => 'Đăng nhập';
+
+  @override
+  String get authRegisterButton => 'Đăng ký';
+
+  @override
+  String get authSwitchToRegister => 'Chưa có tài khoản? Đăng ký';
+
+  @override
+  String get authSwitchToLogin => 'Đã có tài khoản? Đăng nhập';
+
+  @override
+  String get authErrorInvalidCredentials => 'Email hoặc mật khẩu chưa đúng.';
+
+  @override
+  String get authErrorEmailInUse => 'Email này đã được đăng ký.';
+
+  @override
+  String get authErrorWeakPassword => 'Mật khẩu cần ít nhất 6 ký tự.';
+
+  @override
+  String get authErrorInvalidEmail => 'Email chưa hợp lệ.';
+
+  @override
+  String get authErrorGeneric => 'Có lỗi xảy ra. Vui lòng thử lại.';
+
+  @override
+  String get passwordMismatch => 'Mật khẩu nhập lại chưa khớp.';
+
+  @override
+  String get logoutTooltip => 'Đăng xuất';
+
+  @override
   String get insightsTitle => 'Nhận xét tuần này';
 
   @override

@@ -584,6 +584,102 @@ abstract class AppLocalizations {
   /// **'{days} ngày liên tiếp'**
   String streakDays(int days);
 
+  /// No description provided for @authLoginTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng nhập'**
+  String get authLoginTitle;
+
+  /// No description provided for @authRegisterTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tạo tài khoản'**
+  String get authRegisterTitle;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mật khẩu'**
+  String get passwordLabel;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập lại mật khẩu'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @authLoginButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng nhập'**
+  String get authLoginButton;
+
+  /// No description provided for @authRegisterButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng ký'**
+  String get authRegisterButton;
+
+  /// No description provided for @authSwitchToRegister.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chưa có tài khoản? Đăng ký'**
+  String get authSwitchToRegister;
+
+  /// No description provided for @authSwitchToLogin.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đã có tài khoản? Đăng nhập'**
+  String get authSwitchToLogin;
+
+  /// No description provided for @authErrorInvalidCredentials.
+  ///
+  /// In vi, this message translates to:
+  /// **'Email hoặc mật khẩu chưa đúng.'**
+  String get authErrorInvalidCredentials;
+
+  /// No description provided for @authErrorEmailInUse.
+  ///
+  /// In vi, this message translates to:
+  /// **'Email này đã được đăng ký.'**
+  String get authErrorEmailInUse;
+
+  /// No description provided for @authErrorWeakPassword.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mật khẩu cần ít nhất 6 ký tự.'**
+  String get authErrorWeakPassword;
+
+  /// No description provided for @authErrorInvalidEmail.
+  ///
+  /// In vi, this message translates to:
+  /// **'Email chưa hợp lệ.'**
+  String get authErrorInvalidEmail;
+
+  /// No description provided for @authErrorGeneric.
+  ///
+  /// In vi, this message translates to:
+  /// **'Có lỗi xảy ra. Vui lòng thử lại.'**
+  String get authErrorGeneric;
+
+  /// No description provided for @passwordMismatch.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mật khẩu nhập lại chưa khớp.'**
+  String get passwordMismatch;
+
+  /// No description provided for @logoutTooltip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đăng xuất'**
+  String get logoutTooltip;
+
   /// No description provided for @insightsTitle.
   ///
   /// In vi, this message translates to:

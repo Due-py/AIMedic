@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/auth/auth_screen.dart';
 import '../features/coach/coach_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
@@ -9,7 +12,21 @@ import '../l10n/app_localizations.dart';
 
 final router = GoRouter(
   initialLocation: '/',
+  // Auth is enforced only when Firebase is configured; tests and desktop
+  // dev builds run without it and skip sign-in entirely.
+  redirect: (context, state) {
+    if (Firebase.apps.isEmpty) return null;
+    final signedIn = FirebaseAuth.instance.currentUser != null;
+    final onAuthScreen = state.matchedLocation == '/login';
+    if (!signedIn && !onAuthScreen) return '/login';
+    if (signedIn && onAuthScreen) return '/';
+    return null;
+  },
   routes: [
+    GoRoute(
+      path: '/login',
+      builder: (_, _) => const AuthScreen(),
+    ),
     GoRoute(
       path: '/onboarding',
       builder: (_, _) => const OnboardingScreen(),

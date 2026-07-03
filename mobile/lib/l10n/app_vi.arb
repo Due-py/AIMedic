@@ -149,6 +149,23 @@
       "days": {"type": "int"}
     }
   },
+  "authLoginTitle": "Đăng nhập",
+  "authRegisterTitle": "Tạo tài khoản",
+  "emailLabel": "Email",
+  "passwordLabel": "Mật khẩu",
+  "confirmPasswordLabel": "Nhập lại mật khẩu",
+  "authLoginButton": "Đăng nhập",
+  "authRegisterButton": "Đăng ký",
+  "authSwitchToRegister": "Chưa có tài khoản? Đăng ký",
+  "authSwitchToLogin": "Đã có tài khoản? Đăng nhập",
+  "authErrorInvalidCredentials": "Email hoặc mật khẩu chưa đúng.",
+  "authErrorEmailInUse": "Email này đã được đăng ký.",
+  "authErrorWeakPassword": "Mật khẩu cần ít nhất 6 ký tự.",
+  "authErrorInvalidEmail": "Email chưa hợp lệ.",
+  "authErrorGeneric": "Có lỗi xảy ra. Vui lòng thử lại.",
+  "passwordMismatch": "Mật khẩu nhập lại chưa khớp.",
+  "logoutTooltip": "Đăng xuất",
+
   "insightsTitle": "Nhận xét tuần này",
   "insightSleepDebt": "Bạn ngủ trung bình {value} giờ mỗi đêm — hơi ít đó. Thử đi ngủ sớm hơn 30 phút nhé!",
   "@insightSleepDebt": {

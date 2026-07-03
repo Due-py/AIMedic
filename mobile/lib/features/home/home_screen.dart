@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -25,6 +27,15 @@ class HomeScreen extends ConsumerWidget {
               icon: const Icon(Icons.edit),
               tooltip: l10n.editProfileButton,
               onPressed: () => context.push('/onboarding'),
+            ),
+          if (Firebase.apps.isNotEmpty)
+            IconButton(
+              icon: const Icon(Icons.logout),
+              tooltip: l10n.logoutTooltip,
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                if (context.mounted) context.go('/login');
+              },
             ),
         ],
       ),

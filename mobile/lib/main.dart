@@ -1,14 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router.dart';
 import 'core/theme.dart';
+import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 
-void main() {
-  // Firebase.initializeApp is added once the Firebase project is configured
-  // (flutterfire configure); until then the app runs against the dev backend.
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    // Platforms without Firebase config keep running in dev mode
+    // (no sign-in, backend dev fallback).
+    debugPrint('Firebase unavailable, running in dev mode: $e');
+  }
   runApp(const ProviderScope(child: AimedicApp()));
 }
 
