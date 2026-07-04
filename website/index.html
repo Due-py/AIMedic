@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIMedic — Người bạn đồng hành sức khỏe học đường</title>
+  <meta name="description" content="AI School Health Coach — ứng dụng AI giúp học sinh xây dựng thói quen sống lành mạnh: theo dõi sức khỏe, trợ lý AI, nhắc nhở thông minh.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #17A2A0;
+      --teal-dark: #0E938C;
+      --sky: #4FB6F5;
+      --coral: #FF8A65;
+      --mint: #34C79B;
+      --lavender: #9B8CFF;
+      --sunny: #FFC64D;
+      --ink: #243434;
+      --muted: #5C7371;
+      --bg: #F6FBFA;
+      --card: #FFFFFF;
+      --radius: 26px;
+      --grad: linear-gradient(120deg, #1FB6A6, #2AA5A0 45%, #3FA7C4);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 22px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(246, 251, 250, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(23, 162, 160, 0.12);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 22px; color: var(--teal-dark); }
+    .logo-mark {
+      width: 38px; height: 38px; border-radius: 12px;
+      background: var(--grad); display: grid; place-items: center;
+      color: #fff; font-size: 20px;
+    }
+    .nav-links { display: flex; gap: 26px; font-weight: 700; color: var(--muted); }
+    .nav-links a:hover { color: var(--teal-dark); }
+    .btn {
+      display: inline-block; padding: 13px 26px; border-radius: 16px;
+      font-weight: 800; font-size: 16px; transition: transform .15s, box-shadow .15s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--grad); color: #fff; box-shadow: 0 8px 24px rgba(23,162,160,.35); }
+    .btn-ghost { background: #fff; color: var(--teal-dark); border: 2px solid rgba(23,162,160,.3); }
+    .nav-cta { padding: 10px 20px; font-size: 15px; }
+
+    /* Hero */
+    header {
+      background: var(--grad);
+      border-radius: 0 0 44px 44px;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero {
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 44px;
+      align-items: center; padding: 72px 0 84px;
+    }
+    .hero h1 { font-size: 44px; font-weight: 900; line-height: 1.15; }
+    .hero p.lead { margin: 18px 0 30px; font-size: 19px; opacity: .94; }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,.18);
+      padding: 7px 16px; border-radius: 30px; font-weight: 700; font-size: 14px;
+      margin-bottom: 18px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-img {
+      border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      transform: rotate(2deg);
+    }
+    .hero-note { margin-top: 16px; font-size: 13px; opacity: .8; }
+
+    /* Stats */
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      margin: -40px auto 0; position: relative; z-index: 2;
+    }
+    .stat {
+      background: var(--card); border-radius: 20px; padding: 20px;
+      text-align: center; box-shadow: 0 12px 30px rgba(0,0,0,.07);
+    }
+    .stat b { display: block; font-size: 26px; font-weight: 900; color: var(--teal-dark); }
+    .stat span { font-size: 13px; color: var(--muted); font-weight: 700; }
+
+    section { padding: 76px 0 10px; }
+    .kicker { color: var(--teal-dark); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: 13px; }
+    h2 { font-size: 32px; font-weight: 900; margin: 6px 0 14px; }
+    .sub { color: var(--muted); max-width: 640px; }
+
+    /* Features */
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 36px; }
+    .feature {
+      background: var(--card); border-radius: var(--radius); padding: 26px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.05);
+    }
+    .feature .ico {
+      width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center;
+      font-size: 26px; margin-bottom: 14px;
+    }
+    .feature h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .feature p { font-size: 15px; color: var(--muted); }
+
+    /* Photo rows */
+    .row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 44px;
+      align-items: center; margin-top: 46px;
+    }
+    .row img {
+      border-radius: var(--radius); box-shadow: 0 16px 40px rgba(0,0,0,.12);
+      width: 100%; height: 320px; object-fit: cover;
+    }
+    .row h3 { font-size: 24px; font-weight: 900; margin-bottom: 10px; }
+    .row p { color: var(--muted); }
+    .row .tag {
+      display: inline-block; padding: 5px 14px; border-radius: 30px;
+      font-size: 13px; font-weight: 800; margin-bottom: 12px;
+    }
+
+    /* Team / CTA */
+    .cta-band {
+      background: var(--grad); border-radius: var(--radius);
+      color: #fff; text-align: center; padding: 56px 30px; margin-top: 70px;
+    }
+    .cta-band h2 { color: #fff; }
+    .cta-band p { opacity: .92; margin-bottom: 26px; }
+
+    footer { padding: 46px 0 36px; color: var(--muted); font-size: 13.5px; }
+    footer .disclaimer {
+      background: #FFF7E8; border: 1px solid #F5DFAE; color: #7A6234;
+      border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; font-weight: 600;
+    }
+    footer .cols { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; padding: 48px 0 64px; }
+      .hero h1 { font-size: 32px; }
+      .hero-img { transform: none; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .grid3 { grid-template-columns: 1fr; }
+      .row { grid-template-columns: 1fr; gap: 20px; }
+      .row.flip img { order: -1; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#"><span class="logo-mark">✚</span> AIMedic</a>
+    <div class="nav-links">
+      <a href="#features">Tính năng</a>
+      <a href="#habits">Thói quen</a>
+      <a href="#team">Đội ngũ</a>
+    </div>
+    <a class="btn btn-primary nav-cta" href="/app/">Mở ứng dụng</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <span class="hero-badge">🏆 Samsung Solve for Tomorrow</span>
+      <h1>Người bạn đồng hành sức khỏe học đường của bạn</h1>
+      <p class="lead">
+        AIMedic dùng trí tuệ nhân tạo để giúp học sinh trung học xây dựng
+        thói quen sống lành mạnh — theo dõi giấc ngủ, nước uống, vận động,
+        cảm xúc và trò chuyện cùng trợ lý AI thân thiện.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" style="background:#fff;color:var(--teal-dark);box-shadow:0 8px 24px rgba(0,0,0,.18)" href="/app/">🚀 Dùng thử miễn phí</a>
+        <a class="btn btn-ghost" style="background:transparent;color:#fff;border-color:rgba(255,255,255,.5)" href="#features">Tìm hiểu thêm</a>
+      </div>
+      <p class="hero-note">Chạy ngay trên trình duyệt — không cần cài đặt. Có ứng dụng Android.</p>
+    </div>
+    <img class="hero-img" src="assets/hero-classroom.jpg" alt="Học sinh trong lớp học">
+  </div>
+</header>
+
+<div class="wrap stats">
+  <div class="stat"><b>100%</b><span>Miễn phí cho học sinh</span></div>
+  <div class="stat"><b>AI</b><span>Trợ lý Gemini thông minh</span></div>
+  <div class="stat"><b>2+</b><span>Nền tảng: Web &amp; Android</span></div>
+  <div class="stat"><b>0</b><span>Quảng cáo &amp; bán dữ liệu</span></div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <span class="kicker">Tính năng</span>
+    <h2>Mọi thứ bạn cần để sống khỏe hơn 💪</h2>
+    <p class="sub">Được thiết kế riêng cho học sinh trung học — đơn giản, vui vẻ và không phán xét.</p>
+    <div class="grid3">
+      <div class="feature">
+        <div class="ico" style="background:#E4F5F4">🤖</div>
+        <h3>Trợ lý AI thân thiện</h3>
+        <p>Hỏi đáp về giấc ngủ, dinh dưỡng, vận động và cảm xúc. AI hiểu nhật ký của bạn và tư vấn đúng cho riêng bạn.</p>
+      </div>
+      <div class="feature">
+        <div class="ico" style="background:#E7F1FE">📊</div>
+        <h3>Nhật ký sức khỏe</h3>
+        <p>Ghi lại nước uống, giấc ngủ, vận động, tâm trạng chỉ với một chạm — và xem tiến bộ qua biểu đồ tuần.</p>
+      </div>
+      <div class="feature">
+        <div class="ico" style="background:#FFF3E9">⏰</div>
+        <h3>Nhắc nhở thông minh</h3>
+        <p>Nhắc uống nước, nghỉ mắt và đi ngủ đúng giờ — dựa trên lịch sinh hoạt của chính bạn, không làm phiền.</p>
+      </div>
+      <div class="feature">
+        <div class="ico" style="background:#F0EEFF">🏆</div>
+        <h3>XP, huy hiệu &amp; chuỗi ngày</h3>
+        <p>Mỗi thói quen tốt đều được thưởng điểm. Giữ chuỗi ngày liên tiếp và sưu tập huy hiệu vui nhộn.</p>
+      </div>
+      <div class="feature">
+        <div class="ico" style="background:#E8F9F1">💡</div>
+        <h3>Nhận xét xu hướng</h3>
+        <p>AI phát hiện bạn ngủ thiếu, uống ít nước hay dùng màn hình nhiều — và gợi ý cách cải thiện nhẹ nhàng.</p>
+      </div>
+      <div class="feature">
+        <div class="ico" style="background:#FDEDF3">🔒</div>
+        <h3>Riêng tư trước tiên</h3>
+        <p>Dữ liệu của bạn được mã hóa và chỉ mình bạn xem được. Không quảng cáo, không bán dữ liệu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="habits">
+  <div class="wrap">
+    <span class="kicker">Thói quen lành mạnh</span>
+    <h2>Bốn trụ cột của một ngày khỏe mạnh 🌱</h2>
+
+    <div class="row">
+      <img src="assets/water.jpg" alt="Chai nước lọc" loading="lazy">
+      <div>
+        <span class="tag" style="background:#E7F1FE;color:#2779BD">💧 Uống đủ nước</span>
+        <h3>Mỗi cốc nước đều được tính</h3>
+        <p>AIMedic tính lượng nước phù hợp với cơ thể bạn và giúp bạn đạt mục tiêu
+        bằng nút “+250 ml” siêu nhanh cùng vòng tiến độ trực quan.</p>
+      </div>
+    </div>
+
+    <div class="row flip">
+      <div>
+        <span class="tag" style="background:#F0EEFF;color:#6C5CE7">😴 Ngủ đủ giấc</span>
+        <h3>Ngủ ngon để học tốt</h3>
+        <p>Học sinh cần 8–11 giờ ngủ mỗi đêm. AIMedic theo dõi giấc ngủ của bạn,
+        nhắc bạn thư giãn trước giờ đi ngủ và khen bạn khi ngủ điều độ.</p>
+      </div>
+      <img src="assets/sleep.jpg" alt="Chú mèo ngủ ngon trong chăn" loading="lazy">
+    </div>
+
+    <div class="row">
+      <img src="assets/food.jpg" alt="Bát salad nhiều màu sắc" loading="lazy">
+      <div>
+        <span class="tag" style="background:#E8F9F1;color:#159570">🥗 Ăn uống cân bằng</span>
+        <h3>Dinh dưỡng không phán xét</h3>
+        <p>Ghi lại bữa ăn và nhận gợi ý cân bằng dinh dưỡng phù hợp lứa tuổi —
+        mang tính giáo dục, không bao giờ chê bai.</p>
+      </div>
+    </div>
+
+    <div class="row flip">
+      <div>
+        <span class="tag" style="background:#FFF3E9;color:#D4622A">🏃 Vận động mỗi ngày</span>
+        <h3>Sẵn sàng — xuất phát!</h3>
+        <p>30 phút vận động mỗi ngày giúp bạn khỏe hơn và vui hơn. Ghi lại phút
+        vận động và nhận XP thưởng cho sự chăm chỉ của bạn.</p>
+      </div>
+      <img src="assets/sport.jpg" alt="Vận động viên ở vạch xuất phát đường chạy" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="row">
+      <img src="assets/joy.jpg" alt="Em bé cười vui vẻ với cuốn sách" loading="lazy">
+      <div>
+        <span class="kicker">Đội ngũ</span>
+        <h2>Làm bởi học sinh, cho học sinh 💚</h2>
+        <p class="sub" style="margin-bottom:14px">
+          AIMedic là dự án của đội <b>AIMedic</b> — ba học sinh lớp 7A1 Trường
+          Tiểu học, THCS &amp; THPT FPT Bắc Giang — tham dự cuộc thi
+          <b>Samsung Solve for Tomorrow</b> với mong muốn dùng công nghệ xây dựng
+          một xã hội bền vững hơn.
+        </p>
+        <p class="sub"><i>“Thấu hiểu bằng trái tim — Sáng tạo bằng công nghệ — Hành động vì sức khỏe học sinh.”</i></p>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <h2>Sẵn sàng sống khỏe hơn chưa? 🌟</h2>
+      <p>Miễn phí, chạy ngay trên trình duyệt của bạn — bắt đầu trong 30 giây.</p>
+      <a class="btn btn-primary" style="background:#fff;color:var(--teal-dark)" href="/app/">🚀 Mở AIMedic ngay</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="disclaimer">
+      ⚕️ AIMedic là công cụ giáo dục hỗ trợ thói quen lành mạnh — <b>không</b> chẩn đoán bệnh,
+      không kê đơn thuốc và không thay thế bác sĩ hay nhân viên y tế. Khi có dấu hiệu bất thường
+      về sức khỏe, hãy liên hệ người lớn tin cậy hoặc cơ sở y tế.
+    </div>
+    <div class="cols">
+      <span>© 2026 Đội AIMedic — Trường TH, THCS &amp; THPT FPT Bắc Giang</span>
+      <span>Ảnh: <a href="https://unsplash.com" style="text-decoration:underline">Unsplash</a> (giấy phép Unsplash)</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
