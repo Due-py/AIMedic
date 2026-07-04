@@ -35,7 +35,7 @@ void main() {
 
     expect(find.text('Cấp 1'), findsOneWidget);
     expect(find.text('45/100 XP'), findsOneWidget);
-    expect(find.text('3 ngày liên tiếp'), findsOneWidget);
+    expect(find.text('3'), findsOneWidget); // streak pill
     expect(find.text('Chuỗi 3 ngày'), findsOneWidget);
     expect(find.text('Chuỗi 7 ngày'), findsOneWidget); // shown but unearned
   });

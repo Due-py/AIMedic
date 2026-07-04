@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme.dart';
+import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
 import 'insights_repository.dart';
 
@@ -10,25 +12,28 @@ class InsightsCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final insights = ref.watch(insightsProvider).value;
-    // Hidden while loading, on error, or when there is no trend yet:
-    // insights are encouragement, never a blocker or an empty nag.
     if (insights == null || insights.isEmpty) return const SizedBox.shrink();
 
     final l10n = AppLocalizations.of(context)!;
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              l10n.insightsTitle,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            for (final insight in insights) _InsightRow(insight: insight),
-          ],
-        ),
+    return SoftCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Text('💡', style: TextStyle(fontSize: 20)),
+              const SizedBox(width: 8),
+              Text(
+                l10n.insightsTitle,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          for (final insight in insights) _InsightRow(insight: insight),
+        ],
       ),
     );
   }
@@ -52,7 +57,7 @@ class _InsightRow extends StatelessWidget {
         l10n.insightHighScreenTime(num(value)),
       'high_stress' => l10n.insightHighStress,
       'low_exercise' => l10n.insightLowExercise,
-      _ => null, // unknown id from a newer backend — skip gracefully
+      _ => null,
     };
   }
 
@@ -62,21 +67,33 @@ class _InsightRow extends StatelessWidget {
     final message = _message(l10n);
     if (message == null) return const SizedBox.shrink();
 
-    final scheme = Theme.of(context).colorScheme;
     final (icon, color) = switch (insight.level) {
-      'positive' => (Icons.celebration, scheme.primary),
-      'warn' => (Icons.tips_and_updates, scheme.tertiary),
-      _ => (Icons.info_outline, scheme.secondary),
+      'positive' => (Icons.celebration_rounded, AppTheme.mint),
+      'warn' => (Icons.tips_and_updates_rounded, AppTheme.sunny),
+      _ => (Icons.info_rounded, AppTheme.sky),
     };
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 7),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 20, color: color),
-          const SizedBox(width: 10),
-          Expanded(child: Text(message)),
+          Container(
+            width: 34,
+            height: 34,
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.16),
+              borderRadius: BorderRadius.circular(11),
+            ),
+            child: Icon(icon, size: 19, color: color),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(message, style: const TextStyle(height: 1.35)),
+            ),
+          ),
         ],
       ),
     );

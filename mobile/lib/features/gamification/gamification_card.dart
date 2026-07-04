@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme.dart';
+import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
 import 'gamification_models.dart';
 import 'gamification_repository.dart';
@@ -10,10 +12,7 @@ class GamificationCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(gamificationProvider);
-    // Quietly hidden while loading or on error — gamification is a bonus,
-    // never a blocker on the home screen.
-    final value = state.value;
+    final value = ref.watch(gamificationProvider).value;
     if (value == null) return const SizedBox.shrink();
     return _CardBody(state: value);
   }
@@ -25,12 +24,12 @@ class _CardBody extends StatelessWidget {
   final GamificationState state;
 
   static const _badgeIcons = {
-    'first_log': Icons.flag,
-    'streak_3': Icons.local_fire_department,
-    'streak_7': Icons.whatshot,
-    'water_10l': Icons.water_drop,
-    'mood_5_days': Icons.emoji_emotions,
-    'active_5_days': Icons.directions_run,
+    'first_log': Icons.flag_rounded,
+    'streak_3': Icons.local_fire_department_rounded,
+    'streak_7': Icons.whatshot_rounded,
+    'water_10l': Icons.water_drop_rounded,
+    'mood_5_days': Icons.emoji_emotions_rounded,
+    'active_5_days': Icons.directions_run_rounded,
   };
 
   String _badgeName(AppLocalizations l10n, String id) => switch (id) {
@@ -46,82 +45,130 @@ class _CardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final scheme = Theme.of(context).colorScheme;
 
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
+    return SoftCard(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color(0xFF9B8CFF), Color(0xFF6C7BFF)],
+      ),
+      child: DefaultTextStyle.merge(
+        style: const TextStyle(color: Colors.white),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  backgroundColor: scheme.primaryContainer,
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.22),
+                    shape: BoxShape.circle,
+                  ),
+                  alignment: Alignment.center,
                   child: Text(
                     '${state.level}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: scheme.onPrimaryContainer,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 20,
+                      color: Colors.white,
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 14),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         l10n.levelLabel(state.level),
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
                         l10n.xpProgress(state.xpIntoLevel, state.xpPerLevel),
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: TextStyle(
+                          color: Colors.white.withValues(alpha: 0.9),
+                          fontSize: 13,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 if (state.streakDays > 0)
-                  Chip(
-                    avatar: const Icon(
-                      Icons.local_fire_department,
-                      size: 18,
-                      color: Colors.deepOrange,
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 7),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withValues(alpha: 0.22),
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                    label: Text(l10n.streakDays(state.streakDays)),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.local_fire_department_rounded,
+                            size: 18, color: AppTheme.sunny),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${state.streakDays}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
               ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             ClipRRect(
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(30),
               child: LinearProgressIndicator(
                 value: state.xpIntoLevel / state.xpPerLevel,
-                minHeight: 8,
+                minHeight: 10,
+                backgroundColor: Colors.white.withValues(alpha: 0.25),
+                valueColor: const AlwaysStoppedAnimation(AppTheme.sunny),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
             Wrap(
               spacing: 8,
-              runSpacing: 4,
+              runSpacing: 8,
               children: [
                 for (final badge in state.badges)
-                  Chip(
-                    avatar: Icon(
-                      _badgeIcons[badge.id] ?? Icons.star,
-                      size: 16,
-                      color: badge.earned
-                          ? scheme.primary
-                          : scheme.onSurface.withValues(alpha: 0.3),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white
+                          .withValues(alpha: badge.earned ? 0.24 : 0.08),
+                      borderRadius: BorderRadius.circular(14),
                     ),
-                    label: Text(_badgeName(l10n, badge.id)),
-                    labelStyle: badge.earned
-                        ? null
-                        : TextStyle(
-                            color: scheme.onSurface.withValues(alpha: 0.4),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          _badgeIcons[badge.id] ?? Icons.star_rounded,
+                          size: 16,
+                          color: Colors.white
+                              .withValues(alpha: badge.earned ? 1 : 0.5),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          _badgeName(l10n, badge.id),
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white
+                                .withValues(alpha: badge.earned ? 1 : 0.5),
                           ),
-                    visualDensity: VisualDensity.compact,
+                        ),
+                      ],
+                    ),
                   ),
               ],
             ),

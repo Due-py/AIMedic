@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme.dart';
 import '../../l10n/app_localizations.dart';
 import 'coach_models.dart';
 import 'coach_repository.dart';
@@ -53,9 +54,43 @@ class _CoachScreenState extends ConsumerState<CoachScreen> {
     final sending = ref.watch(coachSendingProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.coachTitle)),
       body: Column(
         children: [
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.fromLTRB(
+                20, MediaQuery.of(context).padding.top + 16, 20, 18),
+            decoration: const BoxDecoration(
+              gradient: AppTheme.heroGradient,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(28),
+                bottomRight: Radius.circular(28),
+              ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.22),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.health_and_safety_rounded,
+                      color: Colors.white),
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  l10n.coachTitle,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ),
           Expanded(
             child: switch (chat) {
               AsyncValue(:final value?) => _MessageList(
@@ -72,46 +107,89 @@ class _CoachScreenState extends ConsumerState<CoachScreen> {
               _ => const Center(child: CircularProgressIndicator()),
             },
           ),
-          SafeArea(
-            top: false,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 4, 12, 8),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: _inputController,
-                      textInputAction: TextInputAction.send,
-                      onSubmitted: (_) => _send(),
-                      maxLength: 2000,
-                      buildCounter: (_,
-                              {required currentLength,
-                              required isFocused,
-                              maxLength}) =>
-                          null,
-                      decoration: InputDecoration(
-                        hintText: l10n.coachInputHint,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 10,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  IconButton.filled(
-                    onPressed: sending ? null : _send,
-                    tooltip: l10n.coachSendTooltip,
-                    icon: const Icon(Icons.send),
-                  ),
-                ],
-              ),
-            ),
+          _InputBar(
+            controller: _inputController,
+            sending: sending,
+            onSend: _send,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _InputBar extends StatelessWidget {
+  const _InputBar({
+    required this.controller,
+    required this.sending,
+    required this.onSend,
+  });
+
+  final TextEditingController controller;
+  final bool sending;
+  final VoidCallback onSend;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 8, 12, 10),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: controller,
+                textInputAction: TextInputAction.send,
+                onSubmitted: (_) => onSend(),
+                maxLength: 2000,
+                minLines: 1,
+                maxLines: 4,
+                buildCounter: (_,
+                        {required currentLength,
+                        required isFocused,
+                        maxLength}) =>
+                    null,
+                decoration: InputDecoration(
+                  hintText: l10n.coachInputHint,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(26),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                ),
+              ),
+            ),
+            const SizedBox(width: 8),
+            GestureDetector(
+              onTap: sending ? null : onSend,
+              child: Container(
+                width: 52,
+                height: 52,
+                decoration: BoxDecoration(
+                  gradient: AppTheme.heroGradient,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppTheme.teal.withValues(alpha: 0.4),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: sending
+                    ? const Padding(
+                        padding: EdgeInsets.all(15),
+                        child: CircularProgressIndicator(
+                            strokeWidth: 2, color: Colors.white),
+                      )
+                    : const Icon(Icons.send_rounded, color: Colors.white),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -139,18 +217,20 @@ class _MessageList extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.health_and_safety,
-                size: 56,
-                color: Theme.of(context).colorScheme.primary,
+              Container(
+                padding: const EdgeInsets.all(22),
+                decoration: BoxDecoration(
+                  gradient: AppTheme.heroGradient,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.waving_hand_rounded,
+                    size: 44, color: Colors.white),
               ),
-              const SizedBox(height: 16),
-              Text(l10n.coachWelcome, textAlign: TextAlign.center),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               Text(
-                l10n.medicalDisclaimer,
-                style: Theme.of(context).textTheme.bodySmall,
+                l10n.coachWelcome,
                 textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 15, height: 1.4),
               ),
             ],
           ),
@@ -160,30 +240,50 @@ class _MessageList extends StatelessWidget {
 
     return ListView.builder(
       controller: controller,
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.fromLTRB(14, 16, 14, 8),
       itemCount: messages.length + (sending ? 1 : 0),
       itemBuilder: (context, index) {
-        if (index == messages.length) {
-          return Padding(
-            padding: const EdgeInsets.all(12),
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  l10n.coachTyping,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          );
-        }
+        if (index == messages.length) return const _TypingBubble();
         return _Bubble(message: messages[index]);
       },
+    );
+  }
+}
+
+class _TypingBubble extends StatelessWidget {
+  const _TypingBubble();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(6),
+            topRight: Radius.circular(18),
+            bottomLeft: Radius.circular(18),
+            bottomRight: Radius.circular(18),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(strokeWidth: 2),
+            ),
+            const SizedBox(width: 10),
+            Text(l10n.coachTyping,
+                style: Theme.of(context).textTheme.bodySmall),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -200,21 +300,28 @@ class _Bubble extends StatelessWidget {
     return Align(
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 4),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * 0.78,
         ),
         decoration: BoxDecoration(
-          color: isUser ? scheme.primaryContainer : scheme.surfaceContainerHigh,
+          gradient: isUser ? AppTheme.heroGradient : null,
+          color: isUser ? null : scheme.surfaceContainerHighest,
           borderRadius: BorderRadius.only(
-            topLeft: const Radius.circular(16),
-            topRight: const Radius.circular(16),
-            bottomLeft: Radius.circular(isUser ? 16 : 4),
-            bottomRight: Radius.circular(isUser ? 4 : 16),
+            topLeft: const Radius.circular(18),
+            topRight: const Radius.circular(18),
+            bottomLeft: Radius.circular(isUser ? 18 : 6),
+            bottomRight: Radius.circular(isUser ? 6 : 18),
           ),
         ),
-        child: Text(message.content),
+        child: Text(
+          message.content,
+          style: TextStyle(
+            height: 1.35,
+            color: isUser ? Colors.white : scheme.onSurface,
+          ),
+        ),
       ),
     );
   }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/theme.dart';
+import '../../core/widgets/progress_ring.dart';
+import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
 import '../profile/profile_repository.dart';
 import 'tracking_models.dart';
@@ -25,7 +28,6 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen> {
     final targets = ref.watch(profileProvider).value?.targets;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.trackingTitle)),
       body: RefreshIndicator(
         onRefresh: () async {
           ref.invalidate(todayLogProvider);
@@ -33,65 +35,80 @@ class _TrackingScreenState extends ConsumerState<TrackingScreen> {
         },
         child: ListView(
           physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.only(bottom: 24),
+          padding: const EdgeInsets.only(bottom: 28),
           children: [
-            _SectionTitle(l10n.todayTitle),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.fromLTRB(
+                  20, MediaQuery.of(context).padding.top + 20, 20, 24),
+              decoration: const BoxDecoration(
+                gradient: AppTheme.heroGradient,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
+              ),
+              child: Text(
+                '${l10n.trackingTitle} · ${l10n.todayTitle}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+            const SizedBox(height: 4),
             switch (today) {
-              AsyncValue(:final value?) => _TodayCard(log: value),
-              AsyncValue(:final error?) =>
-                _InlineError(l10n: l10n, error: error),
-              _ => const Center(
-                  child: Padding(
-                    padding: EdgeInsets.all(24),
-                    child: CircularProgressIndicator(),
-                  ),
+              AsyncValue(:final value?) => _TodayCard(
+                  log: value,
+                  waterTarget: targets?.dailyWaterMl,
+                ),
+              AsyncValue(:final error?) => _InlineError(l10n: l10n, error: error),
+              _ => const Padding(
+                  padding: EdgeInsets.all(32),
+                  child: Center(child: CircularProgressIndicator()),
                 ),
             },
-            _SectionTitle(l10n.weeklyTitle),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    SegmentedButton<ChartMetric>(
-                      segments: [
-                        ButtonSegment(
-                          value: ChartMetric.water,
-                          label: Text(l10n.chartWater),
-                          icon: const Icon(Icons.water_drop, size: 18),
-                        ),
-                        ButtonSegment(
-                          value: ChartMetric.sleep,
-                          label: Text(l10n.chartSleep),
-                          icon: const Icon(Icons.bedtime, size: 18),
-                        ),
-                      ],
-                      selected: {_metric},
-                      onSelectionChanged: (s) =>
-                          setState(() => _metric = s.first),
-                    ),
-                    const SizedBox(height: 16),
-                    switch (week) {
-                      AsyncValue(:final value?) => WeeklyChart(
-                          logs: value,
-                          metric: _metric,
-                          endDate: DateTime.parse(ref.read(todayDateProvider)),
-                          target: switch (_metric) {
-                            ChartMetric.water =>
-                              targets?.dailyWaterMl.toDouble(),
-                            ChartMetric.sleep =>
-                              targets?.sleepHoursMin.toDouble(),
-                          },
-                        ),
-                      AsyncValue(:final error?) =>
-                        _InlineError(l10n: l10n, error: error),
-                      _ => const Padding(
-                          padding: EdgeInsets.all(24),
-                          child: CircularProgressIndicator(),
-                        ),
-                    },
-                  ],
-                ),
+            _SectionTitle('📊 ${l10n.weeklyTitle}'),
+            SoftCard(
+              child: Column(
+                children: [
+                  SegmentedButton<ChartMetric>(
+                    segments: [
+                      ButtonSegment(
+                        value: ChartMetric.water,
+                        label: Text(l10n.chartWater),
+                        icon: const Icon(Icons.water_drop_rounded, size: 18),
+                      ),
+                      ButtonSegment(
+                        value: ChartMetric.sleep,
+                        label: Text(l10n.chartSleep),
+                        icon: const Icon(Icons.bedtime_rounded, size: 18),
+                      ),
+                    ],
+                    selected: {_metric},
+                    onSelectionChanged: (s) => setState(() => _metric = s.first),
+                  ),
+                  const SizedBox(height: 18),
+                  switch (week) {
+                    AsyncValue(:final value?) => WeeklyChart(
+                        logs: value,
+                        metric: _metric,
+                        endDate: DateTime.parse(ref.read(todayDateProvider)),
+                        target: switch (_metric) {
+                          ChartMetric.water => targets?.dailyWaterMl.toDouble(),
+                          ChartMetric.sleep =>
+                            targets?.sleepHoursMin.toDouble(),
+                        },
+                      ),
+                    AsyncValue(:final error?) =>
+                      _InlineError(l10n: l10n, error: error),
+                    _ => const Padding(
+                        padding: EdgeInsets.all(24),
+                        child: CircularProgressIndicator(),
+                      ),
+                  },
+                ],
               ),
             ),
           ],
@@ -109,8 +126,14 @@ class _SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-      child: Text(text, style: Theme.of(context).textTheme.titleMedium),
+      padding: const EdgeInsets.fromLTRB(24, 18, 24, 2),
+      child: Text(
+        text,
+        style: Theme.of(context)
+            .textTheme
+            .titleMedium
+            ?.copyWith(fontWeight: FontWeight.w800),
+      ),
     );
   }
 }
@@ -131,111 +154,186 @@ class _InlineError extends StatelessWidget {
 }
 
 class _TodayCard extends ConsumerWidget {
-  const _TodayCard({required this.log});
+  const _TodayCard({required this.log, required this.waterTarget});
 
   final DailyLog log;
+  final int? waterTarget;
 
-  static const _moodEmojis = ['😞', '🙁', '😐', '🙂', '😄'];
+  static const _moodEmojis = ['😢', '🙁', '😐', '🙂', '😄'];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final notifier = ref.read(todayLogProvider.notifier);
+    final target = waterTarget ?? 2000;
 
-    return Card(
-      child: Column(
-        children: [
-          ListTile(
-            leading: const Icon(Icons.water_drop),
-            title: Text(l10n.waterLog),
-            subtitle: Text(l10n.mlValue(log.waterMl)),
-            trailing: FilledButton.tonal(
-              onPressed: () => notifier.addWater(),
-              child: Text(l10n.addCupButton),
-            ),
-          ),
-          _NumberTile(
-            icon: Icons.bedtime,
-            title: l10n.sleepLog,
-            value: log.sleepHours == null
-                ? null
-                : l10n.hoursValue(log.sleepHours!.toStringAsFixed(1)),
-            onSave: (v) => notifier.patch(DailyLogPatch(sleepHours: v)),
-            max: 24,
-          ),
-          _NumberTile(
-            icon: Icons.directions_run,
-            title: l10n.exerciseLog,
-            value: log.exerciseMinutes == 0
-                ? null
-                : l10n.minutesValue(log.exerciseMinutes),
-            onSave: (v) =>
-                notifier.patch(DailyLogPatch(exerciseMinutes: v.toInt())),
-            max: 1440,
-          ),
-          _NumberTile(
-            icon: Icons.phone_android,
-            title: l10n.screenTimeLog,
-            value: log.screenTimeMinutes == null
-                ? null
-                : l10n.minutesValue(log.screenTimeMinutes!),
-            onSave: (v) =>
-                notifier.patch(DailyLogPatch(screenTimeMinutes: v.toInt())),
-            max: 1440,
-          ),
-          ListTile(
-            leading: const Icon(Icons.emoji_emotions),
-            title: Text(l10n.moodLog),
-            subtitle: Row(
-              children: [
-                for (var i = 0; i < 5; i++)
-                  IconButton(
-                    onPressed: () =>
-                        notifier.patch(DailyLogPatch(mood: i + 1)),
-                    tooltip: '${l10n.moodLog} ${i + 1}/5',
-                    icon: Text(
-                      _moodEmojis[i],
-                      style: TextStyle(
+    return Column(
+      children: [
+        // Water hero with a ring + quick add.
+        SoftCard(
+          child: Row(
+            children: [
+              ProgressRing(
+                progress: log.waterMl / target,
+                color: AppTheme.sky,
+                size: 84,
+                center: const Icon(Icons.water_drop_rounded,
+                    color: AppTheme.sky, size: 28),
+              ),
+              const SizedBox(width: 18),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.waterLog,
+                        style: Theme.of(context).textTheme.labelLarge),
+                    Text(
+                      '${log.waterMl} / $target ml',
+                      style: const TextStyle(
                         fontSize: 22,
-                        color: log.mood == i + 1
-                            ? null
-                            : Theme.of(context)
-                                .colorScheme
-                                .onSurface
-                                .withValues(alpha: 0.35),
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
-                    isSelected: log.mood == i + 1,
+                    const SizedBox(height: 8),
+                    FilledButton.icon(
+                      onPressed: () => notifier.addWater(),
+                      icon: const Icon(Icons.add_rounded, size: 20),
+                      label: Text(l10n.addCupButton),
+                      style: FilledButton.styleFrom(
+                        backgroundColor: AppTheme.sky,
+                        minimumSize: const Size(0, 44),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        // Quick log tiles.
+        SoftCard(
+          padding: const EdgeInsets.symmetric(vertical: 6),
+          child: Column(
+            children: [
+              _NumberTile(
+                icon: Icons.bedtime_rounded,
+                color: AppTheme.lavender,
+                title: l10n.sleepLog,
+                value: log.sleepHours == null
+                    ? null
+                    : l10n.hoursValue(log.sleepHours!.toStringAsFixed(1)),
+                onSave: (v) => notifier.patch(DailyLogPatch(sleepHours: v)),
+                max: 24,
+              ),
+              _NumberTile(
+                icon: Icons.directions_run_rounded,
+                color: AppTheme.mint,
+                title: l10n.exerciseLog,
+                value: log.exerciseMinutes == 0
+                    ? null
+                    : l10n.minutesValue(log.exerciseMinutes),
+                onSave: (v) =>
+                    notifier.patch(DailyLogPatch(exerciseMinutes: v.toInt())),
+                max: 1440,
+              ),
+              _NumberTile(
+                icon: Icons.phone_android_rounded,
+                color: AppTheme.coral,
+                title: l10n.screenTimeLog,
+                value: log.screenTimeMinutes == null
+                    ? null
+                    : l10n.minutesValue(log.screenTimeMinutes!),
+                onSave: (v) =>
+                    notifier.patch(DailyLogPatch(screenTimeMinutes: v.toInt())),
+                max: 1440,
+              ),
+            ],
+          ),
+        ),
+        // Mood.
+        SoftCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(l10n.moodLog,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w800)),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  for (var i = 0; i < 5; i++)
+                    GestureDetector(
+                      onTap: () => notifier.patch(DailyLogPatch(mood: i + 1)),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 150),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: log.mood == i + 1
+                              ? AppTheme.sunny.withValues(alpha: 0.25)
+                              : Colors.transparent,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          _moodEmojis[i],
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: log.mood == null || log.mood == i + 1
+                                ? null
+                                : Colors.black.withValues(alpha: 0.25),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        // Stress.
+        SoftCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(l10n.stressLog,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(fontWeight: FontWeight.w800)),
+                  Text(
+                    log.stress == null ? l10n.notLoggedYet : '${log.stress}/5',
+                    style: const TextStyle(fontWeight: FontWeight.w700),
                   ),
-              ],
-            ),
+                ],
+              ),
+              Slider(
+                value: (log.stress ?? 1).toDouble(),
+                min: 1,
+                max: 5,
+                divisions: 4,
+                label: l10n.stressLevelValue(log.stress ?? 1),
+                // Persist once when the drag ends — avoids a request per tick.
+                onChanged: (_) {},
+                onChangeEnd: (v) =>
+                    notifier.patch(DailyLogPatch(stress: v.toInt())),
+              ),
+            ],
           ),
-          ListTile(
-            leading: const Icon(Icons.spa),
-            title: Text(l10n.stressLog),
-            subtitle: Slider(
-              value: (log.stress ?? 1).toDouble(),
-              min: 1,
-              max: 5,
-              divisions: 4,
-              label: l10n.stressLevelValue(log.stress ?? 1),
-              onChanged: (v) => notifier.patch(DailyLogPatch(stress: v.toInt())),
-            ),
-            trailing: Text(
-              log.stress == null ? l10n.notLoggedYet : '${log.stress}/5',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
-/// Tile that opens a number-input dialog on tap.
 class _NumberTile extends StatelessWidget {
   const _NumberTile({
     required this.icon,
+    required this.color,
     required this.title,
     required this.value,
     required this.onSave,
@@ -243,6 +341,7 @@ class _NumberTile extends StatelessWidget {
   });
 
   final IconData icon;
+  final Color color;
   final String title;
   final String? value;
   final void Function(double) onSave;
@@ -285,10 +384,18 @@ class _NumberTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
+      leading: Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.16),
+          borderRadius: BorderRadius.circular(13),
+        ),
+        child: Icon(icon, color: color),
+      ),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
       subtitle: Text(value ?? l10n.notLoggedYet),
-      trailing: const Icon(Icons.chevron_right),
+      trailing: const Icon(Icons.chevron_right_rounded),
       onTap: () => _edit(context),
     );
   }

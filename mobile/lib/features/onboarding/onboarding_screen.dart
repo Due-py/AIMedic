@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/theme.dart';
 import '../../l10n/app_localizations.dart';
 import '../profile/profile_models.dart';
 import '../profile/profile_repository.dart';
@@ -176,6 +177,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _basicsStep(AppLocalizations l10n) {
     return _StepBody(
+      emoji: '🙋',
       title: l10n.stepBasicsTitle,
       child: Form(
         key: _basicsFormKey,
@@ -229,6 +231,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     }
 
     return _StepBody(
+      emoji: '📏',
       title: l10n.stepBodyTitle,
       child: Form(
         key: _bodyFormKey,
@@ -268,6 +271,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       (ActivityLevel.veryActive, l10n.activityVeryActive, l10n.activityVeryActiveDesc),
     ];
     return _StepBody(
+      emoji: '🏃',
       title: l10n.stepActivityTitle,
       child: RadioGroup<ActivityLevel>(
         groupValue: _activity,
@@ -275,10 +279,35 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         child: Column(
           children: [
             for (final (level, title, desc) in options)
-              RadioListTile<ActivityLevel>(
-                value: level,
-                title: Text(title),
-                subtitle: Text(desc),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Material(
+                  color: _activity == level
+                      ? Theme.of(context)
+                          .colorScheme
+                          .primary
+                          .withValues(alpha: 0.10)
+                      : Theme.of(context).colorScheme.surface,
+                  clipBehavior: Clip.antiAlias,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    side: BorderSide(
+                      color: _activity == level
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context)
+                              .colorScheme
+                              .outlineVariant
+                              .withValues(alpha: 0.5),
+                      width: _activity == level ? 2 : 1,
+                    ),
+                  ),
+                  child: RadioListTile<ActivityLevel>(
+                    value: level,
+                    title: Text(title,
+                        style: const TextStyle(fontWeight: FontWeight.w700)),
+                    subtitle: Text(desc),
+                  ),
+                ),
               ),
           ],
         ),
@@ -297,28 +326,55 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       }
     }
 
+    Widget timeTile(IconData icon, Color color, String label, TimeOfDay t,
+            VoidCallback onTap) =>
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: Material(
+            color: Theme.of(context).colorScheme.surface,
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+              side: BorderSide(
+                color: Theme.of(context)
+                    .colorScheme
+                    .outlineVariant
+                    .withValues(alpha: 0.5),
+              ),
+            ),
+            child: ListTile(
+            leading: Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.16),
+                borderRadius: BorderRadius.circular(13),
+              ),
+              child: Icon(icon, color: color),
+            ),
+            title: Text(label,
+                style: const TextStyle(fontWeight: FontWeight.w700)),
+            trailing: Text(
+              _formatTime(t),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(fontWeight: FontWeight.w800),
+            ),
+              onTap: onTap,
+            ),
+          ),
+        );
+
     return _StepBody(
+      emoji: '😴',
       title: l10n.stepSleepTitle,
       child: Column(
         children: [
-          ListTile(
-            leading: const Icon(Icons.bedtime),
-            title: Text(l10n.sleepTimeLabel),
-            trailing: Text(
-              _formatTime(_sleepTime),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            onTap: () => pick(true),
-          ),
-          ListTile(
-            leading: const Icon(Icons.wb_sunny),
-            title: Text(l10n.wakeTimeLabel),
-            trailing: Text(
-              _formatTime(_wakeTime),
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            onTap: () => pick(false),
-          ),
+          timeTile(Icons.bedtime_rounded, AppTheme.lavender,
+              l10n.sleepTimeLabel, _sleepTime, () => pick(true)),
+          timeTile(Icons.wb_sunny_rounded, AppTheme.sunny, l10n.wakeTimeLabel,
+              _wakeTime, () => pick(false)),
         ],
       ),
     );
@@ -326,9 +382,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 }
 
 class _StepBody extends StatelessWidget {
-  const _StepBody({required this.title, required this.child});
+  const _StepBody({required this.title, required this.emoji, required this.child});
 
   final String title;
+  final String emoji;
   final Widget child;
 
   @override
@@ -338,7 +395,15 @@ class _StepBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: Theme.of(context).textTheme.headlineSmall),
+          Text(emoji, style: const TextStyle(fontSize: 44)),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall
+                ?.copyWith(fontWeight: FontWeight.w800),
+          ),
           const SizedBox(height: 24),
           child,
         ],

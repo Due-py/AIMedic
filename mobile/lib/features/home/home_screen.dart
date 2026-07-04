@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/theme.dart';
+import '../../core/widgets/gradient_header.dart';
+import '../../core/widgets/progress_ring.dart';
+import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
 import '../gamification/gamification_card.dart';
 import '../insights/insights_card.dart';
+import '../tracking/tracking_repository.dart';
 import '../profile/profile_models.dart';
 import '../profile/profile_repository.dart';
 
@@ -19,37 +24,17 @@ class HomeScreen extends ConsumerWidget {
     final profile = ref.watch(profileProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(l10n.appTitle),
-        actions: [
-          if (profile.value != null)
-            IconButton(
-              icon: const Icon(Icons.edit),
-              tooltip: l10n.editProfileButton,
-              onPressed: () => context.push('/onboarding'),
-            ),
-          if (Firebase.apps.isNotEmpty)
-            IconButton(
-              icon: const Icon(Icons.logout),
-              tooltip: l10n.logoutTooltip,
-              onPressed: () async {
-                await FirebaseAuth.instance.signOut();
-                if (context.mounted) context.go('/login');
-              },
-            ),
-        ],
-      ),
       body: switch (profile) {
         AsyncValue(:final value?) => _Dashboard(profile: value),
         AsyncValue(hasValue: true) => _CreateProfilePrompt(l10n: l10n),
-        AsyncValue(:final error?) => _LoadError(l10n: l10n, error: error, ref: ref),
+        AsyncValue(:final error?) => _LoadError(l10n: l10n, error: error),
         _ => const Center(child: CircularProgressIndicator()),
       },
     );
   }
 }
 
-class _Dashboard extends StatelessWidget {
+class _Dashboard extends ConsumerWidget {
   const _Dashboard({required this.profile});
 
   final Profile profile;
@@ -62,46 +47,161 @@ class _Dashboard extends StatelessWidget {
       };
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final targets = profile.targets;
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            l10n.homeGreeting('bạn'),
-            style: Theme.of(context).textTheme.headlineSmall,
+    final today = ref.watch(todayLogProvider).value;
+
+    final waterProgress =
+        today == null ? 0.0 : today.waterMl / targets.dailyWaterMl;
+    final sleepProgress = today?.sleepHours == null
+        ? 0.0
+        : today!.sleepHours! / targets.sleepHoursMax;
+
+    return RefreshIndicator(
+      onRefresh: () async {
+        ref.invalidate(profileProvider);
+        ref.invalidate(todayLogProvider);
+      },
+      child: ListView(
+        padding: const EdgeInsets.only(bottom: 28),
+        children: [
+          GradientHeader(
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.edit_rounded),
+                tooltip: l10n.editProfileButton,
+                onPressed: () => context.push('/onboarding'),
+              ),
+              if (Firebase.apps.isNotEmpty)
+                IconButton(
+                  icon: const Icon(Icons.logout_rounded),
+                  tooltip: l10n.logoutTooltip,
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                    if (context.mounted) context.go('/login');
+                  },
+                ),
+            ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('👋', style: const TextStyle(fontSize: 34)),
+                const SizedBox(height: 6),
+                Text(
+                  l10n.homeGreeting('bạn'),
+                  style: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w800,
+                    height: 1.15,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _HeaderRing(
+                      progress: sleepProgress,
+                      icon: Icons.bedtime_rounded,
+                      label: l10n.sleepTarget,
+                    ),
+                    _HeaderRing(
+                      progress: waterProgress,
+                      icon: Icons.water_drop_rounded,
+                      label: l10n.waterTarget,
+                    ),
+                    _HeaderRing(
+                      progress: targets.bmiCategory == 'healthy' ? 1.0 : 0.6,
+                      icon: Icons.favorite_rounded,
+                      label: l10n.bmiLabel,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
+          const SizedBox(height: 6),
+          const GamificationCard(),
+          const InsightsCard(),
+          _StatCard(
+            icon: Icons.monitor_weight_rounded,
+            color: AppTheme.lavender,
+            title: l10n.bmiLabel,
+            value: '${targets.bmi}',
+            subtitle: _bmiText(l10n),
+          ),
+          _StatCard(
+            icon: Icons.water_drop_rounded,
+            color: AppTheme.sky,
+            title: l10n.waterTarget,
+            value: '${targets.dailyWaterMl}',
+            subtitle: 'ml / ngày',
+          ),
+          _StatCard(
+            icon: Icons.bedtime_rounded,
+            color: AppTheme.lavender,
+            title: l10n.sleepTarget,
+            value: '${targets.sleepHoursMin}–${targets.sleepHoursMax}',
+            subtitle: 'giờ / đêm',
+          ),
+          _StatCard(
+            icon: Icons.local_fire_department_rounded,
+            color: AppTheme.coral,
+            title: l10n.calorieTarget,
+            value: '${targets.dailyCalories}',
+            subtitle: 'kcal / ngày',
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
+            child: Text(
+              l10n.medicalDisclaimer,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _HeaderRing extends StatelessWidget {
+  const _HeaderRing({
+    required this.progress,
+    required this.icon,
+    required this.label,
+  });
+
+  final double progress;
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ProgressRing(
+          progress: progress,
+          color: Colors.white,
+          size: 76,
+          stroke: 8,
+          center: Icon(icon, color: Colors.white, size: 26),
         ),
-        const GamificationCard(),
-        const InsightsCard(),
-        _TargetCard(
-          icon: Icons.monitor_weight,
-          title: l10n.bmiLabel,
-          value: '${targets.bmi} · ${_bmiText(l10n)}',
-        ),
-        _TargetCard(
-          icon: Icons.water_drop,
-          title: l10n.waterTarget,
-          value: l10n.waterValue(targets.dailyWaterMl),
-        ),
-        _TargetCard(
-          icon: Icons.bedtime,
-          title: l10n.sleepTarget,
-          value: l10n.sleepValue(targets.sleepHoursMin, targets.sleepHoursMax),
-        ),
-        _TargetCard(
-          icon: Icons.bolt,
-          title: l10n.calorieTarget,
-          value: l10n.calorieValue(targets.dailyCalories),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
+        const SizedBox(height: 8),
+        SizedBox(
+          width: 88,
           child: Text(
-            l10n.medicalDisclaimer,
-            style: Theme.of(context).textTheme.bodySmall,
+            label,
             textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ],
@@ -109,24 +209,72 @@ class _Dashboard extends StatelessWidget {
   }
 }
 
-class _TargetCard extends StatelessWidget {
-  const _TargetCard({
+class _StatCard extends StatelessWidget {
+  const _StatCard({
     required this.icon,
+    required this.color,
     required this.title,
     required this.value,
+    required this.subtitle,
   });
 
   final IconData icon;
+  final Color color;
   final String title;
   final String value;
+  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
-        title: Text(title),
-        subtitle: Text(value),
+    return SoftCard(
+      child: Row(
+        children: [
+          Container(
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              color: color.withValues(alpha: 0.16),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(icon, color: color, size: 26),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                ),
+                const SizedBox(height: 2),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: [
+                    Text(
+                      value,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      subtitle,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color:
+                                Theme.of(context).colorScheme.onSurfaceVariant,
+                          ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -145,14 +293,22 @@ class _CreateProfilePrompt extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.favorite,
-              size: 64,
-              color: Theme.of(context).colorScheme.primary,
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                gradient: AppTheme.heroGradient,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.favorite_rounded,
+                  size: 56, color: Colors.white),
             ),
-            const SizedBox(height: 16),
-            Text(l10n.createProfilePrompt, textAlign: TextAlign.center),
             const SizedBox(height: 24),
+            Text(
+              l10n.createProfilePrompt,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 28),
             FilledButton(
               onPressed: () => context.push('/onboarding'),
               child: Text(l10n.createProfileButton),
@@ -164,22 +320,21 @@ class _CreateProfilePrompt extends StatelessWidget {
   }
 }
 
-class _LoadError extends StatelessWidget {
-  const _LoadError({required this.l10n, required this.error, required this.ref});
+class _LoadError extends ConsumerWidget {
+  const _LoadError({required this.l10n, required this.error});
 
   final AppLocalizations l10n;
   final Object error;
-  final WidgetRef ref;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.cloud_off, size: 64),
+            const Icon(Icons.cloud_off_rounded, size: 64),
             const SizedBox(height: 16),
             Text(l10n.loadError, textAlign: TextAlign.center),
             const SizedBox(height: 24),

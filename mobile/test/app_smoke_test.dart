@@ -20,7 +20,6 @@ void main() {
     ));
     await tester.pumpAndSettle();
 
-    expect(find.text('AIMedic'), findsOneWidget);
     expect(find.byType(NavigationBar), findsOneWidget);
     expect(find.text('Trang chủ'), findsOneWidget);
     expect(find.text('Trợ lý AI'), findsOneWidget);

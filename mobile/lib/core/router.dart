@@ -64,17 +64,17 @@ class _AppShell extends StatelessWidget {
         destinations: [
           NavigationDestination(
             icon: const Icon(Icons.home_outlined),
-            selectedIcon: const Icon(Icons.home),
+            selectedIcon: const Icon(Icons.home_rounded),
             label: l10n.homeTitle,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.edit_note_outlined),
-            selectedIcon: const Icon(Icons.edit_note),
+            icon: const Icon(Icons.favorite_outline_rounded),
+            selectedIcon: const Icon(Icons.favorite_rounded),
             label: l10n.trackingTitle,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.chat_bubble_outline),
-            selectedIcon: const Icon(Icons.chat_bubble),
+            icon: const Icon(Icons.forum_outlined),
+            selectedIcon: const Icon(Icons.forum_rounded),
             label: l10n.coachTitle,
           ),
         ],

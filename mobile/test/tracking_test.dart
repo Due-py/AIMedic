@@ -34,14 +34,15 @@ void main() {
   testWidgets('water quick action accumulates and persists', (tester) async {
     final repo = await pumpTracking(tester);
 
-    expect(find.text('0 ml'), findsOneWidget);
+    // No profile in the fake, so the water target defaults to 2000 ml.
+    expect(find.text('0 / 2000 ml'), findsOneWidget);
 
     await tester.tap(find.text('+250 ml'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('+250 ml'));
     await tester.pumpAndSettle();
 
-    expect(find.text('500 ml'), findsOneWidget);
+    expect(find.text('500 / 2000 ml'), findsOneWidget);
     expect(repo.logs[_today]!.waterMl, 500);
   });
 
@@ -49,6 +50,13 @@ void main() {
     final repo = await pumpTracking(tester);
     await repo.patchDay(_today, const DailyLogPatch(sleepHours: 8));
 
+    // Bring the mood card's own label into view; the emoji row sits just
+    // below it, comfortably clear of both viewport edges.
+    await tester.scrollUntilVisible(find.text('Tâm trạng'), 150,
+        scrollable: find.byType(Scrollable).first);
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('😄'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('😄'));
     await tester.pumpAndSettle();
 
@@ -63,7 +71,10 @@ void main() {
     await repo.patchDay('2026-07-01', const DailyLogPatch(waterMl: 1200));
     await repo.patchDay('2026-07-02', const DailyLogPatch(waterMl: 1600));
 
-    await tester.tap(find.text('Giấc ngủ'));
+    final sleepTile = find.text('Giấc ngủ');
+    await tester.scrollUntilVisible(sleepTile, 200,
+        scrollable: find.byType(Scrollable).first);
+    await tester.tap(sleepTile);
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField).last, '8.5');
     await tester.tap(find.text('Lưu'));

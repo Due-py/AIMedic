@@ -30,7 +30,6 @@ void main() {
     await pumpCoach(tester);
 
     expect(find.textContaining('Mình là AIMedic'), findsOneWidget);
-    expect(find.textContaining('không thay thế bác sĩ'), findsOneWidget);
   });
 
   testWidgets('sending a message shows user bubble and AI reply',
@@ -38,7 +37,7 @@ void main() {
     final repo = await pumpCoach(tester);
 
     await tester.enterText(find.byType(TextField), 'Làm sao để ngủ ngon?');
-    await tester.tap(find.byIcon(Icons.send));
+    await tester.tap(find.byIcon(Icons.send_rounded));
     await tester.pumpAndSettle();
 
     expect(find.text('Làm sao để ngủ ngon?'), findsOneWidget);
@@ -52,7 +51,7 @@ void main() {
     repo.failNext = true;
 
     await tester.enterText(find.byType(TextField), 'Xin chào');
-    await tester.tap(find.byIcon(Icons.send));
+    await tester.tap(find.byIcon(Icons.send_rounded));
     await tester.pumpAndSettle();
 
     expect(find.text('Xin chào'), findsOneWidget); // kept locally

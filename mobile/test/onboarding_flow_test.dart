@@ -1,5 +1,8 @@
 import 'package:aimedic/core/router.dart';
+import 'package:aimedic/features/gamification/gamification_repository.dart';
+import 'package:aimedic/features/insights/insights_repository.dart';
 import 'package:aimedic/features/profile/profile_repository.dart';
+import 'package:aimedic/features/tracking/tracking_repository.dart';
 import 'package:aimedic/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,8 +11,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'fakes.dart';
 
 Future<void> pumpApp(WidgetTester tester, FakeProfileRepository repo) async {
+  // Home reads today's log, gamification and insights too; stub them so the
+  // dashboard renders without touching the network.
   await tester.pumpWidget(ProviderScope(
-    overrides: [profileRepositoryProvider.overrideWithValue(repo)],
+    overrides: [
+      profileRepositoryProvider.overrideWithValue(repo),
+      trackingRepositoryProvider.overrideWithValue(FakeTrackingRepository()),
+      gamificationRepositoryProvider
+          .overrideWithValue(FakeGamificationRepository()),
+      insightsRepositoryProvider.overrideWithValue(FakeInsightsRepository()),
+    ],
     child: const AimedicApp(),
   ));
   await tester.pumpAndSettle();
@@ -64,12 +75,16 @@ void main() {
     await tester.tap(find.text('Hoàn thành'));
     await tester.pumpAndSettle();
 
-    // Saved and back home with personalized targets.
+    // Saved and back home with personalized targets. The stat cards live
+    // below the gradient header, so scroll them into view before asserting.
     expect(repo.stored, isNotNull);
     expect(repo.stored!.draft.age, 13);
-    expect(find.text('1800 ml mỗi ngày'), findsOneWidget);
-    expect(find.text('9-11 giờ mỗi đêm'), findsOneWidget);
-    expect(find.text('Khoảng 2106 kcal'), findsOneWidget);
-    expect(find.textContaining('18.7'), findsOneWidget);
+
+    final list = find.byType(Scrollable).first;
+    for (final value in ['18.7', '1800', '9–11', '2106']) {
+      await tester.scrollUntilVisible(find.text(value), 200,
+          scrollable: list);
+      expect(find.text(value), findsOneWidget);
+    }
   });
 }
