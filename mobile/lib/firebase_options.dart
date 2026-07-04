@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -58,5 +55,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '818356579042',
     projectId: 'aimedic-ffa1b',
     storageBucket: 'aimedic-ffa1b.firebasestorage.app',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDPNQYtGqzrfqqW5l7vBWl3V2S7regQ3xE',
+    appId: '1:818356579042:web:02e0ee1ad4cd1a1e1e0cbb',
+    messagingSenderId: '818356579042',
+    projectId: 'aimedic-ffa1b',
+    authDomain: 'aimedic-ffa1b.firebaseapp.com',
+    storageBucket: 'aimedic-ffa1b.firebasestorage.app',
+    measurementId: 'G-D1TTD82TRR',
   );
 }
