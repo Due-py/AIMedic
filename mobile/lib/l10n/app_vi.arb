@@ -149,6 +149,16 @@
       "days": {"type": "int"}
     }
   },
+  "introSlide1Title": "Chào bạn, mình là AIMedic! 👋",
+  "introSlide1Body": "Người bạn đồng hành giúp bạn xây dựng thói quen sống khỏe mỗi ngày — được tạo ra dành riêng cho học sinh.",
+  "introSlide2Title": "Ghi lại & tiến bộ 📊",
+  "introSlide2Body": "Theo dõi nước uống, giấc ngủ, vận động và tâm trạng chỉ với một chạm. Nhận XP, huy hiệu và giữ chuỗi ngày của bạn!",
+  "introSlide3Title": "Trợ lý AI luôn bên bạn 🤖",
+  "introSlide3Body": "Hỏi bất cứ điều gì về sức khỏe — AI hiểu thói quen của bạn và trả lời thân thiện, dễ hiểu. Không chẩn đoán, không phán xét.",
+  "introSkip": "Bỏ qua",
+  "introNext": "Tiếp tục",
+  "introStart": "Bắt đầu nào!",
+
   "authLoginTitle": "Đăng nhập",
   "authRegisterTitle": "Tạo tài khoản",
   "emailLabel": "Email",

@@ -584,6 +584,60 @@ abstract class AppLocalizations {
   /// **'{days} ngày liên tiếp'**
   String streakDays(int days);
 
+  /// No description provided for @introSlide1Title.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chào bạn, mình là AIMedic! 👋'**
+  String get introSlide1Title;
+
+  /// No description provided for @introSlide1Body.
+  ///
+  /// In vi, this message translates to:
+  /// **'Người bạn đồng hành giúp bạn xây dựng thói quen sống khỏe mỗi ngày — được tạo ra dành riêng cho học sinh.'**
+  String get introSlide1Body;
+
+  /// No description provided for @introSlide2Title.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ghi lại & tiến bộ 📊'**
+  String get introSlide2Title;
+
+  /// No description provided for @introSlide2Body.
+  ///
+  /// In vi, this message translates to:
+  /// **'Theo dõi nước uống, giấc ngủ, vận động và tâm trạng chỉ với một chạm. Nhận XP, huy hiệu và giữ chuỗi ngày của bạn!'**
+  String get introSlide2Body;
+
+  /// No description provided for @introSlide3Title.
+  ///
+  /// In vi, this message translates to:
+  /// **'Trợ lý AI luôn bên bạn 🤖'**
+  String get introSlide3Title;
+
+  /// No description provided for @introSlide3Body.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hỏi bất cứ điều gì về sức khỏe — AI hiểu thói quen của bạn và trả lời thân thiện, dễ hiểu. Không chẩn đoán, không phán xét.'**
+  String get introSlide3Body;
+
+  /// No description provided for @introSkip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bỏ qua'**
+  String get introSkip;
+
+  /// No description provided for @introNext.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tiếp tục'**
+  String get introNext;
+
+  /// No description provided for @introStart.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bắt đầu nào!'**
+  String get introStart;
+
   /// No description provided for @authLoginTitle.
   ///
   /// In vi, this message translates to:

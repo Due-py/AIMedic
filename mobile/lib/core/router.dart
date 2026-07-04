@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 
 import '../features/auth/auth_screen.dart';
 import '../features/coach/coach_screen.dart';
+import '../features/intro/intro_gate.dart';
+import '../features/intro/intro_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/tracking/tracking_screen.dart';
@@ -15,6 +17,12 @@ final router = GoRouter(
   // Auth is enforced only when Firebase is configured; tests and desktop
   // dev builds run without it and skip sign-in entirely.
   redirect: (context, state) {
+    // First launch: show the welcome intro before anything else.
+    if (!IntroGate.seen) {
+      return state.matchedLocation == '/intro' ? null : '/intro';
+    }
+    if (state.matchedLocation == '/intro') return '/';
+
     if (Firebase.apps.isEmpty) return null;
     final signedIn = FirebaseAuth.instance.currentUser != null;
     final onAuthScreen = state.matchedLocation == '/login';
@@ -23,6 +31,10 @@ final router = GoRouter(
     return null;
   },
   routes: [
+    GoRoute(
+      path: '/intro',
+      builder: (_, _) => const IntroScreen(),
+    ),
     GoRoute(
       path: '/login',
       builder: (_, _) => const AuthScreen(),

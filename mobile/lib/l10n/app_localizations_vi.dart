@@ -280,6 +280,36 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get introSlide1Title => 'Chào bạn, mình là AIMedic! 👋';
+
+  @override
+  String get introSlide1Body =>
+      'Người bạn đồng hành giúp bạn xây dựng thói quen sống khỏe mỗi ngày — được tạo ra dành riêng cho học sinh.';
+
+  @override
+  String get introSlide2Title => 'Ghi lại & tiến bộ 📊';
+
+  @override
+  String get introSlide2Body =>
+      'Theo dõi nước uống, giấc ngủ, vận động và tâm trạng chỉ với một chạm. Nhận XP, huy hiệu và giữ chuỗi ngày của bạn!';
+
+  @override
+  String get introSlide3Title => 'Trợ lý AI luôn bên bạn 🤖';
+
+  @override
+  String get introSlide3Body =>
+      'Hỏi bất cứ điều gì về sức khỏe — AI hiểu thói quen của bạn và trả lời thân thiện, dễ hiểu. Không chẩn đoán, không phán xét.';
+
+  @override
+  String get introSkip => 'Bỏ qua';
+
+  @override
+  String get introNext => 'Tiếp tục';
+
+  @override
+  String get introStart => 'Bắt đầu nào!';
+
+  @override
   String get authLoginTitle => 'Đăng nhập';
 
   @override

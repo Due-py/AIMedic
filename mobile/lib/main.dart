@@ -5,11 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router.dart';
 import 'core/theme.dart';
+import 'features/intro/intro_gate.dart';
 import 'firebase_options.dart';
 import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await IntroGate.load();
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,

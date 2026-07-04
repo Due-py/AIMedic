@@ -281,6 +281,36 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get introSlide1Title => 'Hi, I\'m AIMedic! 👋';
+
+  @override
+  String get introSlide1Body =>
+      'Your companion for building healthy habits every day — made especially for students.';
+
+  @override
+  String get introSlide2Title => 'Log & level up 📊';
+
+  @override
+  String get introSlide2Body =>
+      'Track water, sleep, exercise and mood with one tap. Earn XP, badges and keep your streak going!';
+
+  @override
+  String get introSlide3Title => 'An AI coach by your side 🤖';
+
+  @override
+  String get introSlide3Body =>
+      'Ask anything about health — the AI knows your habits and answers in a friendly, simple way. No diagnosis, no judgment.';
+
+  @override
+  String get introSkip => 'Skip';
+
+  @override
+  String get introNext => 'Next';
+
+  @override
+  String get introStart => 'Let\'s go!';
+
+  @override
   String get authLoginTitle => 'Sign in';
 
   @override
