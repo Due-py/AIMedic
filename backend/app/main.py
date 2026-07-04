@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 
 from app.core.config import get_settings
@@ -16,11 +17,18 @@ settings = get_settings()
 
 init_firebase()
 
-limiter = Limiter(key_func=get_remote_address, default_limits=["60/minute"])
+# Disabled in dev/tests (DEBUG) so local iteration and the test suite are
+# never throttled; production (DEBUG=false) enforces the global limit.
+limiter = Limiter(
+    key_func=get_remote_address,
+    default_limits=["60/minute"],
+    enabled=not settings.debug,
+)
 
 app = FastAPI(title=settings.app_name)
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(SlowAPIMiddleware)
 
 app.add_middleware(
     CORSMiddleware,

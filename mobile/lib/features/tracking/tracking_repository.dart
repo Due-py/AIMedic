@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -48,7 +50,18 @@ final trackingRepositoryProvider = Provider<TrackingRepository>(
 );
 
 /// Today's date as YYYY-MM-DD; a provider so tests can freeze it.
-final todayDateProvider = Provider<String>((ref) => isoDate(DateTime.now()));
+/// Self-invalidates just past midnight so a long-running app never keeps
+/// logging under yesterday's date.
+final todayDateProvider = Provider<String>((ref) {
+  final now = DateTime.now();
+  final nextMidnight = DateTime(now.year, now.month, now.day + 1);
+  final timer = Timer(
+    nextMidnight.difference(now) + const Duration(seconds: 1),
+    ref.invalidateSelf,
+  );
+  ref.onDispose(timer.cancel);
+  return isoDate(now);
+});
 
 class TodayLogNotifier extends AsyncNotifier<DailyLog> {
   String get _date => ref.read(todayDateProvider);

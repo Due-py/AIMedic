@@ -1,11 +1,12 @@
 import logging
 import time
 from collections import defaultdict, deque
-from datetime import date, timedelta
+from datetime import timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
 from app.core.auth import get_current_uid
+from app.core.dates import app_today
 from app.features.coach.prompts import SYSTEM_PROMPT, build_user_context
 from app.features.coach.repository import ChatRepository, get_chat_repository
 from app.features.coach.safety import CRISIS_RESPONSE, check_crisis
@@ -65,7 +66,7 @@ def chat(
         return ChatResponse(reply=CRISIS_RESPONSE)
 
     profile = profiles.get(uid)
-    today = date.today()
+    today = app_today()
     logs = tracking.get_range(
         uid, (today - timedelta(days=6)).isoformat(), today.isoformat()
     )
@@ -73,7 +74,13 @@ def chat(
     context = build_user_context(profile, logs, trends)
     system = f"{SYSTEM_PROMPT}\n\n{context}" if context else SYSTEM_PROMPT
 
-    history = chats.recent(uid, _HISTORY_WINDOW + 1)[:-1]  # exclude msg just saved
+    # Exclude the message just saved, and scrub any earlier crisis exchange:
+    # crisis content must never reach the model, including as history context.
+    history = [
+        m
+        for m in chats.recent(uid, _HISTORY_WINDOW + 1)[:-1]
+        if m["content"] != CRISIS_RESPONSE and not check_crisis(m["content"])
+    ]
     try:
         reply = ai.reply(system, history, request.message)
     except HTTPException:

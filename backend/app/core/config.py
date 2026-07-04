@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     gemini_model: str = "gemini-2.5-flash"
     firebase_credentials: str = ""
     cors_origins: str = "http://localhost:3000"
+    # Audience timezone offset for "today" (Vietnam = UTC+7).
+    app_tz_offset_minutes: int = 420
 
     @property
     def cors_origin_list(self) -> list[str]:

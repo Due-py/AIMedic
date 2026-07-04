@@ -13,7 +13,7 @@ LEVEL_XP = 100  # XP per level
 HISTORY_DAYS = 90  # how far back logs are considered
 
 
-def _categories_logged(log: dict) -> int:
+def categories_logged(log: dict) -> int:
     return sum([
         bool(log.get("water_ml")),
         log.get("sleep_hours") is not None,
@@ -41,9 +41,9 @@ class GamificationState(BaseModel):
 
 def compute_state(logs: list[dict], today: date) -> GamificationState:
     logged_days = {
-        log["date"]: _categories_logged(log)
+        log["date"]: categories_logged(log)
         for log in logs
-        if _categories_logged(log) > 0
+        if categories_logged(log) > 0
     }
 
     xp = XP_PER_CATEGORY * sum(logged_days.values())

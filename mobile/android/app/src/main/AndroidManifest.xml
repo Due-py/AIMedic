@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Required in the MAIN manifest: Flutter only injects INTERNET into
+         debug/profile builds, so release builds need it declared here. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <!-- Daily health reminders (flutter_local_notifications) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>

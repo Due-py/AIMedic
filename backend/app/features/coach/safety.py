@@ -2,21 +2,34 @@
 
 Crisis messages get an immediate, caring canned response pointing to trusted
 adults and the national child helpline — they are never sent to the model.
-This is a narrow keyword net by design: false negatives fall through to the
-model, whose system prompt also escalates; false positives would be worse.
+
+Two pattern tiers, because undiacritized Vietnamese is ambiguous:
+- diacritic patterns match the lowercased original text ("tự tử" is
+  unambiguous, but its stripped form "tu tu" collides with "từ từ" = "slowly",
+  so it must NOT be matched without diacritics);
+- normalized patterns match diacritic-stripped text, and only contain phrases
+  that stay unambiguous without diacritics.
+False negatives fall through to the model, whose system prompt also
+escalates; false positives (a crisis reply to an innocent message) would
+alarm a child, so ambiguous stripped forms are deliberately excluded.
 """
 
 import re
 import unicodedata
 
-_CRISIS_PATTERNS = [
-    # Vietnamese (matched without diacritics, see _normalize)
-    r"tu\s*tu",            # tự tử
-    r"tu\s*sat",           # tự sát
+_CRISIS_PATTERNS_DIACRITIC = [
+    r"tự\s*tử",
+    r"tự\s*sát",
+    r"tự\s*(làm\s*)?hại\s*bản\s*thân",
+]
+
+_CRISIS_PATTERNS_NORMALIZED = [
+    # Vietnamese, unambiguous without diacritics
     r"ket\s*thuc\s*cuoc\s*(doi|song)",
     r"khong\s*muon\s*song",
     r"muon\s*chet",
-    r"tu\s*(lam\s*)?hai\s*ban\s*than",
+    r"tu\s*sat",
+    r"muon\s+tu\s*tu",       # "muốn tự tử" typed without diacritics
     r"tu\s*(cat|ranh)\s*(tay|minh)",
     # English
     r"suicide",
@@ -36,12 +49,15 @@ CRISIS_RESPONSE = (
 
 
 def _normalize(text: str) -> str:
-    """Lowercase and strip Vietnamese diacritics so patterns match any spelling."""
-    text = unicodedata.normalize("NFD", text.lower())
+    """Strip Vietnamese diacritics so patterns match undiacritized typing."""
+    text = unicodedata.normalize("NFD", text)
     text = "".join(c for c in text if unicodedata.category(c) != "Mn")
     return text.replace("đ", "d")
 
 
 def check_crisis(message: str) -> bool:
-    normalized = _normalize(message)
-    return any(re.search(p, normalized) for p in _CRISIS_PATTERNS)
+    lower = message.lower()
+    if any(re.search(p, lower) for p in _CRISIS_PATTERNS_DIACRITIC):
+        return True
+    normalized = _normalize(lower)
+    return any(re.search(p, normalized) for p in _CRISIS_PATTERNS_NORMALIZED)

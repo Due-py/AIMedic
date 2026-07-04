@@ -53,6 +53,10 @@ class TestSafety:
             "Hôm nay mình rất vui",
             "Làm sao để ngủ ngon hơn?",
             "Mình bị mỏi mắt khi học",
+            # "từ từ" (= slowly) strips to "tu tu" — must NOT trigger.
+            "Mình sẽ từ từ thay đổi thói quen",
+            "Ăn từ từ thôi nhé",
+            "Mình rất tự tin vào bản thân",
         ],
     )
     def test_normal_messages_pass(self, message):
@@ -74,6 +78,19 @@ class TestChatEndpoint:
         assert resp.json()["reply"] == CRISIS_RESPONSE
         assert "111" in resp.json()["reply"]
         assert fake_ai.calls == []
+
+    def test_crisis_exchange_scrubbed_from_later_history(self, client, fake_ai):
+        client.post("/coach/chat", json={"message": "Mình thích chạy bộ"})
+        client.post("/coach/chat", json={"message": "mình muốn tự tử"})
+        client.post("/coach/chat", json={"message": "Uống nước thế nào?"})
+
+        # The follow-up call must see neither the crisis message nor the
+        # canned crisis response in its history.
+        history = fake_ai.calls[-1]["history"]
+        contents = [m["content"] for m in history]
+        assert "mình muốn tự tử" not in contents
+        assert CRISIS_RESPONSE not in contents
+        assert "Mình thích chạy bộ" in contents  # normal history preserved
 
     def test_context_includes_profile(self, client, fake_ai):
         client.put(

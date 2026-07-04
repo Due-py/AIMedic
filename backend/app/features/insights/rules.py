@@ -7,6 +7,8 @@ night never triggers a warning. Levels: positive | info | warn.
 
 from pydantic import BaseModel
 
+from app.features.gamification.rules import categories_logged
+
 MIN_DAYS = 3  # minimum logged days before a trend is trusted
 
 
@@ -32,7 +34,15 @@ def compute_insights(profile: dict | None, logs: list[dict]) -> list[Insight]:
         elif avg <= targets.get("sleep_hours_max", 24):
             insights.append(Insight(id="sleep_good", level="positive", value=avg))
 
-    water = [log["water_ml"] for log in logs if log.get("water_ml")]
+    # Count zero-water days too (as long as the day was logged at all and the
+    # student uses water tracking) — dropping zeros would inflate the average.
+    logged_days = [log for log in logs if categories_logged(log) > 0]
+    uses_water_tracking = any(log.get("water_ml") for log in logged_days)
+    water = (
+        [log.get("water_ml") or 0 for log in logged_days]
+        if uses_water_tracking
+        else []
+    )
     if len(water) >= MIN_DAYS and targets.get("daily_water_ml"):
         avg = round(_avg(water))
         if avg < 0.75 * targets["daily_water_ml"]:

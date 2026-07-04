@@ -1,8 +1,9 @@
-from datetime import date, timedelta
+from datetime import timedelta
 
 from fastapi import APIRouter, Depends
 
 from app.core.auth import get_current_uid
+from app.core.dates import app_today
 from app.features.insights.rules import Insight, compute_insights
 from app.features.profile.repository import (
     ProfileRepository,
@@ -22,7 +23,7 @@ def get_insights(
     profiles: ProfileRepository = Depends(get_profile_repository),
     tracking: TrackingRepository = Depends(get_tracking_repository),
 ) -> list[Insight]:
-    today = date.today()
+    today = app_today()
     logs = tracking.get_range(
         uid, (today - timedelta(days=6)).isoformat(), today.isoformat()
     )

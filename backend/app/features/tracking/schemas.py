@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 
 DATE_PATTERN = r"^\d{4}-\d{2}-\d{2}$"
+MAX_DAILY_WATER_ML = 10_000
 
 
 class DailyLogPatch(BaseModel):
@@ -10,7 +11,7 @@ class DailyLogPatch(BaseModel):
     quick actions (e.g. "+1 cup of water") never erase other entries.
     """
 
-    water_ml: int | None = Field(default=None, ge=0, le=10_000)
+    water_ml: int | None = Field(default=None, ge=0, le=MAX_DAILY_WATER_ML)
     sleep_hours: float | None = Field(default=None, ge=0, le=24)
     exercise_minutes: int | None = Field(default=None, ge=0, le=1_440)
     screen_time_minutes: int | None = Field(default=None, ge=0, le=1_440)

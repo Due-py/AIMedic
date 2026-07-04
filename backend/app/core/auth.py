@@ -17,12 +17,15 @@ _bearer = HTTPBearer(auto_error=False)
 def get_current_uid(
     token: HTTPAuthorizationCredentials | None = Depends(_bearer),
 ) -> str:
-    # DEBUG-only convenience: a missing token authenticates as a local dev
-    # user, so the app can be developed before sign-in exists. A provided
-    # token is always verified for real. Production runs with DEBUG=false.
+    # Dev mode = DEBUG *and* no Firebase: every request (with or without a
+    # token — there is nothing to verify it against) acts as one local dev
+    # user. The moment Firebase credentials are configured, real verification
+    # applies regardless of DEBUG, so a stray DEBUG=true in production can
+    # never grant unauthenticated access to real data.
+    if get_settings().debug and not firebase_available():
+        return "dev-user"
+
     if token is None:
-        if get_settings().debug:
-            return "dev-user"
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Missing bearer token.",
