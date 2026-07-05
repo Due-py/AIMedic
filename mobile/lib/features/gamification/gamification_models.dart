@@ -17,6 +17,7 @@ class GamificationState {
     required this.xpIntoLevel,
     required this.xpPerLevel,
     required this.streakDays,
+    this.streakFreezeUsed = false,
     required this.badges,
   });
 
@@ -25,7 +26,10 @@ class GamificationState {
   final int xpIntoLevel;
   final int xpPerLevel;
   final int streakDays;
+  final bool streakFreezeUsed;
   final List<Badge> badges;
+
+  int get earnedBadges => badges.where((b) => b.earned).length;
 
   factory GamificationState.fromJson(Map<String, dynamic> json) =>
       GamificationState(
@@ -34,6 +38,7 @@ class GamificationState {
         xpIntoLevel: json['xp_into_level'] as int,
         xpPerLevel: json['xp_per_level'] as int,
         streakDays: json['streak_days'] as int,
+        streakFreezeUsed: json['streak_freeze_used'] as bool? ?? false,
         badges: (json['badges'] as List<dynamic>)
             .map((e) => Badge.fromJson(e as Map<String, dynamic>))
             .toList(),

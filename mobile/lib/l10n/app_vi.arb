@@ -149,6 +149,22 @@
       "days": {"type": "int"}
     }
   },
+  "breathingTitle": "Góc bình yên",
+  "breathingSubtitle": "Hít thở sâu giúp bạn bình tĩnh và tập trung hơn",
+  "breathingInhale": "Hít vào...",
+  "breathingHold": "Giữ hơi...",
+  "breathingExhale": "Thở ra...",
+  "breathingStart": "Bắt đầu",
+  "breathingStop": "Dừng lại",
+  "breathingDone": "Tuyệt vời! Bạn cảm thấy thế nào?",
+  "breathingMinutes": "{n} phút",
+  "@breathingMinutes": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "breathingOpenButton": "Thư giãn nào",
+
   "introSlide1Title": "Chào bạn, mình là AIMedic! 👋",
   "introSlide1Body": "Người bạn đồng hành giúp bạn xây dựng thói quen sống khỏe mỗi ngày — được tạo ra dành riêng cho học sinh.",
   "introSlide2Title": "Ghi lại & tiến bộ 📊",

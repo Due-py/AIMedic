@@ -10,6 +10,7 @@ import '../features/intro/intro_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/tracking/tracking_screen.dart';
+import '../features/wellness/breathing_screen.dart';
 import '../l10n/app_localizations.dart';
 
 final router = GoRouter(
@@ -38,6 +39,10 @@ final router = GoRouter(
     GoRoute(
       path: '/login',
       builder: (_, _) => const AuthScreen(),
+    ),
+    GoRoute(
+      path: '/breathe',
+      builder: (_, _) => const BreathingScreen(),
     ),
     GoRoute(
       path: '/onboarding',

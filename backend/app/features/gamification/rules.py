@@ -36,6 +36,7 @@ class GamificationState(BaseModel):
     xp_into_level: int
     xp_per_level: int = LEVEL_XP
     streak_days: int
+    streak_freeze_used: bool = False
     badges: list[Badge]
 
 
@@ -50,13 +51,29 @@ def compute_state(logs: list[dict], today: date) -> GamificationState:
 
     # Streak of consecutive logged days ending today — or yesterday, so the
     # streak isn't shown as broken before the student logs anything today.
+    # Streak freeze (no-punishment rule): one single-day gap is forgiven per
+    # rolling 7 streak days, so one busy day never resets the whole streak.
     streak = 0
+    freeze_used = False
     day = today
+    days_since_freeze = 7  # a freeze is available immediately
     if day.isoformat() not in logged_days:
         day -= timedelta(days=1)
-    while day.isoformat() in logged_days:
-        streak += 1
-        day -= timedelta(days=1)
+    while True:
+        if day.isoformat() in logged_days:
+            streak += 1
+            days_since_freeze += 1
+            day -= timedelta(days=1)
+        elif (
+            days_since_freeze >= 7
+            and streak > 0
+            and (day - timedelta(days=1)).isoformat() in logged_days
+        ):
+            freeze_used = True
+            days_since_freeze = 0
+            day -= timedelta(days=1)  # skip the single missed day
+        else:
+            break
 
     total_water = sum(log.get("water_ml") or 0 for log in logs)
     mood_days = sum(1 for log in logs if log.get("mood") is not None)
@@ -76,5 +93,6 @@ def compute_state(logs: list[dict], today: date) -> GamificationState:
         level=xp // LEVEL_XP + 1,
         xp_into_level=xp % LEVEL_XP,
         streak_days=streak,
+        streak_freeze_used=freeze_used,
         badges=badges,
     )

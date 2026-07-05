@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/theme.dart';
 import '../../core/widgets/progress_ring.dart';
@@ -321,6 +322,14 @@ class _TodayCard extends ConsumerWidget {
                 onChanged: (_) {},
                 onChangeEnd: (v) =>
                     notifier.patch(DailyLogPatch(stress: v.toInt())),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: FilledButton.tonalIcon(
+                  onPressed: () => context.push('/breathe'),
+                  icon: const Text('🫧', style: TextStyle(fontSize: 16)),
+                  label: Text(l10n.breathingOpenButton),
+                ),
               ),
             ],
           ),

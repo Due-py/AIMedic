@@ -280,6 +280,39 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get breathingTitle => 'Góc bình yên';
+
+  @override
+  String get breathingSubtitle =>
+      'Hít thở sâu giúp bạn bình tĩnh và tập trung hơn';
+
+  @override
+  String get breathingInhale => 'Hít vào...';
+
+  @override
+  String get breathingHold => 'Giữ hơi...';
+
+  @override
+  String get breathingExhale => 'Thở ra...';
+
+  @override
+  String get breathingStart => 'Bắt đầu';
+
+  @override
+  String get breathingStop => 'Dừng lại';
+
+  @override
+  String get breathingDone => 'Tuyệt vời! Bạn cảm thấy thế nào?';
+
+  @override
+  String breathingMinutes(int n) {
+    return '$n phút';
+  }
+
+  @override
+  String get breathingOpenButton => 'Thư giãn nào';
+
+  @override
   String get introSlide1Title => 'Chào bạn, mình là AIMedic! 👋';
 
   @override

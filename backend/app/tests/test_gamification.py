@@ -59,12 +59,50 @@ class TestRules:
         ]
         assert compute_state(logs, TODAY).streak_days == 2
 
-    def test_streak_broken_by_gap(self):
+    def test_streak_broken_by_two_day_gap(self):
         logs = [
             _log("2026-06-30", water_ml=250),
             _log("2026-07-03", water_ml=250),  # gap on 07-01 and 07-02
         ]
-        assert compute_state(logs, TODAY).streak_days == 1
+        state = compute_state(logs, TODAY)
+        assert state.streak_days == 1
+        assert state.streak_freeze_used is False
+
+    def test_single_day_gap_frozen(self):
+        logs = [
+            _log("2026-07-01", water_ml=250),
+            # 07-02 missed — freeze covers it
+            _log("2026-07-03", water_ml=250),
+        ]
+        state = compute_state(logs, TODAY)
+        assert state.streak_days == 2
+        assert state.streak_freeze_used is True
+
+    def test_second_gap_within_week_breaks_streak(self):
+        logs = [
+            _log("2026-06-27", water_ml=250),
+            # 06-28 missed (second gap — no freeze left this week)
+            _log("2026-06-29", water_ml=250),
+            _log("2026-06-30", water_ml=250),
+            # 07-01 missed (freeze used here, walking backwards)
+            _log("2026-07-02", water_ml=250),
+            _log("2026-07-03", water_ml=250),
+        ]
+        state = compute_state(logs, TODAY)
+        # Walk: 03,02 → freeze 01 → 30,29 → gap 28 has no freeze left → stop.
+        assert state.streak_days == 4
+        assert state.streak_freeze_used is True
+
+    def test_freeze_regenerates_after_seven_streak_days(self):
+        logs = [_log(f"2026-06-{d:02d}", water_ml=250) for d in range(18, 25)]
+        logs.append(_log("2026-06-26", water_ml=250))  # 06-25 frozen
+        logs += [_log(f"2026-06-{d:02d}", water_ml=250) for d in range(27, 31)]
+        logs += [_log(f"2026-07-{d:02d}", water_ml=250) for d in range(1, 3)]
+        logs.append(_log("2026-07-04", water_ml=250))  # 07-03 would need a 2nd freeze
+        # 7+ streak days between the two gaps → both freezes allowed.
+        state = compute_state(logs, date(2026, 7, 4))
+        assert state.streak_days == 15
+        assert state.streak_freeze_used is True
 
     def test_empty_day_does_not_count(self):
         logs = [_log("2026-07-03", water_ml=0, exercise_minutes=0, meals=[])]

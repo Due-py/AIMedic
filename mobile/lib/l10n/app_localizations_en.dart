@@ -281,6 +281,39 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get breathingTitle => 'Calm corner';
+
+  @override
+  String get breathingSubtitle =>
+      'Deep breathing helps you feel calm and focused';
+
+  @override
+  String get breathingInhale => 'Breathe in...';
+
+  @override
+  String get breathingHold => 'Hold...';
+
+  @override
+  String get breathingExhale => 'Breathe out...';
+
+  @override
+  String get breathingStart => 'Start';
+
+  @override
+  String get breathingStop => 'Stop';
+
+  @override
+  String get breathingDone => 'Great job! How do you feel?';
+
+  @override
+  String breathingMinutes(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get breathingOpenButton => 'Let\'s relax';
+
+  @override
   String get introSlide1Title => 'Hi, I\'m AIMedic! 👋';
 
   @override

@@ -1,4 +1,8 @@
+import 'dart:math' as math;
+
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme.dart';
@@ -18,10 +22,39 @@ class GamificationCard extends ConsumerWidget {
   }
 }
 
-class _CardBody extends StatelessWidget {
+class _CardBody extends StatefulWidget {
   const _CardBody({required this.state});
 
   final GamificationState state;
+
+  @override
+  State<_CardBody> createState() => _CardBodyState();
+}
+
+class _CardBodyState extends State<_CardBody> {
+  final _confetti = ConfettiController(
+    duration: const Duration(milliseconds: 1200),
+  );
+
+  GamificationState get state => widget.state;
+
+  @override
+  void didUpdateWidget(covariant _CardBody old) {
+    super.didUpdateWidget(old);
+    // Duolingo-style instant feedback: celebrate the moment a level is
+    // gained or a new badge unlocks.
+    if (state.level > old.state.level ||
+        state.earnedBadges > old.state.earnedBadges) {
+      _confetti.play();
+      HapticFeedback.mediumImpact();
+    }
+  }
+
+  @override
+  void dispose() {
+    _confetti.dispose();
+    super.dispose();
+  }
 
   static const _badgeIcons = {
     'first_log': Icons.flag_rounded,
@@ -46,6 +79,31 @@ class _CardBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        _card(l10n),
+        ConfettiWidget(
+          confettiController: _confetti,
+          blastDirection: math.pi / 2, // downward over the card
+          numberOfParticles: 24,
+          maxBlastForce: 18,
+          minBlastForce: 6,
+          gravity: 0.25,
+          shouldLoop: false,
+          colors: const [
+            AppTheme.sunny,
+            AppTheme.coral,
+            AppTheme.mint,
+            AppTheme.sky,
+            Colors.white,
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _card(AppLocalizations l10n) {
     return SoftCard(
       gradient: const LinearGradient(
         begin: Alignment.topLeft,
@@ -119,6 +177,11 @@ class _CardBody extends StatelessWidget {
                             color: Colors.white,
                           ),
                         ),
+                        // A freeze quietly saved this streak.
+                        if (state.streakFreezeUsed) ...[
+                          const SizedBox(width: 4),
+                          const Text('❄️', style: TextStyle(fontSize: 13)),
+                        ],
                       ],
                     ),
                   ),

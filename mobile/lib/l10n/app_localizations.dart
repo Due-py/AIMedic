@@ -584,6 +584,66 @@ abstract class AppLocalizations {
   /// **'{days} ngày liên tiếp'**
   String streakDays(int days);
 
+  /// No description provided for @breathingTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Góc bình yên'**
+  String get breathingTitle;
+
+  /// No description provided for @breathingSubtitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hít thở sâu giúp bạn bình tĩnh và tập trung hơn'**
+  String get breathingSubtitle;
+
+  /// No description provided for @breathingInhale.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hít vào...'**
+  String get breathingInhale;
+
+  /// No description provided for @breathingHold.
+  ///
+  /// In vi, this message translates to:
+  /// **'Giữ hơi...'**
+  String get breathingHold;
+
+  /// No description provided for @breathingExhale.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thở ra...'**
+  String get breathingExhale;
+
+  /// No description provided for @breathingStart.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bắt đầu'**
+  String get breathingStart;
+
+  /// No description provided for @breathingStop.
+  ///
+  /// In vi, this message translates to:
+  /// **'Dừng lại'**
+  String get breathingStop;
+
+  /// No description provided for @breathingDone.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tuyệt vời! Bạn cảm thấy thế nào?'**
+  String get breathingDone;
+
+  /// No description provided for @breathingMinutes.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} phút'**
+  String breathingMinutes(int n);
+
+  /// No description provided for @breathingOpenButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thư giãn nào'**
+  String get breathingOpenButton;
+
   /// No description provided for @introSlide1Title.
   ///
   /// In vi, this message translates to:
