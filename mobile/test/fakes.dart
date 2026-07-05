@@ -1,5 +1,7 @@
 import 'package:aimedic/features/challenges/challenge_models.dart';
 import 'package:aimedic/features/challenges/challenge_repository.dart';
+import 'package:aimedic/features/classroom/classroom_models.dart';
+import 'package:aimedic/features/classroom/classroom_repository.dart';
 import 'package:aimedic/features/coach/coach_models.dart';
 import 'package:aimedic/features/coach/coach_repository.dart';
 import 'package:aimedic/features/gamification/gamification_models.dart';
@@ -43,6 +45,50 @@ class FakeProfileRepository implements ProfileRepository {
       ),
     );
     return stored!;
+  }
+}
+
+class FakeClassroomRepository implements ClassroomRepository {
+  final List<ClassInfo> classes = [];
+  ClassDashboard? dashboardResult;
+
+  @override
+  Future<List<ClassInfo>> mine() async => List.of(classes);
+
+  @override
+  Future<ClassInfo> create(String name) async {
+    final cls = ClassInfo(
+        code: 'LOP123', name: name, memberCount: 1, isOwner: true);
+    classes.add(cls);
+    return cls;
+  }
+
+  @override
+  Future<ClassInfo> join(String code) async {
+    if (code != 'LOP123') throw Exception('not found');
+    const cls = ClassInfo(
+        code: 'LOP123', name: 'Lớp 7A1', memberCount: 12, isOwner: false);
+    classes.add(cls);
+    return cls;
+  }
+
+  @override
+  Future<ClassDashboard> dashboard(String code) async {
+    return dashboardResult ??
+        const ClassDashboard(
+          code: 'LOP123',
+          name: 'Lớp 7A1',
+          memberCount: 12,
+          locked: false,
+          minMembers: 3,
+          activeMembers: 9,
+          avgSleepHours: 7.8,
+          avgWaterMl: 1400,
+          avgSteps: 5200,
+          avgExerciseMinutes: 25,
+          avgMood: 3.9,
+          avgStress: 2.4,
+        );
   }
 }
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/auth/auth_screen.dart';
+import '../features/classroom/class_dashboard_screen.dart';
 import '../features/coach/coach_screen.dart';
 import '../features/intro/intro_gate.dart';
 import '../features/intro/intro_screen.dart';
@@ -48,6 +49,11 @@ final router = GoRouter(
     GoRoute(
       path: '/posture',
       builder: (_, _) => const PostureScreen(),
+    ),
+    GoRoute(
+      path: '/class/:code/dashboard',
+      builder: (_, state) =>
+          ClassDashboardScreen(code: state.pathParameters['code']!),
     ),
     GoRoute(
       path: '/onboarding',

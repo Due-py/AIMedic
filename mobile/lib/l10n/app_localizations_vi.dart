@@ -531,6 +531,61 @@ class AppLocalizationsVi extends AppLocalizations {
   String get logoutTooltip => 'Đăng xuất';
 
   @override
+  String get classTitle => 'Lớp của tôi';
+
+  @override
+  String get classEmpty =>
+      'Tham gia lớp bằng mã của thầy cô, hoặc tạo lớp mới.';
+
+  @override
+  String get classNameLabel => 'Tên lớp';
+
+  @override
+  String get classViewStats => 'Xem thống kê';
+
+  @override
+  String get classOwnerBadge => 'Chủ lớp';
+
+  @override
+  String get classDashboardTitle => 'Thống kê lớp';
+
+  @override
+  String get classAnonymityNote =>
+      'Chỉ hiển thị số liệu trung bình ẩn danh của cả lớp — không bao giờ có dữ liệu của từng học sinh.';
+
+  @override
+  String classLockedStats(int n) {
+    return 'Cần ít nhất $n thành viên để hiển thị thống kê ẩn danh.';
+  }
+
+  @override
+  String get classActiveMembers => 'Hoạt động tuần này';
+
+  @override
+  String get classAvgSleep => 'Ngủ trung bình';
+
+  @override
+  String get classAvgWater => 'Nước trung bình';
+
+  @override
+  String get classAvgSteps => 'Bước trung bình';
+
+  @override
+  String get classAvgExercise => 'Vận động trung bình';
+
+  @override
+  String get classAvgMood => 'Tâm trạng';
+
+  @override
+  String get classAvgStress => 'Căng thẳng';
+
+  @override
+  String get classNoData => 'Chưa có dữ liệu';
+
+  @override
+  String get classJoinError => 'Không tìm thấy lớp với mã này.';
+
+  @override
   String get challengeTitle => 'Thử thách lớp học';
 
   @override

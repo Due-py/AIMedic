@@ -1046,6 +1046,108 @@ abstract class AppLocalizations {
   /// **'Đăng xuất'**
   String get logoutTooltip;
 
+  /// No description provided for @classTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Lớp của tôi'**
+  String get classTitle;
+
+  /// No description provided for @classEmpty.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tham gia lớp bằng mã của thầy cô, hoặc tạo lớp mới.'**
+  String get classEmpty;
+
+  /// No description provided for @classNameLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tên lớp'**
+  String get classNameLabel;
+
+  /// No description provided for @classViewStats.
+  ///
+  /// In vi, this message translates to:
+  /// **'Xem thống kê'**
+  String get classViewStats;
+
+  /// No description provided for @classOwnerBadge.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chủ lớp'**
+  String get classOwnerBadge;
+
+  /// No description provided for @classDashboardTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thống kê lớp'**
+  String get classDashboardTitle;
+
+  /// No description provided for @classAnonymityNote.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chỉ hiển thị số liệu trung bình ẩn danh của cả lớp — không bao giờ có dữ liệu của từng học sinh.'**
+  String get classAnonymityNote;
+
+  /// No description provided for @classLockedStats.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cần ít nhất {n} thành viên để hiển thị thống kê ẩn danh.'**
+  String classLockedStats(int n);
+
+  /// No description provided for @classActiveMembers.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hoạt động tuần này'**
+  String get classActiveMembers;
+
+  /// No description provided for @classAvgSleep.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ngủ trung bình'**
+  String get classAvgSleep;
+
+  /// No description provided for @classAvgWater.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nước trung bình'**
+  String get classAvgWater;
+
+  /// No description provided for @classAvgSteps.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bước trung bình'**
+  String get classAvgSteps;
+
+  /// No description provided for @classAvgExercise.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vận động trung bình'**
+  String get classAvgExercise;
+
+  /// No description provided for @classAvgMood.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tâm trạng'**
+  String get classAvgMood;
+
+  /// No description provided for @classAvgStress.
+  ///
+  /// In vi, this message translates to:
+  /// **'Căng thẳng'**
+  String get classAvgStress;
+
+  /// No description provided for @classNoData.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chưa có dữ liệu'**
+  String get classNoData;
+
+  /// No description provided for @classJoinError.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không tìm thấy lớp với mã này.'**
+  String get classJoinError;
+
   /// No description provided for @challengeTitle.
   ///
   /// In vi, this message translates to:

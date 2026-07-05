@@ -6,18 +6,16 @@ exposes only the team total and the caller's own contribution, so nobody can
 be singled out (CLAUDE.md: friendly competition, individual privacy).
 """
 
-import secrets
-
 from pydantic import BaseModel, Field
 
+from app.core.codes import new_code
 from app.features.gamification.rules import categories_logged
+
+__all__ = ["new_code"]
 
 MAX_MEMBERS = 50
 MAX_CHALLENGES_PER_USER = 5
 DURATION_DAYS = 7
-
-# Unambiguous alphabet for join codes (no 0/O/1/I).
-_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 
 METRICS = {
     # metric id -> (per-day value extractor, sane team-goal bounds)
@@ -28,10 +26,6 @@ METRICS = {
         (1, 2_000),
     ),
 }
-
-
-def new_code() -> str:
-    return "".join(secrets.choice(_CODE_ALPHABET) for _ in range(6))
 
 
 def metric_day_value(metric: str, log: dict) -> int:

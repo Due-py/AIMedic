@@ -261,6 +261,29 @@
   "passwordMismatch": "Mật khẩu nhập lại chưa khớp.",
   "logoutTooltip": "Đăng xuất",
 
+  "classTitle": "Lớp của tôi",
+  "classEmpty": "Tham gia lớp bằng mã của thầy cô, hoặc tạo lớp mới.",
+  "classNameLabel": "Tên lớp",
+  "classViewStats": "Xem thống kê",
+  "classOwnerBadge": "Chủ lớp",
+  "classDashboardTitle": "Thống kê lớp",
+  "classAnonymityNote": "Chỉ hiển thị số liệu trung bình ẩn danh của cả lớp — không bao giờ có dữ liệu của từng học sinh.",
+  "classLockedStats": "Cần ít nhất {n} thành viên để hiển thị thống kê ẩn danh.",
+  "@classLockedStats": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "classActiveMembers": "Hoạt động tuần này",
+  "classAvgSleep": "Ngủ trung bình",
+  "classAvgWater": "Nước trung bình",
+  "classAvgSteps": "Bước trung bình",
+  "classAvgExercise": "Vận động trung bình",
+  "classAvgMood": "Tâm trạng",
+  "classAvgStress": "Căng thẳng",
+  "classNoData": "Chưa có dữ liệu",
+  "classJoinError": "Không tìm thấy lớp với mã này.",
+
   "challengeTitle": "Thử thách lớp học",
   "challengeEmpty": "Cùng cả lớp lập một mục tiêu chung nhé!",
   "challengeJoinButton": "Nhập mã",

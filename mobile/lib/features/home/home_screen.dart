@@ -11,6 +11,7 @@ import '../../core/widgets/progress_ring.dart';
 import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
 import '../challenges/challenge_card.dart';
+import '../classroom/classroom_card.dart';
 import '../gamification/gamification_card.dart';
 import '../insights/insights_card.dart';
 import '../insights/recap_card.dart';
@@ -171,6 +172,7 @@ class _Dashboard extends ConsumerWidget {
               ),
             ),
           const ChallengeCard(),
+          const ClassroomCard(),
           const RecapCard(),
           const InsightsCard(),
           _StatCard(

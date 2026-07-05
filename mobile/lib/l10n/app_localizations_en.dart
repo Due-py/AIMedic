@@ -531,6 +531,60 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logoutTooltip => 'Sign out';
 
   @override
+  String get classTitle => 'My class';
+
+  @override
+  String get classEmpty => 'Join with your teacher\'s code, or create a class.';
+
+  @override
+  String get classNameLabel => 'Class name';
+
+  @override
+  String get classViewStats => 'View stats';
+
+  @override
+  String get classOwnerBadge => 'Owner';
+
+  @override
+  String get classDashboardTitle => 'Class stats';
+
+  @override
+  String get classAnonymityNote =>
+      'Only anonymous class-level averages are shown — never any individual student\'s data.';
+
+  @override
+  String classLockedStats(int n) {
+    return 'At least $n members are needed to show anonymous stats.';
+  }
+
+  @override
+  String get classActiveMembers => 'Active this week';
+
+  @override
+  String get classAvgSleep => 'Avg. sleep';
+
+  @override
+  String get classAvgWater => 'Avg. water';
+
+  @override
+  String get classAvgSteps => 'Avg. steps';
+
+  @override
+  String get classAvgExercise => 'Avg. exercise';
+
+  @override
+  String get classAvgMood => 'Mood';
+
+  @override
+  String get classAvgStress => 'Stress';
+
+  @override
+  String get classNoData => 'No data yet';
+
+  @override
+  String get classJoinError => 'No class found with that code.';
+
+  @override
   String get challengeTitle => 'Class challenge';
 
   @override
