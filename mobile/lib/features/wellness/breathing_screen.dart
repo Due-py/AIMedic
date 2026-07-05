@@ -159,7 +159,10 @@ class _BreathingScreenState extends State<BreathingScreen>
                                     ),
                                     child: Center(
                                       child: Text(
-                                        _done ? '💚' : '🫧',
+                                        // Widely-supported glyphs only: the
+                                        // bubbles emoji is missing on older
+                                        // Android and renders invisibly.
+                                        _done ? '💚' : '😌',
                                         style:
                                             const TextStyle(fontSize: 44),
                                       ),

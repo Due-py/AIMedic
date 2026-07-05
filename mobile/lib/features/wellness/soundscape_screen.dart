@@ -151,24 +151,15 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                     Expanded(
                       child: Wrap(
                         spacing: 8,
+                        runSpacing: 8,
                         children: [
                           for (final minutes in [0, 10, 20, 30])
-                            ChoiceChip(
-                              label: Text(minutes == 0
+                            _TimerPill(
+                              label: minutes == 0
                                   ? l10n.soundsTimerOff
-                                  : l10n.soundsTimerMinutes(minutes)),
+                                  : l10n.soundsTimerMinutes(minutes),
                               selected: _timerMinutes == minutes,
-                              onSelected: (_) => _setTimer(minutes),
-                              labelStyle: TextStyle(
-                                color: _timerMinutes == minutes
-                                    ? const Color(0xFF0F1B33)
-                                    : Colors.white70,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12.5,
-                              ),
-                              selectedColor: AppTheme.sunny,
-                              backgroundColor: Colors.white10,
-                              side: BorderSide.none,
+                              onTap: () => _setTimer(minutes),
                             ),
                         ],
                       ),
@@ -177,6 +168,48 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Custom pill instead of ChoiceChip: fully self-styled so the label is
+/// always readable on the dark night background, regardless of app theme.
+class _TimerPill extends StatelessWidget {
+  const _TimerPill({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: selected ? AppTheme.sunny : const Color(0xFF2A3C63),
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+        side: BorderSide(
+          color: selected ? AppTheme.sunny : Colors.white24,
+        ),
+      ),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+          child: Text(
+            label,
+            style: TextStyle(
+              color: selected ? const Color(0xFF0F1B33) : Colors.white,
+              fontWeight: FontWeight.w800,
+              fontSize: 12.5,
+            ),
           ),
         ),
       ),

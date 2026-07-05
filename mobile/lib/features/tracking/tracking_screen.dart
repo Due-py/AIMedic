@@ -342,7 +342,7 @@ class _TodayCard extends ConsumerWidget {
                 alignment: Alignment.centerRight,
                 child: FilledButton.tonalIcon(
                   onPressed: () => context.push('/breathe'),
-                  icon: const Text('🫧', style: TextStyle(fontSize: 16)),
+                  icon: const Text('😌', style: TextStyle(fontSize: 16)),
                   label: Text(l10n.breathingOpenButton),
                 ),
               ),
