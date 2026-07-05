@@ -224,6 +224,7 @@
   "passwordMismatch": "Mật khẩu nhập lại chưa khớp.",
   "logoutTooltip": "Đăng xuất",
 
+  "recapTitle": "Tổng kết tuần của bạn",
   "insightsTitle": "Nhận xét tuần này",
   "insightSleepDebt": "Bạn ngủ trung bình {value} giờ mỗi đêm — hơi ít đó. Thử đi ngủ sớm hơn 30 phút nhé!",
   "@insightSleepDebt": {

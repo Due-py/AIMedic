@@ -52,6 +52,17 @@ void main() {
     await pumpHome(tester, FakeInsightsRepository());
 
     expect(find.text('Nhận xét tuần này'), findsNothing);
+    expect(find.text('Tổng kết tuần của bạn'), findsNothing); // no recap yet
+  });
+
+  testWidgets('weekly recap card shows AI summary when available',
+      (tester) async {
+    final repo = FakeInsightsRepository()
+      ..recap = 'Tuần này bạn uống nước rất đều. Tuyệt vời! 🎉';
+    await pumpHome(tester, repo);
+
+    expect(find.text('Tổng kết tuần của bạn'), findsOneWidget);
+    expect(find.textContaining('uống nước rất đều'), findsOneWidget);
   });
 
   testWidgets('unknown insight id from newer backend is skipped',

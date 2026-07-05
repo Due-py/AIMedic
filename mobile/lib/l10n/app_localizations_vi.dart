@@ -447,6 +447,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get logoutTooltip => 'Đăng xuất';
 
   @override
+  String get recapTitle => 'Tổng kết tuần của bạn';
+
+  @override
   String get insightsTitle => 'Nhận xét tuần này';
 
   @override

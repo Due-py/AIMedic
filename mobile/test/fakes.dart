@@ -105,9 +105,13 @@ class FakeGamificationRepository implements GamificationRepository {
 
 class FakeInsightsRepository implements InsightsRepository {
   List<Insight> insights = const [];
+  String? recap;
 
   @override
   Future<List<Insight>> fetch() async => insights;
+
+  @override
+  Future<String?> fetchRecap() async => recap;
 }
 
 class FakeCoachRepository implements CoachRepository {

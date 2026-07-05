@@ -28,6 +28,12 @@ class InsightsRepository {
         .map((e) => Insight.fromJson(e as Map<String, dynamic>))
         .toList();
   }
+
+  /// Weekly AI recap; null until there's enough data this week.
+  Future<String?> fetchRecap() async {
+    final resp = await _dio.get<Map<String, dynamic>>('/insights/recap');
+    return resp.data!['recap'] as String?;
+  }
 }
 
 final insightsRepositoryProvider = Provider<InsightsRepository>(
@@ -36,4 +42,8 @@ final insightsRepositoryProvider = Provider<InsightsRepository>(
 
 final insightsProvider = FutureProvider<List<Insight>>(
   (ref) => ref.watch(insightsRepositoryProvider).fetch(),
+);
+
+final recapProvider = FutureProvider<String?>(
+  (ref) => ref.watch(insightsRepositoryProvider).fetchRecap(),
 );

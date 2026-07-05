@@ -890,6 +890,12 @@ abstract class AppLocalizations {
   /// **'Đăng xuất'**
   String get logoutTooltip;
 
+  /// No description provided for @recapTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tổng kết tuần của bạn'**
+  String get recapTitle;
+
   /// No description provided for @insightsTitle.
   ///
   /// In vi, this message translates to:

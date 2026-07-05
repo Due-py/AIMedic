@@ -447,6 +447,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logoutTooltip => 'Sign out';
 
   @override
+  String get recapTitle => 'Your week in review';
+
+  @override
   String get insightsTitle => 'This week\'s insights';
 
   @override

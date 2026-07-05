@@ -141,6 +141,7 @@
   "passwordMismatch": "Passwords don't match.",
   "logoutTooltip": "Sign out",
 
+  "recapTitle": "Your week in review",
   "insightsTitle": "This week's insights",
   "insightSleepDebt": "You slept about {value} hours a night — a bit short. Try going to bed 30 minutes earlier!",
   "insightSleepGood": "Your sleep is on track ({value} hours a night). Great job!",
