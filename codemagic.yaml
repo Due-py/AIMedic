@@ -21,4 +21,9 @@ workflows:
           cp -r Runner.app Payload/
           zip -qr AIMedic.ipa Payload
     artifacts:
+      # Listed twice because artifact patterns may resolve relative to the
+      # clone root or the working directory; unmatched patterns are ignored.
       - mobile/build/ios/iphoneos/AIMedic.ipa
+      - build/ios/iphoneos/AIMedic.ipa
+      - mobile/build/ios/iphoneos/*.ipa
+      - build/ios/iphoneos/*.ipa
