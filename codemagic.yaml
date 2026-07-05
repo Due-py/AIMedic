@@ -1,9 +1,6 @@
 # Codemagic CI: builds an UNSIGNED iOS .ipa for sideloading (Sideloadly /
 # AltStore with a free Apple ID). Signed App Store builds can be added later
 # once an Apple Developer account exists.
-#
-# The Codemagic app's project path is set to `mobile`, so all paths here are
-# relative to the Flutter project.
 workflows:
   ios-unsigned:
     name: iOS unsigned ipa
@@ -11,6 +8,7 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       flutter: stable
+    working_directory: mobile
     scripts:
       - name: Get packages
         script: flutter pub get
@@ -23,4 +21,4 @@ workflows:
           cp -r Runner.app Payload/
           zip -qr AIMedic.ipa Payload
     artifacts:
-      - build/ios/iphoneos/AIMedic.ipa
+      - mobile/build/ios/iphoneos/AIMedic.ipa
