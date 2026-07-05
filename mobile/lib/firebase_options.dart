@@ -23,10 +23,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -65,5 +62,14 @@ class DefaultFirebaseOptions {
     authDomain: 'aimedic-ffa1b.firebaseapp.com',
     storageBucket: 'aimedic-ffa1b.firebasestorage.app',
     measurementId: 'G-D1TTD82TRR',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyB0_jAXhhdXJ117_Holu_ukWgHQ2vGsEO8',
+    appId: '1:818356579042:ios:022d4bf0ccd12d621e0cbb',
+    messagingSenderId: '818356579042',
+    projectId: 'aimedic-ffa1b',
+    storageBucket: 'aimedic-ffa1b.firebasestorage.app',
+    iosBundleId: 'vn.aimedic.aimedic',
   );
 }

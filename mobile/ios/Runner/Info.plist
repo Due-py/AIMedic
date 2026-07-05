@@ -7,7 +7,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Aimedic</string>
+	<string>AIMedic</string>
+	<key>NSCameraUsageDescription</key>
+	<string>AIMedic dùng camera để kiểm tra tư thế ngồi (xử lý ngay trên máy) và chụp ảnh bữa ăn.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>AIMedic cần truy cập thư viện ảnh để bạn chọn ảnh bữa ăn.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>AIMedic dùng cảm biến chuyển động để đếm bước chân của bạn.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
