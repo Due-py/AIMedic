@@ -3,6 +3,8 @@ import 'package:aimedic/features/coach/coach_repository.dart';
 import 'package:aimedic/features/gamification/gamification_models.dart';
 import 'package:aimedic/features/gamification/gamification_repository.dart';
 import 'package:aimedic/features/insights/insights_repository.dart';
+import 'package:aimedic/features/pet/pet_models.dart';
+import 'package:aimedic/features/pet/pet_repository.dart';
 import 'package:aimedic/features/profile/profile_models.dart';
 import 'package:aimedic/features/profile/profile_repository.dart';
 import 'package:aimedic/features/tracking/tracking_models.dart';
@@ -39,6 +41,47 @@ class FakeProfileRepository implements ProfileRepository {
       ),
     );
     return stored!;
+  }
+}
+
+class FakePetRepository implements PetRepository {
+  static const _catalog = [
+    Accessory(id: 'balloon', emoji: '🎈', price: 10),
+    Accessory(id: 'crown', emoji: '👑', price: 50),
+  ];
+
+  int coins = 12;
+  List<String> owned = [];
+  List<String> equipped = [];
+
+  PetState get _state => PetState(
+        stage: 'chick',
+        mood: 'happy',
+        coins: coins,
+        owned: List.of(owned),
+        equipped: List.of(equipped),
+        catalog: _catalog,
+      );
+
+  @override
+  Future<PetState> fetch() async => _state;
+
+  @override
+  Future<PetState> buy(String accessoryId) async {
+    final accessory = _catalog.firstWhere((a) => a.id == accessoryId);
+    if (coins < accessory.price) throw Exception('not enough coins');
+    coins -= accessory.price;
+    owned.add(accessoryId);
+    equipped.add(accessoryId);
+    return _state;
+  }
+
+  @override
+  Future<PetState> toggleEquip(String accessoryId) async {
+    equipped.contains(accessoryId)
+        ? equipped.remove(accessoryId)
+        : equipped.add(accessoryId);
+    return _state;
   }
 }
 

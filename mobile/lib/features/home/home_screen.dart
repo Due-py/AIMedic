@@ -11,6 +11,7 @@ import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
 import '../gamification/gamification_card.dart';
 import '../insights/insights_card.dart';
+import '../pet/pet_card.dart';
 import '../tracking/tracking_repository.dart';
 import '../profile/profile_models.dart';
 import '../profile/profile_repository.dart';
@@ -121,6 +122,7 @@ class _Dashboard extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 6),
+          const PetCard(),
           const GamificationCard(),
           const InsightsCard(),
           _StatCard(

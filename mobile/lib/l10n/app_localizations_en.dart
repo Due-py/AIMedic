@@ -281,6 +281,47 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get petTitle => 'Bo — your companion';
+
+  @override
+  String get petMoodHappy =>
+      'Bo is thrilled that you\'re taking care of yourself! 🎉';
+
+  @override
+  String get petMoodOk => 'Bo is waiting for you to log a bit more today~';
+
+  @override
+  String get petMoodSleepy => 'Bo is sleepy... log one activity to wake Bo up!';
+
+  @override
+  String petCoins(int n) {
+    return '$n coins';
+  }
+
+  @override
+  String get petShopTitle => 'Accessory shop';
+
+  @override
+  String get petShopHint => 'Earn coins by logging your day';
+
+  @override
+  String petBuy(int n) {
+    return 'Buy · $n';
+  }
+
+  @override
+  String get petWearing => 'Wearing';
+
+  @override
+  String get petOwned => 'Owned';
+
+  @override
+  String get petNotEnoughCoins => 'Not enough coins — log more to earn some!';
+
+  @override
+  String get petShopButton => 'Shop';
+
+  @override
   String get breathingTitle => 'Calm corner';
 
   @override

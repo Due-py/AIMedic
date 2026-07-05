@@ -280,6 +280,48 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get petTitle => 'Bo — bạn đồng hành';
+
+  @override
+  String get petMoodHappy => 'Bo đang rất vui vì bạn chăm sóc bản thân! 🎉';
+
+  @override
+  String get petMoodOk => 'Bo đang chờ bạn ghi thêm nhật ký hôm nay~';
+
+  @override
+  String get petMoodSleepy =>
+      'Bo hơi buồn ngủ... ghi một hoạt động để đánh thức Bo nhé!';
+
+  @override
+  String petCoins(int n) {
+    return '$n xu';
+  }
+
+  @override
+  String get petShopTitle => 'Cửa hàng phụ kiện';
+
+  @override
+  String get petShopHint => 'Kiếm xu bằng cách ghi nhật ký mỗi ngày';
+
+  @override
+  String petBuy(int n) {
+    return 'Mua · $n xu';
+  }
+
+  @override
+  String get petWearing => 'Đang đeo';
+
+  @override
+  String get petOwned => 'Đã có';
+
+  @override
+  String get petNotEnoughCoins =>
+      'Chưa đủ xu — ghi thêm nhật ký để kiếm xu nhé!';
+
+  @override
+  String get petShopButton => 'Cửa hàng';
+
+  @override
   String get breathingTitle => 'Góc bình yên';
 
   @override

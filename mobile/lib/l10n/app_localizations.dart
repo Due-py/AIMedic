@@ -584,6 +584,78 @@ abstract class AppLocalizations {
   /// **'{days} ngày liên tiếp'**
   String streakDays(int days);
 
+  /// No description provided for @petTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bo — bạn đồng hành'**
+  String get petTitle;
+
+  /// No description provided for @petMoodHappy.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bo đang rất vui vì bạn chăm sóc bản thân! 🎉'**
+  String get petMoodHappy;
+
+  /// No description provided for @petMoodOk.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bo đang chờ bạn ghi thêm nhật ký hôm nay~'**
+  String get petMoodOk;
+
+  /// No description provided for @petMoodSleepy.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bo hơi buồn ngủ... ghi một hoạt động để đánh thức Bo nhé!'**
+  String get petMoodSleepy;
+
+  /// No description provided for @petCoins.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} xu'**
+  String petCoins(int n);
+
+  /// No description provided for @petShopTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cửa hàng phụ kiện'**
+  String get petShopTitle;
+
+  /// No description provided for @petShopHint.
+  ///
+  /// In vi, this message translates to:
+  /// **'Kiếm xu bằng cách ghi nhật ký mỗi ngày'**
+  String get petShopHint;
+
+  /// No description provided for @petBuy.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mua · {n} xu'**
+  String petBuy(int n);
+
+  /// No description provided for @petWearing.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đang đeo'**
+  String get petWearing;
+
+  /// No description provided for @petOwned.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đã có'**
+  String get petOwned;
+
+  /// No description provided for @petNotEnoughCoins.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chưa đủ xu — ghi thêm nhật ký để kiếm xu nhé!'**
+  String get petNotEnoughCoins;
+
+  /// No description provided for @petShopButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cửa hàng'**
+  String get petShopButton;
+
   /// No description provided for @breathingTitle.
   ///
   /// In vi, this message translates to:

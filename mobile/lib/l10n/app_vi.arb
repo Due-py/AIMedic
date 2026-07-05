@@ -149,6 +149,29 @@
       "days": {"type": "int"}
     }
   },
+  "petTitle": "Bo — bạn đồng hành",
+  "petMoodHappy": "Bo đang rất vui vì bạn chăm sóc bản thân! 🎉",
+  "petMoodOk": "Bo đang chờ bạn ghi thêm nhật ký hôm nay~",
+  "petMoodSleepy": "Bo hơi buồn ngủ... ghi một hoạt động để đánh thức Bo nhé!",
+  "petCoins": "{n} xu",
+  "@petCoins": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "petShopTitle": "Cửa hàng phụ kiện",
+  "petShopHint": "Kiếm xu bằng cách ghi nhật ký mỗi ngày",
+  "petBuy": "Mua · {n} xu",
+  "@petBuy": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "petWearing": "Đang đeo",
+  "petOwned": "Đã có",
+  "petNotEnoughCoins": "Chưa đủ xu — ghi thêm nhật ký để kiếm xu nhé!",
+  "petShopButton": "Cửa hàng",
+
   "breathingTitle": "Góc bình yên",
   "breathingSubtitle": "Hít thở sâu giúp bạn bình tĩnh và tập trung hơn",
   "breathingInhale": "Hít vào...",
