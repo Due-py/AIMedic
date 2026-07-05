@@ -447,6 +447,66 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logoutTooltip => 'Sign out';
 
   @override
+  String get challengeTitle => 'Class challenge';
+
+  @override
+  String get challengeEmpty => 'Set a shared goal with your whole class!';
+
+  @override
+  String get challengeJoinButton => 'Enter code';
+
+  @override
+  String get challengeCreateButton => 'Create';
+
+  @override
+  String get challengeCodeLabel => 'Join code (6 characters)';
+
+  @override
+  String get challengeNameLabel => 'Challenge name';
+
+  @override
+  String get challengeGoalLabel => 'Team goal';
+
+  @override
+  String get challengeMetricWater => 'Water (ml)';
+
+  @override
+  String get challengeMetricSteps => 'Steps';
+
+  @override
+  String get challengeMetricDays => 'Logged days';
+
+  @override
+  String challengeMembers(int n) {
+    return '$n members';
+  }
+
+  @override
+  String challengeDaysLeft(int n) {
+    return '$n days left';
+  }
+
+  @override
+  String challengeMyPart(int n) {
+    return 'Your part: $n';
+  }
+
+  @override
+  String get challengeCompleted => 'Done! Your class made it! 🎉';
+
+  @override
+  String challengeShareCode(String code) {
+    return 'Invite code: $code';
+  }
+
+  @override
+  String get challengeJoinError => 'No challenge found with that code.';
+
+  @override
+  String get challengeCreateError =>
+      'Could not create the challenge. Try again.';
+
+  @override
   String get recapTitle => 'Your week in review';
 
   @override

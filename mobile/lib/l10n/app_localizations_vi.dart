@@ -447,6 +447,65 @@ class AppLocalizationsVi extends AppLocalizations {
   String get logoutTooltip => 'Đăng xuất';
 
   @override
+  String get challengeTitle => 'Thử thách lớp học';
+
+  @override
+  String get challengeEmpty => 'Cùng cả lớp lập một mục tiêu chung nhé!';
+
+  @override
+  String get challengeJoinButton => 'Nhập mã';
+
+  @override
+  String get challengeCreateButton => 'Tạo mới';
+
+  @override
+  String get challengeCodeLabel => 'Mã tham gia (6 ký tự)';
+
+  @override
+  String get challengeNameLabel => 'Tên thử thách';
+
+  @override
+  String get challengeGoalLabel => 'Mục tiêu chung';
+
+  @override
+  String get challengeMetricWater => 'Nước (ml)';
+
+  @override
+  String get challengeMetricSteps => 'Bước chân';
+
+  @override
+  String get challengeMetricDays => 'Ngày ghi nhật ký';
+
+  @override
+  String challengeMembers(int n) {
+    return '$n thành viên';
+  }
+
+  @override
+  String challengeDaysLeft(int n) {
+    return 'còn $n ngày';
+  }
+
+  @override
+  String challengeMyPart(int n) {
+    return 'Phần của bạn: $n';
+  }
+
+  @override
+  String get challengeCompleted => 'Hoàn thành! Cả lớp làm được rồi! 🎉';
+
+  @override
+  String challengeShareCode(String code) {
+    return 'Mã mời: $code';
+  }
+
+  @override
+  String get challengeJoinError => 'Không tìm thấy thử thách với mã này.';
+
+  @override
+  String get challengeCreateError => 'Không tạo được thử thách. Thử lại nhé.';
+
+  @override
   String get recapTitle => 'Tổng kết tuần của bạn';
 
   @override

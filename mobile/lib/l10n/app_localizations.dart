@@ -890,6 +890,108 @@ abstract class AppLocalizations {
   /// **'Đăng xuất'**
   String get logoutTooltip;
 
+  /// No description provided for @challengeTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thử thách lớp học'**
+  String get challengeTitle;
+
+  /// No description provided for @challengeEmpty.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cùng cả lớp lập một mục tiêu chung nhé!'**
+  String get challengeEmpty;
+
+  /// No description provided for @challengeJoinButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nhập mã'**
+  String get challengeJoinButton;
+
+  /// No description provided for @challengeCreateButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tạo mới'**
+  String get challengeCreateButton;
+
+  /// No description provided for @challengeCodeLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mã tham gia (6 ký tự)'**
+  String get challengeCodeLabel;
+
+  /// No description provided for @challengeNameLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tên thử thách'**
+  String get challengeNameLabel;
+
+  /// No description provided for @challengeGoalLabel.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mục tiêu chung'**
+  String get challengeGoalLabel;
+
+  /// No description provided for @challengeMetricWater.
+  ///
+  /// In vi, this message translates to:
+  /// **'Nước (ml)'**
+  String get challengeMetricWater;
+
+  /// No description provided for @challengeMetricSteps.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bước chân'**
+  String get challengeMetricSteps;
+
+  /// No description provided for @challengeMetricDays.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ngày ghi nhật ký'**
+  String get challengeMetricDays;
+
+  /// No description provided for @challengeMembers.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} thành viên'**
+  String challengeMembers(int n);
+
+  /// No description provided for @challengeDaysLeft.
+  ///
+  /// In vi, this message translates to:
+  /// **'còn {n} ngày'**
+  String challengeDaysLeft(int n);
+
+  /// No description provided for @challengeMyPart.
+  ///
+  /// In vi, this message translates to:
+  /// **'Phần của bạn: {n}'**
+  String challengeMyPart(int n);
+
+  /// No description provided for @challengeCompleted.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hoàn thành! Cả lớp làm được rồi! 🎉'**
+  String get challengeCompleted;
+
+  /// No description provided for @challengeShareCode.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mã mời: {code}'**
+  String challengeShareCode(String code);
+
+  /// No description provided for @challengeJoinError.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không tìm thấy thử thách với mã này.'**
+  String get challengeJoinError;
+
+  /// No description provided for @challengeCreateError.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không tạo được thử thách. Thử lại nhé.'**
+  String get challengeCreateError;
+
   /// No description provided for @recapTitle.
   ///
   /// In vi, this message translates to:

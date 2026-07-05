@@ -1,3 +1,5 @@
+import 'package:aimedic/features/challenges/challenge_models.dart';
+import 'package:aimedic/features/challenges/challenge_repository.dart';
 import 'package:aimedic/features/coach/coach_models.dart';
 import 'package:aimedic/features/coach/coach_repository.dart';
 import 'package:aimedic/features/gamification/gamification_models.dart';
@@ -41,6 +43,50 @@ class FakeProfileRepository implements ProfileRepository {
       ),
     );
     return stored!;
+  }
+}
+
+class FakeChallengeRepository implements ChallengeRepository {
+  final List<Challenge> challenges = [];
+
+  @override
+  Future<List<Challenge>> mine() async => List.of(challenges);
+
+  @override
+  Future<Challenge> create({
+    required String name,
+    required String metric,
+    required int goal,
+  }) async {
+    final challenge = Challenge(
+      code: 'ABC123',
+      name: name,
+      metric: metric,
+      goal: goal,
+      total: 0,
+      myContribution: 0,
+      memberCount: 1,
+      daysLeft: 6,
+    );
+    challenges.add(challenge);
+    return challenge;
+  }
+
+  @override
+  Future<Challenge> join(String code) async {
+    if (code != 'ABC123') throw Exception('not found');
+    const challenge = Challenge(
+      code: 'ABC123',
+      name: 'Lớp 7A1 uống nước',
+      metric: 'water_ml',
+      goal: 10000,
+      total: 4500,
+      myContribution: 500,
+      memberCount: 12,
+      daysLeft: 3,
+    );
+    challenges.add(challenge);
+    return challenge;
   }
 }
 

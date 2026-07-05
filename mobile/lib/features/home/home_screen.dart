@@ -9,6 +9,7 @@ import '../../core/widgets/gradient_header.dart';
 import '../../core/widgets/progress_ring.dart';
 import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
+import '../challenges/challenge_card.dart';
 import '../gamification/gamification_card.dart';
 import '../insights/insights_card.dart';
 import '../insights/recap_card.dart';
@@ -125,6 +126,7 @@ class _Dashboard extends ConsumerWidget {
           const SizedBox(height: 6),
           const PetCard(),
           const GamificationCard(),
+          const ChallengeCard(),
           const RecapCard(),
           const InsightsCard(),
           _StatCard(

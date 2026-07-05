@@ -224,6 +224,44 @@
   "passwordMismatch": "Mật khẩu nhập lại chưa khớp.",
   "logoutTooltip": "Đăng xuất",
 
+  "challengeTitle": "Thử thách lớp học",
+  "challengeEmpty": "Cùng cả lớp lập một mục tiêu chung nhé!",
+  "challengeJoinButton": "Nhập mã",
+  "challengeCreateButton": "Tạo mới",
+  "challengeCodeLabel": "Mã tham gia (6 ký tự)",
+  "challengeNameLabel": "Tên thử thách",
+  "challengeGoalLabel": "Mục tiêu chung",
+  "challengeMetricWater": "Nước (ml)",
+  "challengeMetricSteps": "Bước chân",
+  "challengeMetricDays": "Ngày ghi nhật ký",
+  "challengeMembers": "{n} thành viên",
+  "@challengeMembers": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "challengeDaysLeft": "còn {n} ngày",
+  "@challengeDaysLeft": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "challengeMyPart": "Phần của bạn: {n}",
+  "@challengeMyPart": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "challengeCompleted": "Hoàn thành! Cả lớp làm được rồi! 🎉",
+  "challengeShareCode": "Mã mời: {code}",
+  "@challengeShareCode": {
+    "placeholders": {
+      "code": {"type": "String"}
+    }
+  },
+  "challengeJoinError": "Không tìm thấy thử thách với mã này.",
+  "challengeCreateError": "Không tạo được thử thách. Thử lại nhé.",
+
   "recapTitle": "Tổng kết tuần của bạn",
   "insightsTitle": "Nhận xét tuần này",
   "insightSleepDebt": "Bạn ngủ trung bình {value} giờ mỗi đêm — hơi ít đó. Thử đi ngủ sớm hơn 30 phút nhé!",

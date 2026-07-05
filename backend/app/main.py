@@ -7,6 +7,7 @@ from slowapi.util import get_remote_address
 
 from app.core.config import get_settings
 from app.core.firebase import init_firebase
+from app.features.challenges.router import router as challenges_router
 from app.features.coach.router import router as coach_router
 from app.features.gamification.router import router as gamification_router
 from app.features.insights.router import router as insights_router
@@ -45,6 +46,7 @@ app.include_router(coach_router)
 app.include_router(gamification_router)
 app.include_router(insights_router)
 app.include_router(pet_router)
+app.include_router(challenges_router)
 
 
 @app.get("/health", tags=["meta"])
