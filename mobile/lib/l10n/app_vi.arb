@@ -101,6 +101,29 @@
     }
   },
   "stepsAuto": "Tự động đếm khi bạn mang theo điện thoại",
+  "mealsTitle": "Bữa ăn hôm nay",
+  "mealPhotoButton": "Chụp món ăn",
+  "mealFromCamera": "Chụp ảnh",
+  "mealFromGallery": "Chọn từ thư viện",
+  "mealAnalyzing": "AI đang xem món ăn của bạn...",
+  "mealAnalyzeError": "Không phân tích được ảnh. Thử lại nhé!",
+  "mealNotFood": "Hmm, hình như đây không phải đồ ăn 😄",
+  "mealCalories": "Năng lượng",
+  "mealProtein": "Đạm",
+  "mealCarbs": "Tinh bột",
+  "mealFat": "Chất béo",
+  "mealGrams": "{n} g",
+  "@mealGrams": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "mealKcal": "{n} kcal",
+  "@mealKcal": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
   "badgeSteps8k": "8.000 bước",
   "notLoggedYet": "Chưa ghi",
   "mlValue": "{amount} ml",

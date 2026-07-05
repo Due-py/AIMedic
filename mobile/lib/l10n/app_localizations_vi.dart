@@ -222,6 +222,49 @@ class AppLocalizationsVi extends AppLocalizations {
   String get stepsAuto => 'Tự động đếm khi bạn mang theo điện thoại';
 
   @override
+  String get mealsTitle => 'Bữa ăn hôm nay';
+
+  @override
+  String get mealPhotoButton => 'Chụp món ăn';
+
+  @override
+  String get mealFromCamera => 'Chụp ảnh';
+
+  @override
+  String get mealFromGallery => 'Chọn từ thư viện';
+
+  @override
+  String get mealAnalyzing => 'AI đang xem món ăn của bạn...';
+
+  @override
+  String get mealAnalyzeError => 'Không phân tích được ảnh. Thử lại nhé!';
+
+  @override
+  String get mealNotFood => 'Hmm, hình như đây không phải đồ ăn 😄';
+
+  @override
+  String get mealCalories => 'Năng lượng';
+
+  @override
+  String get mealProtein => 'Đạm';
+
+  @override
+  String get mealCarbs => 'Tinh bột';
+
+  @override
+  String get mealFat => 'Chất béo';
+
+  @override
+  String mealGrams(int n) {
+    return '$n g';
+  }
+
+  @override
+  String mealKcal(int n) {
+    return '$n kcal';
+  }
+
+  @override
   String get badgeSteps8k => '8.000 bước';
 
   @override

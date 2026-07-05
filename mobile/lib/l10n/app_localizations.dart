@@ -494,6 +494,84 @@ abstract class AppLocalizations {
   /// **'Tự động đếm khi bạn mang theo điện thoại'**
   String get stepsAuto;
 
+  /// No description provided for @mealsTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bữa ăn hôm nay'**
+  String get mealsTitle;
+
+  /// No description provided for @mealPhotoButton.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chụp món ăn'**
+  String get mealPhotoButton;
+
+  /// No description provided for @mealFromCamera.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chụp ảnh'**
+  String get mealFromCamera;
+
+  /// No description provided for @mealFromGallery.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chọn từ thư viện'**
+  String get mealFromGallery;
+
+  /// No description provided for @mealAnalyzing.
+  ///
+  /// In vi, this message translates to:
+  /// **'AI đang xem món ăn của bạn...'**
+  String get mealAnalyzing;
+
+  /// No description provided for @mealAnalyzeError.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không phân tích được ảnh. Thử lại nhé!'**
+  String get mealAnalyzeError;
+
+  /// No description provided for @mealNotFood.
+  ///
+  /// In vi, this message translates to:
+  /// **'Hmm, hình như đây không phải đồ ăn 😄'**
+  String get mealNotFood;
+
+  /// No description provided for @mealCalories.
+  ///
+  /// In vi, this message translates to:
+  /// **'Năng lượng'**
+  String get mealCalories;
+
+  /// No description provided for @mealProtein.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đạm'**
+  String get mealProtein;
+
+  /// No description provided for @mealCarbs.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tinh bột'**
+  String get mealCarbs;
+
+  /// No description provided for @mealFat.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chất béo'**
+  String get mealFat;
+
+  /// No description provided for @mealGrams.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} g'**
+  String mealGrams(int n);
+
+  /// No description provided for @mealKcal.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} kcal'**
+  String mealKcal(int n);
+
   /// No description provided for @badgeSteps8k.
   ///
   /// In vi, this message translates to:

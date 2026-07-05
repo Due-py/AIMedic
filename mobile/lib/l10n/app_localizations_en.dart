@@ -223,6 +223,49 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stepsAuto => 'Counted automatically when you carry your phone';
 
   @override
+  String get mealsTitle => 'Today\'s meals';
+
+  @override
+  String get mealPhotoButton => 'Snap a meal';
+
+  @override
+  String get mealFromCamera => 'Take photo';
+
+  @override
+  String get mealFromGallery => 'Pick from gallery';
+
+  @override
+  String get mealAnalyzing => 'The AI is looking at your meal...';
+
+  @override
+  String get mealAnalyzeError => 'Could not analyze the photo. Try again!';
+
+  @override
+  String get mealNotFood => 'Hmm, that doesn\'t look like food 😄';
+
+  @override
+  String get mealCalories => 'Energy';
+
+  @override
+  String get mealProtein => 'Protein';
+
+  @override
+  String get mealCarbs => 'Carbs';
+
+  @override
+  String get mealFat => 'Fat';
+
+  @override
+  String mealGrams(int n) {
+    return '$n g';
+  }
+
+  @override
+  String mealKcal(int n) {
+    return '$n kcal';
+  }
+
+  @override
   String get badgeSteps8k => '8,000 steps';
 
   @override

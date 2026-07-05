@@ -26,7 +26,7 @@ def fake_ai():
 @pytest.fixture
 def client(monkeypatch, fake_ai):
     monkeypatch.setattr(get_settings(), "debug", True)
-    coach_router._recent_calls.clear()
+    coach_router._limiter._calls.clear()
     repo = InMemoryChatRepository()
     app.dependency_overrides[get_chat_repository] = lambda: repo
     app.dependency_overrides[get_coach_ai] = lambda: fake_ai

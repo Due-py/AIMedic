@@ -6,6 +6,7 @@ import '../../core/theme.dart';
 import '../../core/widgets/progress_ring.dart';
 import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
+import '../nutrition/meal_section.dart';
 import '../profile/profile_repository.dart';
 import 'step_counter.dart';
 import 'tracking_models.dart';
@@ -264,6 +265,7 @@ class _TodayCard extends ConsumerWidget {
             ],
           ),
         ),
+        MealSection(meals: log.meals),
         // Mood.
         SoftCard(
           child: Column(

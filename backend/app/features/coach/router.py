@@ -1,12 +1,11 @@
 import logging
-import time
-from collections import defaultdict, deque
 from datetime import timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 
 from app.core.auth import get_current_uid
 from app.core.dates import app_today
+from app.core.ratelimit import PerUserLimiter
 from app.features.coach.prompts import SYSTEM_PROMPT, build_user_context
 from app.features.coach.repository import ChatRepository, get_chat_repository
 from app.features.coach.safety import CRISIS_RESPONSE, check_crisis
@@ -28,24 +27,9 @@ router = APIRouter(prefix="/coach", tags=["coach"])
 
 _HISTORY_WINDOW = 10  # messages of context sent to the model
 
-# Per-user sliding window on top of the global per-IP limit: LLM calls are
-# the expensive resource on the free tier.
-_RATE_LIMIT = 10
-_RATE_WINDOW_SECONDS = 60
-_recent_calls: dict[str, deque[float]] = defaultdict(deque)
-
-
-def _check_rate(uid: str) -> None:
-    now = time.monotonic()
-    calls = _recent_calls[uid]
-    while calls and now - calls[0] > _RATE_WINDOW_SECONDS:
-        calls.popleft()
-    if len(calls) >= _RATE_LIMIT:
-        raise HTTPException(
-            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-            detail="Too many messages; please slow down.",
-        )
-    calls.append(now)
+# Per-user limit on top of the global per-IP limit: LLM calls are the
+# expensive resource on the free tier.
+_limiter = PerUserLimiter(limit=10)
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -57,7 +41,7 @@ def chat(
     tracking: TrackingRepository = Depends(get_tracking_repository),
     ai: CoachAI = Depends(get_coach_ai),
 ) -> ChatResponse:
-    _check_rate(uid)
+    _limiter.check(uid)
 
     chats.append(uid, "user", request.message)
 
