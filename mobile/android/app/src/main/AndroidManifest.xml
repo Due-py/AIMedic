@@ -41,6 +41,16 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Home-screen quick water-log widget -->
+        <receiver android:exported="true"
+            android:name=".WaterWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/water_widget_info" />
+        </receiver>
         <!-- Re-register scheduled reminders after device reboot -->
         <receiver android:exported="false"
             android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />

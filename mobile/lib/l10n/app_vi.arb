@@ -233,6 +233,19 @@
     }
   },
   "breathingOpenButton": "Thư giãn nào",
+  "soundsTitle": "Âm thanh thư giãn",
+  "soundsSubtitle": "Chọn một âm thanh nhẹ nhàng trước giờ đi ngủ",
+  "soundRain": "Mưa rơi",
+  "soundWaves": "Sóng biển",
+  "soundWind": "Gió nhẹ",
+  "soundStream": "Suối chảy",
+  "soundsTimerOff": "Không hẹn giờ",
+  "soundsTimerMinutes": "{n} phút",
+  "@soundsTimerMinutes": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
 
   "introSlide1Title": "Chào bạn, mình là AIMedic! 👋",
   "introSlide1Body": "Người bạn đồng hành giúp bạn xây dựng thói quen sống khỏe mỗi ngày — được tạo ra dành riêng cho học sinh.",

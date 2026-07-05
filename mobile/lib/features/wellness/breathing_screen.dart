@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/theme.dart';
 import '../../l10n/app_localizations.dart';
@@ -108,13 +109,21 @@ class _BreathingScreenState extends State<BreathingScreen>
                     icon: const Icon(Icons.close_rounded, color: Colors.white),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
-                  Text(
-                    l10n.breathingTitle,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w800,
+                  Expanded(
+                    child: Text(
+                      l10n.breathingTitle,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.music_note_rounded,
+                        color: Colors.white),
+                    tooltip: l10n.soundsTitle,
+                    onPressed: () => context.push('/sounds'),
                   ),
                 ],
               ),

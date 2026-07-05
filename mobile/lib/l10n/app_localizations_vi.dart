@@ -453,6 +453,32 @@ class AppLocalizationsVi extends AppLocalizations {
   String get breathingOpenButton => 'Thư giãn nào';
 
   @override
+  String get soundsTitle => 'Âm thanh thư giãn';
+
+  @override
+  String get soundsSubtitle => 'Chọn một âm thanh nhẹ nhàng trước giờ đi ngủ';
+
+  @override
+  String get soundRain => 'Mưa rơi';
+
+  @override
+  String get soundWaves => 'Sóng biển';
+
+  @override
+  String get soundWind => 'Gió nhẹ';
+
+  @override
+  String get soundStream => 'Suối chảy';
+
+  @override
+  String get soundsTimerOff => 'Không hẹn giờ';
+
+  @override
+  String soundsTimerMinutes(int n) {
+    return '$n phút';
+  }
+
+  @override
   String get introSlide1Title => 'Chào bạn, mình là AIMedic! 👋';
 
   @override

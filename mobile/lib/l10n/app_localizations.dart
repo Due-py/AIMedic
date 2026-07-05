@@ -896,6 +896,54 @@ abstract class AppLocalizations {
   /// **'Thư giãn nào'**
   String get breathingOpenButton;
 
+  /// No description provided for @soundsTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Âm thanh thư giãn'**
+  String get soundsTitle;
+
+  /// No description provided for @soundsSubtitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chọn một âm thanh nhẹ nhàng trước giờ đi ngủ'**
+  String get soundsSubtitle;
+
+  /// No description provided for @soundRain.
+  ///
+  /// In vi, this message translates to:
+  /// **'Mưa rơi'**
+  String get soundRain;
+
+  /// No description provided for @soundWaves.
+  ///
+  /// In vi, this message translates to:
+  /// **'Sóng biển'**
+  String get soundWaves;
+
+  /// No description provided for @soundWind.
+  ///
+  /// In vi, this message translates to:
+  /// **'Gió nhẹ'**
+  String get soundWind;
+
+  /// No description provided for @soundStream.
+  ///
+  /// In vi, this message translates to:
+  /// **'Suối chảy'**
+  String get soundStream;
+
+  /// No description provided for @soundsTimerOff.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không hẹn giờ'**
+  String get soundsTimerOff;
+
+  /// No description provided for @soundsTimerMinutes.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} phút'**
+  String soundsTimerMinutes(int n);
+
   /// No description provided for @introSlide1Title.
   ///
   /// In vi, this message translates to:

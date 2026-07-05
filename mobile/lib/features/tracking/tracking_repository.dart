@@ -8,6 +8,7 @@ import '../gamification/gamification_repository.dart';
 import '../insights/insights_repository.dart';
 import '../pet/pet_repository.dart';
 import 'tracking_models.dart';
+import 'water_widget.dart';
 
 class TrackingRepository {
   TrackingRepository(this._dio);
@@ -86,6 +87,8 @@ class TodayLogNotifier extends AsyncNotifier<DailyLog> {
     ref.invalidate(gamificationProvider);
     ref.invalidate(insightsProvider);
     ref.invalidate(petProvider);
+    final water = state.value?.waterMl;
+    if (water != null) updateWaterWidget(water);
   }
 }
 

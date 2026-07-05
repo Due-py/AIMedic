@@ -453,6 +453,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get breathingOpenButton => 'Let\'s relax';
 
   @override
+  String get soundsTitle => 'Relaxing sounds';
+
+  @override
+  String get soundsSubtitle => 'Pick a gentle sound before bedtime';
+
+  @override
+  String get soundRain => 'Rain';
+
+  @override
+  String get soundWaves => 'Ocean waves';
+
+  @override
+  String get soundWind => 'Soft wind';
+
+  @override
+  String get soundStream => 'Stream';
+
+  @override
+  String get soundsTimerOff => 'No timer';
+
+  @override
+  String soundsTimerMinutes(int n) {
+    return '$n min';
+  }
+
+  @override
   String get introSlide1Title => 'Hi, I\'m AIMedic! 👋';
 
   @override
