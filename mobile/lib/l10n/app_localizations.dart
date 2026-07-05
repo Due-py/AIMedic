@@ -686,6 +686,84 @@ abstract class AppLocalizations {
   /// **'{days} ngày liên tiếp'**
   String streakDays(int days);
 
+  /// No description provided for @postureTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Trợ lý tư thế'**
+  String get postureTitle;
+
+  /// No description provided for @postureSubtitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Camera xử lý ngay trên máy — không có ảnh nào được gửi đi'**
+  String get postureSubtitle;
+
+  /// No description provided for @postureCheckNeck.
+  ///
+  /// In vi, this message translates to:
+  /// **'Cổ thẳng'**
+  String get postureCheckNeck;
+
+  /// No description provided for @postureCheckShoulders.
+  ///
+  /// In vi, this message translates to:
+  /// **'Vai cân bằng'**
+  String get postureCheckShoulders;
+
+  /// No description provided for @postureCheckDistance.
+  ///
+  /// In vi, this message translates to:
+  /// **'Khoảng cách màn hình'**
+  String get postureCheckDistance;
+
+  /// No description provided for @postureAllGood.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tư thế tuyệt vời! Giữ vững nhé 🌟'**
+  String get postureAllGood;
+
+  /// No description provided for @postureAdjust.
+  ///
+  /// In vi, this message translates to:
+  /// **'Chỉnh lại một chút nào~'**
+  String get postureAdjust;
+
+  /// No description provided for @postureNeckTip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ngẩng đầu lên, giữ cổ thẳng nhé'**
+  String get postureNeckTip;
+
+  /// No description provided for @postureShouldersTip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ngồi cân lại hai vai nào'**
+  String get postureShouldersTip;
+
+  /// No description provided for @postureDistanceTip.
+  ///
+  /// In vi, this message translates to:
+  /// **'Đưa mặt ra xa màn hình hơn chút nhé'**
+  String get postureDistanceTip;
+
+  /// No description provided for @postureNotDetected.
+  ///
+  /// In vi, this message translates to:
+  /// **'Ngồi vào giữa khung hình để mình nhìn thấy bạn nhé'**
+  String get postureNotDetected;
+
+  /// No description provided for @postureUnavailable.
+  ///
+  /// In vi, this message translates to:
+  /// **'Không tìm thấy camera trên thiết bị này.'**
+  String get postureUnavailable;
+
+  /// No description provided for @postureHomeCardTitle.
+  ///
+  /// In vi, this message translates to:
+  /// **'Kiểm tra tư thế ngồi'**
+  String get postureHomeCardTitle;
+
   /// No description provided for @petTitle.
   ///
   /// In vi, this message translates to:

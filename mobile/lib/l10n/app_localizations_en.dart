@@ -338,6 +338,47 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get postureTitle => 'Posture assistant';
+
+  @override
+  String get postureSubtitle =>
+      'Processed on your device — no image ever leaves it';
+
+  @override
+  String get postureCheckNeck => 'Straight neck';
+
+  @override
+  String get postureCheckShoulders => 'Level shoulders';
+
+  @override
+  String get postureCheckDistance => 'Screen distance';
+
+  @override
+  String get postureAllGood => 'Great posture! Keep it up 🌟';
+
+  @override
+  String get postureAdjust => 'Let\'s adjust a little~';
+
+  @override
+  String get postureNeckTip => 'Lift your head, keep your neck straight';
+
+  @override
+  String get postureShouldersTip => 'Balance your shoulders';
+
+  @override
+  String get postureDistanceTip => 'Move a bit farther from the screen';
+
+  @override
+  String get postureNotDetected =>
+      'Sit in the middle of the frame so I can see you';
+
+  @override
+  String get postureUnavailable => 'No camera found on this device.';
+
+  @override
+  String get postureHomeCardTitle => 'Check your sitting posture';
+
+  @override
   String get petTitle => 'Bo — your companion';
 
   @override

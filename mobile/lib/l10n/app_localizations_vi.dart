@@ -337,6 +337,47 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get postureTitle => 'Trợ lý tư thế';
+
+  @override
+  String get postureSubtitle =>
+      'Camera xử lý ngay trên máy — không có ảnh nào được gửi đi';
+
+  @override
+  String get postureCheckNeck => 'Cổ thẳng';
+
+  @override
+  String get postureCheckShoulders => 'Vai cân bằng';
+
+  @override
+  String get postureCheckDistance => 'Khoảng cách màn hình';
+
+  @override
+  String get postureAllGood => 'Tư thế tuyệt vời! Giữ vững nhé 🌟';
+
+  @override
+  String get postureAdjust => 'Chỉnh lại một chút nào~';
+
+  @override
+  String get postureNeckTip => 'Ngẩng đầu lên, giữ cổ thẳng nhé';
+
+  @override
+  String get postureShouldersTip => 'Ngồi cân lại hai vai nào';
+
+  @override
+  String get postureDistanceTip => 'Đưa mặt ra xa màn hình hơn chút nhé';
+
+  @override
+  String get postureNotDetected =>
+      'Ngồi vào giữa khung hình để mình nhìn thấy bạn nhé';
+
+  @override
+  String get postureUnavailable => 'Không tìm thấy camera trên thiết bị này.';
+
+  @override
+  String get postureHomeCardTitle => 'Kiểm tra tư thế ngồi';
+
+  @override
   String get petTitle => 'Bo — bạn đồng hành';
 
   @override

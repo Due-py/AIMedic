@@ -181,6 +181,20 @@
       "days": {"type": "int"}
     }
   },
+  "postureTitle": "Trợ lý tư thế",
+  "postureSubtitle": "Camera xử lý ngay trên máy — không có ảnh nào được gửi đi",
+  "postureCheckNeck": "Cổ thẳng",
+  "postureCheckShoulders": "Vai cân bằng",
+  "postureCheckDistance": "Khoảng cách màn hình",
+  "postureAllGood": "Tư thế tuyệt vời! Giữ vững nhé 🌟",
+  "postureAdjust": "Chỉnh lại một chút nào~",
+  "postureNeckTip": "Ngẩng đầu lên, giữ cổ thẳng nhé",
+  "postureShouldersTip": "Ngồi cân lại hai vai nào",
+  "postureDistanceTip": "Đưa mặt ra xa màn hình hơn chút nhé",
+  "postureNotDetected": "Ngồi vào giữa khung hình để mình nhìn thấy bạn nhé",
+  "postureUnavailable": "Không tìm thấy camera trên thiết bị này.",
+  "postureHomeCardTitle": "Kiểm tra tư thế ngồi",
+
   "petTitle": "Bo — bạn đồng hành",
   "petMoodHappy": "Bo đang rất vui vì bạn chăm sóc bản thân! 🎉",
   "petMoodOk": "Bo đang chờ bạn ghi thêm nhật ký hôm nay~",
