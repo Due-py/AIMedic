@@ -119,6 +119,13 @@ class TestRules:
         earned = {b.id for b in state.badges if b.earned}
         assert earned == {"first_log", "streak_3", "water_10l"}
 
+    def test_steps_count_as_category_and_badge(self):
+        logs = [_log("2026-07-03", steps=8500)]
+        state = compute_state(logs, TODAY)
+        assert state.xp == 5  # steps is a logged category
+        earned = {b.id for b in state.badges if b.earned}
+        assert "steps_8k" in earned
+
 
 class TestEndpoint:
     @pytest.fixture

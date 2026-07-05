@@ -17,6 +17,7 @@ class DailyLogPatch(BaseModel):
     screen_time_minutes: int | None = Field(default=None, ge=0, le=1_440)
     mood: int | None = Field(default=None, ge=1, le=5)
     stress: int | None = Field(default=None, ge=1, le=5)
+    steps: int | None = Field(default=None, ge=0, le=100_000)
     meals: list[str] | None = Field(default=None, max_length=10)
 
 
@@ -28,6 +29,7 @@ class DailyLog(BaseModel):
     screen_time_minutes: int | None = None
     mood: int | None = None
     stress: int | None = None
+    steps: int = 0
     meals: list[str] = []
 
 

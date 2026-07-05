@@ -7,6 +7,7 @@ import '../../core/widgets/progress_ring.dart';
 import '../../core/widgets/soft_card.dart';
 import '../../l10n/app_localizations.dart';
 import '../profile/profile_repository.dart';
+import 'step_counter.dart';
 import 'tracking_models.dart';
 import 'tracking_repository.dart';
 import 'weekly_chart.dart';
@@ -167,6 +168,9 @@ class _TodayCard extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final notifier = ref.read(todayLogProvider.notifier);
     final target = waterTarget ?? 2000;
+    // Live sensor value (null on web/emulators) vs last synced/manual value.
+    final liveSteps = ref.watch(stepCounterProvider);
+    final steps = [log.steps, liveSteps ?? 0].reduce((a, b) => a > b ? a : b);
 
     return Column(
       children: [
@@ -225,6 +229,15 @@ class _TodayCard extends ConsumerWidget {
                     : l10n.hoursValue(log.sleepHours!.toStringAsFixed(1)),
                 onSave: (v) => notifier.patch(DailyLogPatch(sleepHours: v)),
                 max: 24,
+              ),
+              _NumberTile(
+                icon: Icons.directions_walk_rounded,
+                color: AppTheme.berry,
+                title: l10n.stepsLog,
+                value: steps > 0 ? l10n.stepsValue(steps) : null,
+                subtitleWhenEmpty: l10n.stepsAuto,
+                onSave: (v) => notifier.patch(DailyLogPatch(steps: v.toInt())),
+                max: 100000,
               ),
               _NumberTile(
                 icon: Icons.directions_run_rounded,
@@ -347,6 +360,7 @@ class _NumberTile extends StatelessWidget {
     required this.value,
     required this.onSave,
     required this.max,
+    this.subtitleWhenEmpty,
   });
 
   final IconData icon;
@@ -355,6 +369,7 @@ class _NumberTile extends StatelessWidget {
   final String? value;
   final void Function(double) onSave;
   final double max;
+  final String? subtitleWhenEmpty;
 
   Future<void> _edit(BuildContext context) async {
     final l10n = AppLocalizations.of(context)!;
@@ -403,7 +418,7 @@ class _NumberTile extends StatelessWidget {
         child: Icon(icon, color: color),
       ),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w700)),
-      subtitle: Text(value ?? l10n.notLoggedYet),
+      subtitle: Text(value ?? subtitleWhenEmpty ?? l10n.notLoggedYet),
       trailing: const Icon(Icons.chevron_right_rounded),
       onTap: () => _edit(context),
     );

@@ -63,6 +63,7 @@ class _CardBodyState extends State<_CardBody> {
     'water_10l': Icons.water_drop_rounded,
     'mood_5_days': Icons.emoji_emotions_rounded,
     'active_5_days': Icons.directions_run_rounded,
+    'steps_8k': Icons.directions_walk_rounded,
   };
 
   String _badgeName(AppLocalizations l10n, String id) => switch (id) {
@@ -72,6 +73,7 @@ class _CardBodyState extends State<_CardBody> {
         'water_10l' => l10n.badgeWater10l,
         'mood_5_days' => l10n.badgeMood5Days,
         'active_5_days' => l10n.badgeActive5Days,
+        'steps_8k' => l10n.badgeSteps8k,
         _ => id,
       };
 

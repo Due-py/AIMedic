@@ -159,6 +159,7 @@ class FakeTrackingRepository implements TrackingRepository {
       screenTimeMinutes: patch.screenTimeMinutes ?? old.screenTimeMinutes,
       mood: patch.mood ?? old.mood,
       stress: patch.stress ?? old.stress,
+      steps: patch.steps ?? old.steps,
       meals: patch.meals ?? old.meals,
     );
     logs[date] = updated;

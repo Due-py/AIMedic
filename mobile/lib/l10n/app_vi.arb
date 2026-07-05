@@ -93,6 +93,15 @@
   "screenTimeLog": "Thời gian màn hình",
   "moodLog": "Tâm trạng",
   "stressLog": "Căng thẳng",
+  "stepsLog": "Bước chân",
+  "stepsValue": "{n} bước",
+  "@stepsValue": {
+    "placeholders": {
+      "n": {"type": "int"}
+    }
+  },
+  "stepsAuto": "Tự động đếm khi bạn mang theo điện thoại",
+  "badgeSteps8k": "8.000 bước",
   "notLoggedYet": "Chưa ghi",
   "mlValue": "{amount} ml",
   "@mlValue": {

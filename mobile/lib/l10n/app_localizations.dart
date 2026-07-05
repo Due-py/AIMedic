@@ -476,6 +476,30 @@ abstract class AppLocalizations {
   /// **'Căng thẳng'**
   String get stressLog;
 
+  /// No description provided for @stepsLog.
+  ///
+  /// In vi, this message translates to:
+  /// **'Bước chân'**
+  String get stepsLog;
+
+  /// No description provided for @stepsValue.
+  ///
+  /// In vi, this message translates to:
+  /// **'{n} bước'**
+  String stepsValue(int n);
+
+  /// No description provided for @stepsAuto.
+  ///
+  /// In vi, this message translates to:
+  /// **'Tự động đếm khi bạn mang theo điện thoại'**
+  String get stepsAuto;
+
+  /// No description provided for @badgeSteps8k.
+  ///
+  /// In vi, this message translates to:
+  /// **'8.000 bước'**
+  String get badgeSteps8k;
+
   /// No description provided for @notLoggedYet.
   ///
   /// In vi, this message translates to:

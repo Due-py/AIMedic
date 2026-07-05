@@ -21,6 +21,7 @@ def categories_logged(log: dict) -> int:
         log.get("screen_time_minutes") is not None,
         log.get("mood") is not None,
         log.get("stress") is not None,
+        bool(log.get("steps")),
         bool(log.get("meals")),
     ])
 
@@ -78,6 +79,7 @@ def compute_state(logs: list[dict], today: date) -> GamificationState:
     total_water = sum(log.get("water_ml") or 0 for log in logs)
     mood_days = sum(1 for log in logs if log.get("mood") is not None)
     exercise_days = sum(1 for log in logs if log.get("exercise_minutes"))
+    best_steps = max((log.get("steps") or 0 for log in logs), default=0)
 
     badges = [
         Badge(id="first_log", earned=bool(logged_days)),
@@ -86,6 +88,7 @@ def compute_state(logs: list[dict], today: date) -> GamificationState:
         Badge(id="water_10l", earned=total_water >= 10_000),
         Badge(id="mood_5_days", earned=mood_days >= 5),
         Badge(id="active_5_days", earned=exercise_days >= 5),
+        Badge(id="steps_8k", earned=best_steps >= 8_000),
     ]
 
     return GamificationState(

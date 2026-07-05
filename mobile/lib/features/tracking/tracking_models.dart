@@ -9,6 +9,7 @@ class DailyLog {
     this.screenTimeMinutes,
     this.mood,
     this.stress,
+    this.steps = 0,
     this.meals = const [],
   });
 
@@ -19,6 +20,7 @@ class DailyLog {
   final int? screenTimeMinutes;
   final int? mood; // 1-5
   final int? stress; // 1-5
+  final int steps;
   final List<String> meals;
 
   factory DailyLog.fromJson(Map<String, dynamic> json) => DailyLog(
@@ -29,6 +31,7 @@ class DailyLog {
         screenTimeMinutes: json['screen_time_minutes'] as int?,
         mood: json['mood'] as int?,
         stress: json['stress'] as int?,
+        steps: json['steps'] as int? ?? 0,
         meals: (json['meals'] as List<dynamic>?)?.cast<String>() ?? const [],
       );
 }
@@ -42,6 +45,7 @@ class DailyLogPatch {
     this.screenTimeMinutes,
     this.mood,
     this.stress,
+    this.steps,
     this.meals,
   });
 
@@ -51,6 +55,7 @@ class DailyLogPatch {
   final int? screenTimeMinutes;
   final int? mood;
   final int? stress;
+  final int? steps;
   final List<String>? meals;
 
   Map<String, dynamic> toJson() => {
@@ -60,6 +65,7 @@ class DailyLogPatch {
         if (screenTimeMinutes != null) 'screen_time_minutes': screenTimeMinutes,
         if (mood != null) 'mood': mood,
         if (stress != null) 'stress': stress,
+        if (steps != null) 'steps': steps,
         if (meals != null) 'meals': meals,
       };
 }

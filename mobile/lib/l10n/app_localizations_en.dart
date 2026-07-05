@@ -212,6 +212,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get stressLog => 'Stress';
 
   @override
+  String get stepsLog => 'Steps';
+
+  @override
+  String stepsValue(int n) {
+    return '$n steps';
+  }
+
+  @override
+  String get stepsAuto => 'Counted automatically when you carry your phone';
+
+  @override
+  String get badgeSteps8k => '8,000 steps';
+
+  @override
   String get notLoggedYet => 'Not logged yet';
 
   @override

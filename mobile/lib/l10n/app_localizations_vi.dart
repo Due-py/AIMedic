@@ -211,6 +211,20 @@ class AppLocalizationsVi extends AppLocalizations {
   String get stressLog => 'Căng thẳng';
 
   @override
+  String get stepsLog => 'Bước chân';
+
+  @override
+  String stepsValue(int n) {
+    return '$n bước';
+  }
+
+  @override
+  String get stepsAuto => 'Tự động đếm khi bạn mang theo điện thoại';
+
+  @override
+  String get badgeSteps8k => '8.000 bước';
+
+  @override
   String get notLoggedYet => 'Chưa ghi';
 
   @override
