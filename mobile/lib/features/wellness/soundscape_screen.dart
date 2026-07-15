@@ -29,6 +29,13 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    // Set once so every play() automatically loops without an extra await.
+    _player.setReleaseMode(ReleaseMode.loop);
+  }
+
+  @override
   void dispose() {
     _sleepTimer?.cancel();
     _player.dispose();
@@ -39,19 +46,20 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
     if (_playing == id) {
       setState(() => _playing = null);
       _sleepTimer?.cancel();
-      try {
-        await _player.stop();
-      } catch (_) {}
+      _player.stop(); // fire-and-forget — no await needed here
       return;
     }
     setState(() => _playing = id);
     _armTimer();
     try {
-      await _player.stop();
-      await _player.setReleaseMode(ReleaseMode.loop);
+      // Do NOT await anything before play(). iOS Safari requires the
+      // HTMLAudioElement.play() call to happen in the same microtask as the
+      // user gesture; any prior await breaks the gesture chain and Safari
+      // silently blocks the audio with a NotAllowedError.
       await _player.play(AssetSource('sounds/$id.wav'));
     } catch (e) {
       debugPrint('Soundscape playback failed: $e');
+      if (mounted) setState(() => _playing = null);
     }
   }
 

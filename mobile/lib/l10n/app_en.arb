@@ -227,5 +227,9 @@
   "badgeStreak7": "7-day streak",
   "badgeWater10l": "10 liters of water",
   "badgeMood5Days": "Mood aware",
-  "badgeActive5Days": "Active"
+  "badgeActive5Days": "Active",
+
+  "soundsOpenButton": "Play sounds",
+  "mealImageTooLarge": "Image too large (max 3 MB). Please choose a different photo.",
+  "wellnessCornerTitle": "Relax corner"
 }

@@ -128,6 +128,7 @@ class _Dashboard extends ConsumerWidget {
           const SizedBox(height: 6),
           const PetCard(),
           const GamificationCard(),
+          _WellnessShortcuts(),
           // ML Kit pose detection is mobile-only.
           if (!kIsWeb)
             SoftCard(
@@ -324,6 +325,95 @@ class _StatCard extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Breathe + Sounds shortcuts — two side-by-side tiles, visible on all
+/// platforms (unlike posture which needs the ML Kit camera).
+class _WellnessShortcuts extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final muted = Theme.of(context).colorScheme.onSurfaceVariant;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 7, 16, 7),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: SoftCard(
+              margin: EdgeInsets.zero,
+              padding: const EdgeInsets.all(14),
+              onTap: () => context.push('/breathe'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppTheme.mint.withValues(alpha: 0.18),
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: const Icon(Icons.air_rounded,
+                        color: AppTheme.mint, size: 22),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    l10n.breathingTitle,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w800, fontSize: 13),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.breathingSubtitle,
+                    style: TextStyle(fontSize: 11, color: muted),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: SoftCard(
+              margin: EdgeInsets.zero,
+              padding: const EdgeInsets.all(14),
+              onTap: () => context.push('/sounds'),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 44,
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppTheme.lavender.withValues(alpha: 0.18),
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: const Icon(Icons.music_note_rounded,
+                        color: AppTheme.lavender, size: 22),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    l10n.soundsTitle,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w800, fontSize: 13),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.soundsSubtitle,
+                    style: TextStyle(fontSize: 11, color: muted),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
           ),
         ],

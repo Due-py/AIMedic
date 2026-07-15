@@ -338,13 +338,21 @@ class _TodayCard extends ConsumerWidget {
                 onChangeEnd: (v) =>
                     notifier.patch(DailyLogPatch(stress: v.toInt())),
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: FilledButton.tonalIcon(
-                  onPressed: () => context.push('/breathe'),
-                  icon: const Text('😌', style: TextStyle(fontSize: 16)),
-                  label: Text(l10n.breathingOpenButton),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FilledButton.tonalIcon(
+                    onPressed: () => context.push('/breathe'),
+                    icon: const Text('😌', style: TextStyle(fontSize: 16)),
+                    label: Text(l10n.breathingOpenButton),
+                  ),
+                  const SizedBox(width: 8),
+                  FilledButton.tonalIcon(
+                    onPressed: () => context.push('/sounds'),
+                    icon: const Text('🎵', style: TextStyle(fontSize: 16)),
+                    label: Text(l10n.soundsOpenButton),
+                  ),
+                ],
               ),
             ],
           ),

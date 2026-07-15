@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -33,7 +34,9 @@ class MealSection extends ConsumerWidget {
                 ),
               ),
               FilledButton.tonalIcon(
-                onPressed: () => _pickAndAnalyze(context, ref),
+                onPressed: () => kIsWeb
+                    ? _pickAndAnalyzeWeb(context, ref)
+                    : _pickAndAnalyze(context, ref),
                 icon: const Icon(Icons.photo_camera_rounded, size: 18),
                 label: Text(l10n.mealPhotoButton),
                 style: FilledButton.styleFrom(
@@ -71,6 +74,27 @@ class MealSection extends ConsumerWidget {
     );
   }
 
+  /// Web-safe path: pickImage() is the very FIRST await so the file-input
+  /// click fires inside the browser gesture handler. iOS Safari blocks
+  /// file/camera access if there is any prior async yield (e.g. a bottom
+  /// sheet close animation) before the input is triggered.
+  Future<void> _pickAndAnalyzeWeb(BuildContext context, WidgetRef ref) async {
+    final XFile? picked;
+    try {
+      // gallery on web shows the native iOS sheet (Photo Library / Take Photo)
+      picked = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        maxWidth: 1024,
+        imageQuality: 70, // ignored on web but harmless
+      );
+    } catch (_) {
+      return;
+    }
+    if (picked == null || !context.mounted) return;
+    await _analyzeFile(context, ref, picked);
+  }
+
+  /// Native path: let the user choose between camera and gallery first.
   Future<void> _pickAndAnalyze(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
 
@@ -108,8 +132,24 @@ class MealSection extends ConsumerWidget {
       return; // camera unavailable (emulator/web without webcam)
     }
     if (picked == null || !context.mounted) return;
+    await _analyzeFile(context, ref, picked);
+  }
+
+  /// Common analysis flow shared by both web and native paths.
+  Future<void> _analyzeFile(
+      BuildContext context, WidgetRef ref, XFile picked) async {
+    final l10n = AppLocalizations.of(context)!;
     final bytes = await picked.readAsBytes();
     if (!context.mounted) return;
+
+    // Backend cap is 4 MB; iOS photos without compression can be 8-12 MB.
+    // Reject early with a clear message so the user knows what to do.
+    if (bytes.length > 3 * 1024 * 1024) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.mealImageTooLarge)),
+      );
+      return;
+    }
 
     // Blocking progress while Gemini looks at the photo.
     showDialog<void>(
@@ -128,8 +168,7 @@ class MealSection extends ConsumerWidget {
 
     MealAnalysis? analysis;
     try {
-      analysis =
-          await ref.read(nutritionRepositoryProvider).analyze(bytes);
+      analysis = await ref.read(nutritionRepositoryProvider).analyze(bytes);
     } catch (_) {
       analysis = null;
     }

@@ -375,5 +375,9 @@
   "badgeStreak7": "Chuỗi 7 ngày",
   "badgeWater10l": "10 lít nước",
   "badgeMood5Days": "Hiểu cảm xúc",
-  "badgeActive5Days": "Năng động"
+  "badgeActive5Days": "Năng động",
+
+  "soundsOpenButton": "Nghe nhạc",
+  "mealImageTooLarge": "Ảnh quá lớn (tối đa 3 MB). Thử chọn ảnh khác nhé!",
+  "wellnessCornerTitle": "Góc thư giãn"
 }
